@@ -1,0 +1,36 @@
+[gd_scene format=3 uid="uid://d0gm50wk21ieh"]
+
+[ext_resource type="MeshLibrary" uid="uid://ge22e0gud7g3" path="res://ModularVillege.meshlib" id="1_dxppu"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_dxppu"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_gy3sr"]
+
+[node name="TestWorld" type="Node3D" unique_id=274963170]
+
+[node name="Ground" type="GridMap" parent="." unique_id=1945658752]
+mesh_library = ExtResource("1_dxppu")
+cell_size = Vector3(1, 1, 1)
+cell_center_y = false
+data = {
+"cells": PackedInt32Array(0, 65535, 14, 0, 1, 14, 2, 1, 14, 2, 0, 14, 2, 65535, 14, 65534, 65535, 14, 65534, 1, 14, 65534, 65533, 14, 0, 65533, 14, 2, 65533, 14)
+}
+metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="RigidBody3D" type="RigidBody3D" parent="." unique_id=1478701936]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3, 0)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="RigidBody3D" unique_id=869483389]
+shape = SubResource("SphereShape3D_dxppu")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="RigidBody3D/CollisionShape3D" unique_id=1450992630]
+mesh = SubResource("SphereMesh_gy3sr")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=1953926243]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 5)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1787565418]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6, 0)
+light_color = Color(1, 0.58431375, 0, 1)
+shadow_enabled = true
+spot_range = 393.183
