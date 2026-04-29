@@ -1,13 +1,10 @@
 [gd_scene format=3 uid="uid://bl5s068w1lrf0"]
 
-[ext_resource type="Script" uid="uid://bkdqpd1vpry7b" path="res://endscenetest.gd" id="1_ll2mv"]
-
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2ceh"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_ll2mv"]
 
 [node name="exit" type="Area3D" unique_id=1743400417]
-script = ExtResource("1_ll2mv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1944824347]
 shape = SubResource("BoxShape3D_t2ceh")
