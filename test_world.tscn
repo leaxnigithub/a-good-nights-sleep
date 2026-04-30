@@ -3,6 +3,7 @@
 [ext_resource type="MeshLibrary" uid="uid://ge22e0gud7g3" path="res://ModularVillege.meshlib" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://player.tscn" id="1_gy3sr"]
 [ext_resource type="PackedScene" uid="uid://bl5s068w1lrf0" path="res://endscenetest.tscn" id="3_1lwx6"]
+[ext_resource type="PackedScene" uid="uid://yiyo0bkyeise" path="res://kill_block.tscn" id="4_dsnr4"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -21,7 +22,7 @@ glow_enabled = true
 [node name="TestWorld" type="Node3D" unique_id=274963170]
 
 [node name="exit" parent="." unique_id=1743400417 groups=["exit"] instance=ExtResource("3_1lwx6")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4906298, 4.2656755)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4906298, 5.8818083)
 disable_mode = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1410438994]
@@ -40,12 +41,9 @@ mesh_library = ExtResource("1_dxppu")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
 data = {
-"cells": PackedInt32Array(0, 65535, 14, 2, 65535, 14, 2, 1, 14, 0, 1, 14, 65534, 1, 14, 65534, 65535, 14, 65534, 65533, 14, 0, 65533, 14, 2, 65533, 14, 4, 65533, 14, 4, 65535, 14, 4, 1, 14, 6, 65533, 14, 6, 65535, 14, 6, 1, 14, 8, 65533, 14, 8, 65535, 14, 8, 1, 14, 65534, 3, 14, 65534, 5, 14, 65534, 7, 14, 0, 3, 14, 0, 5, 14, 0, 7, 14, 2, 3, 14, 2, 5, 14, 2, 7, 14, 65528, 65533, 14, 65528, 65535, 14, 65528, 1, 14, 65530, 65533, 14, 65530, 65535, 14, 65530, 1, 14, 65532, 65533, 14, 65532, 65535, 14, 65532, 1, 14, 65528, 3, 14, 65528, 5, 14, 65528, 7, 14, 65530, 3, 14, 65530, 5, 14, 65530, 7, 14, 65532, 3, 14, 65532, 5, 14, 65532, 7, 14, 4, 3, 14, 4, 5, 14, 4, 7, 14, 6, 3, 14, 6, 5, 14, 6, 7, 14, 8, 3, 14, 8, 5, 14, 8, 7, 14)
+"cells": PackedInt32Array(0, 65535, 14, 2, 65535, 14, 2, 1, 14, 0, 1, 14, 65534, 1, 14, 65534, 65533, 14, 0, 65533, 14, 2, 65533, 14, 4, 65533, 14, 4, 65535, 14, 4, 1, 14, 6, 65533, 14, 6, 65535, 14, 6, 1, 14, 8, 65533, 14, 8, 65535, 14, 8, 1, 14, 65534, 3, 14, 65534, 5, 14, 65534, 7, 14, 0, 3, 14, 0, 5, 14, 0, 7, 14, 2, 3, 14, 2, 5, 14, 2, 7, 14, 65528, 65533, 14, 65528, 65535, 14, 65528, 1, 14, 65530, 65533, 14, 65530, 65535, 14, 65530, 1, 14, 65532, 65533, 14, 65532, 65535, 14, 65532, 1, 14, 65528, 3, 14, 65528, 5, 14, 65528, 7, 14, 65530, 3, 14, 65530, 5, 14, 65530, 7, 14, 65532, 3, 14, 65532, 5, 14, 65532, 7, 14, 4, 3, 14, 4, 5, 14, 4, 7, 14, 6, 3, 14, 6, 5, 14, 6, 7, 14, 8, 3, 14, 8, 5, 14, 8, 7, 14, 65534, 65535, 14, 65528, 65531, 14, 65530, 65531, 14, 65532, 65531, 14, 65534, 65531, 14, 0, 65531, 14, 2, 65531, 14, 4, 65531, 14, 6, 65531, 14, 8, 65531, 14, 65528, 65529, 14, 65528, 65527, 14, 65530, 65527, 14, 65530, 65529, 14, 65532, 65527, 14, 65532, 65529, 14, 65534, 65527, 14, 65534, 65529, 14, 0, 65527, 14, 0, 65529, 14, 2, 65527, 14, 2, 65529, 14, 4, 65527, 14, 4, 65529, 14, 6, 65529, 14, 6, 65527, 14, 8, 65527, 14, 8, 65529, 14)
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1787565418]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 6, 0)
-light_color = Color(1, 0.58431375, 0, 1)
-shadow_enabled = true
-spot_range = 393.183
+[node name="kill block" parent="." unique_id=120468691 instance=ExtResource("4_dsnr4")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)

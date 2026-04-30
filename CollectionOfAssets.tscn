@@ -624,7 +624,6 @@ data = PackedVector3Array(-0.7, 0.65, -0.5, -0.7, 0.7, -0.5, -0.72499996, 0.65, 
 [node name="Node3D" type="Node3D" unique_id=624166656]
 
 [node name="CanopyBeam" type="MeshInstance3D" parent="." unique_id=1777308389]
-visible = false
 mesh = ExtResource("1_ndgng")
 
 [node name="StaticBody3D" type="StaticBody3D" parent="CanopyBeam" unique_id=222509718]

@@ -4,6 +4,8 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
+[sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
+
 [node name="player" type="CharacterBody3D" unique_id=791080869]
 script = ExtResource("1_4flbx")
 
@@ -45,4 +47,5 @@ offset_right = 70.0
 offset_bottom = 11.5
 grow_horizontal = 2
 grow_vertical = 2
-text = "press E to interact"
+text = "press LMB to interact"
+label_settings = SubResource("LabelSettings_4flbx")

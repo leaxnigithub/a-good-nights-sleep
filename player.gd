@@ -1,5 +1,6 @@
 extends CharacterBody3D
 
+@onready var body = $CollisionShape3D
 @onready var notifier = $Control/notifier
 @onready var interact = $Camera3D/interact
 @export var mouse_sens = 0.002
@@ -10,16 +11,20 @@ const JUMP_VELOCITY = 4.5
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 
+func kill_player():
+	if body.is_in_group("kill"):
+		get_tree().quit()
+
 func check_ray_hit():
 	if interact.is_colliding():
-		if interact.is_in_group("exit"):
+		if interact.get_collider().is_in_group("exit"):
 			notifier.visible=true
 		if Input.is_action_just_pressed("interact"):
 			interact.get_collider().queue_free()
 			get_tree().quit()
 	else:
 		notifier.visible=false
-			
+		
 	
 func _unhandled_input(event: InputEvent) -> void:
 	if event is InputEventMouseMotion:
@@ -29,6 +34,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func _physics_process(delta: float) -> void:
+	check_ray_hit()
+	kill_player()
 	# Add the gravity.
 	if not is_on_floor():
 		velocity += get_gravity() * delta
@@ -50,4 +57,7 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 
 	move_and_slide()
-	check_ray_hit()
+
+
+func _on_kill_block_body_entered(body: Node) -> void:
+	get_tree().quit()
