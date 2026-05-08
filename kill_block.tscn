@@ -4,6 +4,27 @@
 
 [sub_resource type="SphereMesh" id="SphereMesh_26bkw"]
 
+[sub_resource type="GDScript" id="GDScript_lmkci"]
+script/source = "extends Area3D
+
+@onready var player = get_node(\"/root/test_world/player\")
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_body_entered(player: Node3D) -> void:
+	get_tree().reload_current_scene()
+"
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_a1ns5"]
+
 [node name="kill block" type="Area3D" unique_id=120468691]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1780668840]
@@ -11,3 +32,11 @@ shape = SubResource("SphereShape3D_lmkci")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=274554288]
 mesh = SubResource("SphereMesh_26bkw")
+
+[node name="trigger zone" type="Area3D" parent="." unique_id=147806854]
+script = SubResource("GDScript_lmkci")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="trigger zone" unique_id=1706938102]
+shape = SubResource("SphereShape3D_a1ns5")
+
+[connection signal="body_entered" from="trigger zone" to="trigger zone" method="_on_body_entered"]

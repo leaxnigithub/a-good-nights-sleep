@@ -1,9 +1,10 @@
 [gd_scene format=3 uid="uid://d0gm50wk21ieh"]
 
+[ext_resource type="Script" uid="uid://bpwtb41sw3fq4" path="res://test_world.gd" id="1_cnaw2"]
 [ext_resource type="MeshLibrary" uid="uid://ge22e0gud7g3" path="res://ModularVillege.meshlib" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://player.tscn" id="1_gy3sr"]
 [ext_resource type="PackedScene" uid="uid://bl5s068w1lrf0" path="res://endscenetest.tscn" id="3_1lwx6"]
-[ext_resource type="PackedScene" uid="uid://yiyo0bkyeise" path="res://kill_block.tscn" id="4_dsnr4"]
+[ext_resource type="PackedScene" uid="uid://bb88fts25bwqx" path="res://enemy.tscn" id="5_lf0gk"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -19,7 +20,12 @@ ambient_light_color = Color(0.47722316, 0.8587746, 0.85930055, 1)
 tonemap_mode = 2
 glow_enabled = true
 
+[sub_resource type="NavigationMesh" id="NavigationMesh_dsnr4"]
+vertices = PackedVector3Array(-8.5, 0.3, -8.5, -8.5, 0.3, 8.5, 8.5, 0.3, 8.5, 8.5, 0.3, -8.5)
+polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1)]
+
 [node name="TestWorld" type="Node3D" unique_id=274963170]
+script = ExtResource("1_cnaw2")
 
 [node name="exit" parent="." unique_id=1743400417 groups=["exit"] instance=ExtResource("3_1lwx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4906298, 5.8818083)
@@ -33,10 +39,13 @@ transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545
 light_color = Color(0.83918196, 0.3306428, 0, 1)
 shadow_enabled = true
 
-[node name="player" parent="." unique_id=791080869 groups=["exit"] instance=ExtResource("1_gy3sr")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8401141, 0)
+[node name="player" parent="." unique_id=791080869 instance=ExtResource("1_gy3sr")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.4899864, 4.5798926)
 
-[node name="Ground" type="GridMap" parent="." unique_id=1945658752]
+[node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1529041955]
+navigation_mesh = SubResource("NavigationMesh_dsnr4")
+
+[node name="Ground" type="GridMap" parent="NavigationRegion3D" unique_id=1945658752]
 mesh_library = ExtResource("1_dxppu")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
@@ -45,5 +54,5 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="kill block" parent="." unique_id=120468691 instance=ExtResource("4_dsnr4")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, -5)
+[node name="enemy" parent="." unique_id=793851277 instance=ExtResource("5_lf0gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.24505138, 1.5866723, -5.4723024)
