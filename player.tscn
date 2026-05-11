@@ -6,7 +6,8 @@
 
 [sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
 
-[node name="player" type="CharacterBody3D" unique_id=791080869 groups=["exit"]]
+[node name="player" type="CharacterBody3D" unique_id=791080869 groups=["exit", "player"]]
+visible = false
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=534872749]

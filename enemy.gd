@@ -13,3 +13,7 @@ func _physics_process(delta: float) -> void:
 	
 	velocity = new_velocity
 	move_and_slide()
+	
+func _on_area_3d_body_entered(body: Node3D) -> void:
+	if body.is_in_group("player"):
+		get_tree().call_deferred("reload_current_scene")
