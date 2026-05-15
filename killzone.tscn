@@ -1,0 +1,13 @@
+[gd_scene format=3 uid="uid://bhtmt7drew3av"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_n74wa"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_3brf5"]
+
+[node name="killzone" type="Area3D" unique_id=942744797]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=91679158]
+shape = SubResource("BoxShape3D_n74wa")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1860452704]
+mesh = SubResource("BoxMesh_3brf5")

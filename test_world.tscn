@@ -5,6 +5,8 @@
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://player.tscn" id="1_gy3sr"]
 [ext_resource type="PackedScene" uid="uid://bl5s068w1lrf0" path="res://endscenetest.tscn" id="3_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://bb88fts25bwqx" path="res://enemy.tscn" id="5_lf0gk"]
+[ext_resource type="PackedScene" uid="uid://bhtmt7drew3av" path="res://killzone.tscn" id="6_cnaw2"]
+[ext_resource type="Script" uid="uid://dlxjmau4lrgtt" path="res://killzone.gd" id="6_kt6p6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -50,7 +52,16 @@ mesh_library = ExtResource("1_dxppu")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
 bake_navigation = true
+data = {
+"cells": PackedInt32Array(65510, 65527, 1048595, 65508, 65527, 1048595, 65506, 65527, 1048595, 65504, 65527, 1048595, 65502, 65527, 1048595, 65500, 65527, 1048595, 65498, 65527, 1048595, 65496, 65527, 1048595)
+}
 metadata/_editor_floor_ = Vector3(0, 0, 0)
+
+[node name="killzone" parent="NavigationRegion3D/non_ground" unique_id=942744797 instance=ExtResource("6_cnaw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1, -13)
+disable_mode = 2
+input_ray_pickable = false
+script = ExtResource("6_kt6p6")
 
 [node name="Ground" type="GridMap" parent="NavigationRegion3D" unique_id=1945658752]
 mesh_library = ExtResource("1_dxppu")
@@ -63,4 +74,4 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="enemy" parent="." unique_id=793851277 instance=ExtResource("5_lf0gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15.473487, 4.8206544, -13.342333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.467494, 4.8206544, -13.342333)

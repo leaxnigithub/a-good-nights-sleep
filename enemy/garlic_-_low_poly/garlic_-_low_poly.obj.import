@@ -1,0 +1,25 @@
+[remap]
+
+importer="wavefront_obj"
+importer_version=1
+type="Mesh"
+uid="uid://dsruvaicff6n2"
+path="res://.godot/imported/garlic_-_low_poly.obj-27a3cced1755d36cb4e588250c9bd81c.mesh"
+
+[deps]
+
+files=["res://.godot/imported/garlic_-_low_poly.obj-27a3cced1755d36cb4e588250c9bd81c.mesh"]
+
+source_file="res://enemy/garlic_-_low_poly/garlic_-_low_poly.obj"
+dest_files=["res://.godot/imported/garlic_-_low_poly.obj-27a3cced1755d36cb4e588250c9bd81c.mesh", "res://.godot/imported/garlic_-_low_poly.obj-27a3cced1755d36cb4e588250c9bd81c.mesh"]
+
+[params]
+
+generate_tangents=true
+generate_lods=true
+generate_shadow_mesh=true
+generate_lightmap_uv2=false
+generate_lightmap_uv2_texel_size=0.2
+scale_mesh=Vector3(1, 1, 1)
+offset_mesh=Vector3(0, 0, 0)
+force_disable_mesh_compression=false
