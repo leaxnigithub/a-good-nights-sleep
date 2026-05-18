@@ -5,22 +5,23 @@
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://player.tscn" id="1_gy3sr"]
 [ext_resource type="PackedScene" uid="uid://bl5s068w1lrf0" path="res://endscenetest.tscn" id="3_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://bb88fts25bwqx" path="res://enemy.tscn" id="5_lf0gk"]
-[ext_resource type="PackedScene" uid="uid://bhtmt7drew3av" path="res://killzone.tscn" id="6_cnaw2"]
-[ext_resource type="Script" uid="uid://dlxjmau4lrgtt" path="res://killzone.gd" id="6_kt6p6"]
 
-[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_gy3sr"]
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lf0gk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 ground_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
 
-[sub_resource type="Sky" id="Sky_1lwx6"]
-sky_material = SubResource("ProceduralSkyMaterial_gy3sr")
+[sub_resource type="Sky" id="Sky_cnaw2"]
+sky_material = SubResource("ProceduralSkyMaterial_lf0gk")
 
-[sub_resource type="Environment" id="Environment_dsnr4"]
-background_mode = 2
-sky = SubResource("Sky_1lwx6")
-ambient_light_color = Color(0.47722316, 0.8587746, 0.85930055, 1)
+[sub_resource type="Environment" id="Environment_kt6p6"]
+background_mode = 1
+sky = SubResource("Sky_cnaw2")
 tonemap_mode = 2
 glow_enabled = true
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.89492244, 0.89492244, 0.8949224, 1)
+volumetric_fog_emission = Color(0.043039158, 0.04303915, 0.04303915, 1)
 
 [sub_resource type="NavigationMesh" id="NavigationMesh_dsnr4"]
 vertices = PackedVector3Array(-25.75, 0.3, -8.5, -25.75, 0.3, -23.5, -39.5, 0.3, -23.5, -39.5, 0.3, -8.5, 25.75, 0.3, 7.5, 25.75, 0.3, -7.5, 23.5, 0.3, -7.75, -23.5, 0.3, -8.25, -23.5, 0.3, 7.5, 23.5, 0.3, -23.5, 39.5, 0.3, 7.5, 39.5, 0.3, -7.5)
@@ -29,17 +30,17 @@ polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Arr
 [node name="TestWorld" type="Node3D" unique_id=274963170]
 script = ExtResource("1_cnaw2")
 
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1729255729]
+environment = SubResource("Environment_kt6p6")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1491341418]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 38, 0)
+light_color = Color(0.9019608, 0.31764707, 0, 1)
+light_volumetric_fog_energy = 4.985
+
 [node name="exit" parent="." unique_id=1743400417 groups=["exit"] instance=ExtResource("3_1lwx6")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.091217, 1.4906298, 5.8818083)
 disable_mode = 1
-
-[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1410438994]
-environment = SubResource("Environment_dsnr4")
-
-[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=900705724]
-transform = Transform3D(-0.8660254, -0.43301278, 0.25, 0, 0.49999997, 0.86602545, -0.50000006, 0.75, -0.43301266, 0, 10, 0)
-light_color = Color(0.83918196, 0.3306428, 0, 1)
-shadow_enabled = true
 
 [node name="player" parent="." unique_id=791080869 instance=ExtResource("1_gy3sr")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.510384, 6.4899864, -15.239098)
@@ -52,16 +53,7 @@ mesh_library = ExtResource("1_dxppu")
 cell_size = Vector3(1, 1, 1)
 cell_center_y = false
 bake_navigation = true
-data = {
-"cells": PackedInt32Array(65510, 65527, 1048595, 65508, 65527, 1048595, 65506, 65527, 1048595, 65504, 65527, 1048595, 65502, 65527, 1048595, 65500, 65527, 1048595, 65498, 65527, 1048595, 65496, 65527, 1048595)
-}
 metadata/_editor_floor_ = Vector3(0, 0, 0)
-
-[node name="killzone" parent="NavigationRegion3D/non_ground" unique_id=942744797 instance=ExtResource("6_cnaw2")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -28, 1, -13)
-disable_mode = 2
-input_ray_pickable = false
-script = ExtResource("6_kt6p6")
 
 [node name="Ground" type="GridMap" parent="NavigationRegion3D" unique_id=1945658752]
 mesh_library = ExtResource("1_dxppu")
@@ -74,4 +66,4 @@ data = {
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
 [node name="enemy" parent="." unique_id=793851277 instance=ExtResource("5_lf0gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7.467494, 4.8206544, -13.342333)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.467495, 4.8206544, -13.342333)

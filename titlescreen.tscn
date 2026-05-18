@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://dvnem4b4cbfgo"]
+
+[ext_resource type="Script" uid="uid://1ufc73fiawsa" path="res://titlescreen.gd" id="1_cjnew"]
+
+[node name="Titlescreen" type="Control" unique_id=2058847252]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_cjnew")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=1083694310]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.043137256, 0, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1887912793]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=772889014]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "a goodnights sleep"
+
+[node name="start" type="Button" parent="VBoxContainer" unique_id=1007916155]
+layout_mode = 2
+text = "START"
+
+[node name="quit" type="Button" parent="VBoxContainer" unique_id=1592497065]
+layout_mode = 2
+text = "QUIT"
