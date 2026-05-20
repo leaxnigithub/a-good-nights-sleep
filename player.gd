@@ -1,7 +1,8 @@
 extends CharacterBody3D
 
+@onready var options = $options
 @onready var body = $CollisionShape3D
-@onready var notifier = $Control/notifier
+@onready var notifier = $interacter/notifier
 @onready var interact = $Camera3D/interact
 @export var mouse_sens = 0.002
 const SPEED = 5.0
@@ -9,6 +10,7 @@ const JUMP_VELOCITY = 4.5
 
 func _ready():
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+		
 
 func check_ray_hit():
 	if interact.is_colliding():

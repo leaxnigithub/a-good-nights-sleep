@@ -34,11 +34,6 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=772889014]
-layout_mode = 2
-size_flags_horizontal = 4
-text = "a goodnights sleep"
-
 [node name="start" type="Button" parent="VBoxContainer" unique_id=1007916155]
 layout_mode = 2
 text = "START"
@@ -46,3 +41,6 @@ text = "START"
 [node name="quit" type="Button" parent="VBoxContainer" unique_id=1592497065]
 layout_mode = 2
 text = "QUIT"
+
+[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

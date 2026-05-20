@@ -7,7 +7,6 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
 
 [node name="player" type="CharacterBody3D" unique_id=791080869 groups=["exit", "player"]]
-visible = false
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=534872749]
@@ -24,7 +23,7 @@ collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(0.36205631, 0.5571382, 1, 1)
 
-[node name="Control" type="Control" parent="." unique_id=1559020112]
+[node name="interacter" type="Control" parent="." unique_id=1559020112]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -35,7 +34,7 @@ mouse_filter = 2
 mouse_behavior_recursive = 1
 mouse_force_pass_scroll_events = false
 
-[node name="notifier" type="Label" parent="Control" unique_id=1835782070]
+[node name="notifier" type="Label" parent="interacter" unique_id=1835782070]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -50,3 +49,20 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "press LMB to interact"
 label_settings = SubResource("LabelSettings_4flbx")
+
+[node name="options" type="Control" parent="." unique_id=844791303]
+visible = false
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="options" unique_id=762516112]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2

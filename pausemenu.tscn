@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://foy282v0b0x5"]
+
+[ext_resource type="Script" uid="uid://ex1eyacy2v27" path="res://pausemenu.gd" id="1_0mw5b"]
+
+[node name="pausemenu" type="Control" unique_id=1856115223]
+process_mode = 2
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_0mw5b")
+
+[node name="pause_layer" type="CanvasLayer" parent="." unique_id=1082117050]
+
+[node name="ColorRect" type="ColorRect" parent="pause_layer" unique_id=1389661976]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.043137256, 0, 1)
+
+[node name="pause_main" type="PanelContainer" parent="pause_layer" unique_id=561621407]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_layer/pause_main" unique_id=1594900195]
+layout_mode = 2
+
+[node name="resume" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=39962182]
+layout_mode = 2
+
+[node name="options" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=171509671]
+layout_mode = 2
+
+[node name="quit" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=1238341543]
+layout_mode = 2
+
+[node name="options_menu" type="PanelContainer" parent="pause_layer" unique_id=1741524319]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/quit" to="." method="_on_quit_pressed"]
