@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://d0gm50wk21ieh"]
 
-[ext_resource type="Script" uid="uid://bpwtb41sw3fq4" path="res://test_world.gd" id="1_cnaw2"]
 [ext_resource type="MeshLibrary" uid="uid://ge22e0gud7g3" path="res://ModularVillege.meshlib" id="1_dxppu"]
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://player.tscn" id="1_gy3sr"]
 [ext_resource type="PackedScene" uid="uid://bl5s068w1lrf0" path="res://endscenetest.tscn" id="3_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://bb88fts25bwqx" path="res://enemy.tscn" id="5_lf0gk"]
-[ext_resource type="PackedScene" uid="uid://foy282v0b0x5" path="res://pausemenu.tscn" id="6_cnaw2"]
+[ext_resource type="PackedScene" uid="uid://085evxrh3giq" path="res://death_screen.tscn" id="6_cnaw2"]
+[ext_resource type="PackedScene" uid="uid://ddbvj7may20k6" path="res://pause_menu.tscn" id="6_kt6p6"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_lf0gk"]
 sky_horizon_color = Color(0.66224277, 0.6717428, 0.6867428, 1)
@@ -16,7 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_lf0gk")
 
 [sub_resource type="Environment" id="Environment_kt6p6"]
 background_mode = 1
-background_color = Color(0.41981313, 0.41981313, 0.4198131, 1)
+background_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
 sky = SubResource("Sky_cnaw2")
 tonemap_mode = 2
 glow_enabled = true
@@ -29,10 +29,7 @@ volumetric_fog_emission = Color(0.043039158, 0.04303915, 0.04303915, 1)
 vertices = PackedVector3Array(-25.75, 0.3, -8.5, -25.75, 0.3, -23.5, -39.5, 0.3, -23.5, -39.5, 0.3, -8.5, 25.75, 0.3, 7.5, 25.75, 0.3, -7.5, 23.5, 0.3, -7.75, -23.5, 0.3, -8.25, -23.5, 0.3, 7.5, 23.5, 0.3, -23.5, 39.5, 0.3, 7.5, 39.5, 0.3, -7.5)
 polygons = [PackedInt32Array(3, 2, 0), PackedInt32Array(0, 2, 1), PackedInt32Array(5, 4, 6), PackedInt32Array(6, 4, 8), PackedInt32Array(6, 8, 7), PackedInt32Array(0, 1, 7), PackedInt32Array(7, 1, 9), PackedInt32Array(7, 9, 6), PackedInt32Array(5, 11, 4), PackedInt32Array(4, 11, 10)]
 
-[sub_resource type="BoxShape3D" id="BoxShape3D_cnaw2"]
-
 [node name="TestWorld" type="Node3D" unique_id=274963170]
-script = ExtResource("1_cnaw2")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1729255729]
 environment = SubResource("Environment_kt6p6")
@@ -48,9 +45,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.091217, 1.4906298, 5.88180
 disable_mode = 1
 
 [node name="player" parent="." unique_id=791080869 instance=ExtResource("1_gy3sr")]
+process_mode = 3
+process_priority = 1
+process_physics_priority = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35.510384, 6.4899864, -15.239098)
-
-[node name="pausemenu" parent="player" unique_id=1856115223 instance=ExtResource("6_cnaw2")]
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1529041955]
 navigation_mesh = SubResource("NavigationMesh_dsnr4")
@@ -72,12 +70,10 @@ data = {
 }
 metadata/_editor_floor_ = Vector3(0, 0, 0)
 
-[node name="enemy_spawn_area" type="Area3D" parent="." unique_id=660264157]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 5, -7)
-
-[node name="CollisionShape3D" type="CollisionShape3D" parent="enemy_spawn_area" unique_id=1181404697]
-transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
-shape = SubResource("BoxShape3D_cnaw2")
-
 [node name="enemy" parent="." unique_id=793851277 instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.467495, 4.8206544, -13.342333)
+
+[node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("6_kt6p6")]
+process_priority = -10
+
+[node name="DeathScreen" parent="." unique_id=552518761 instance=ExtResource("6_cnaw2")]

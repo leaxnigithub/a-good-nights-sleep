@@ -68,9 +68,16 @@ func _on_proximity_area_body_exited(body: Node3D) -> void:
 # This triggers the instant the player touches the enemy's killzone hitbox
 func _on_kill_zone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		print("Player touched! Reloading scene...")
-		get_tree().reload_current_scene()
-
+		print("Player caught by enemy!")
+		
+		# Look for the DeathScreen node inside the active Main World scene
+		var death_screen = get_node_or_null("/root/TestWorld/DeathScreen")
+		
+		if death_screen:
+			death_screen.player_died()
+		else:
+			# Fallback if you haven't dragged the DeathScreen into the scene tree yet
+			get_tree().reload_current_scene()
 
 # --- NAVIGATION BEHAVIOR CODE ---
 

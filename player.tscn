@@ -7,6 +7,7 @@
 [sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
 
 [node name="player" type="CharacterBody3D" unique_id=791080869 groups=["exit", "player"]]
+process_mode = 1
 script = ExtResource("1_4flbx")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=534872749]
@@ -49,20 +50,3 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "press LMB to interact"
 label_settings = SubResource("LabelSettings_4flbx")
-
-[node name="options" type="Control" parent="." unique_id=844791303]
-visible = false
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="ColorRect" type="ColorRect" parent="options" unique_id=762516112]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
