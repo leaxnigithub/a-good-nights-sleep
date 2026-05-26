@@ -1,0 +1,86 @@
+[gd_scene format=3 uid="uid://ddbvj7may20k6"]
+
+[ext_resource type="Script" uid="uid://cm8nnvpwhiyiy" path="res://pause_menu.gd" id="1_hdmo1"]
+
+[node name="PauseMenu" type="Control" unique_id=1142006162]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_hdmo1")
+
+[node name="pause_layer" type="CanvasLayer" parent="." unique_id=1137347164]
+
+[node name="ColorRect" type="ColorRect" parent="pause_layer" unique_id=1108158682]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101960786, 0.043137256, 0, 0.83137256)
+
+[node name="pause_main" type="PanelContainer" parent="pause_layer" unique_id=1318830786]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_layer/pause_main" unique_id=337206152]
+layout_mode = 2
+
+[node name="resume" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=739327094]
+layout_mode = 2
+text = "resume"
+
+[node name="options" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=1840059170]
+layout_mode = 2
+text = "options"
+
+[node name="quit" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=762764024]
+layout_mode = 2
+text = "quit"
+
+[node name="options_menu" type="PanelContainer" parent="pause_layer" unique_id=2059116861]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBoxContainer" type="VBoxContainer" parent="pause_layer/options_menu" unique_id=585205609]
+layout_mode = 2
+
+[node name="back" type="Button" parent="pause_layer/options_menu/VBoxContainer" unique_id=1357630187]
+layout_mode = 2
+text = "back"
+
+[node name="FullscreenCheck" type="CheckBox" parent="pause_layer/options_menu/VBoxContainer" unique_id=2082390060]
+layout_mode = 2
+text = "fullscreen"
+
+[node name="VolumeSlider" type="HSlider" parent="pause_layer/options_menu/VBoxContainer" unique_id=356631940]
+layout_mode = 2
+ticks_on_borders = true
+
+[connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/resume" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/options" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="pause_layer/options_menu/VBoxContainer/back" to="." method="_on_back_pressed"]
+[connection signal="toggled" from="pause_layer/options_menu/VBoxContainer/FullscreenCheck" to="." method="_on_fullscreen_check_toggled"]
+[connection signal="value_changed" from="pause_layer/options_menu/VBoxContainer/VolumeSlider" to="." method="_on_volume_slider_value_changed"]

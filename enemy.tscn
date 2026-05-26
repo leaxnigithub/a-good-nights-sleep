@@ -21,14 +21,19 @@ mesh = SubResource("CapsuleMesh_7k104")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=474878382]
 
-[node name="proximityarea" type="Area3D" parent="." unique_id=1293199133]
+[node name="proximity_area" type="Area3D" parent="." unique_id=1293199133]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="proximityarea" unique_id=1785149137]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="proximity_area" unique_id=1785149137]
 transform = Transform3D(9.51, 0, 0, 0, 9.51, 0, 0, 0, 9.51, 0, 0, 0)
 shape = SubResource("SphereShape3D_7k104")
 
-[node name="killzone" type="Area3D" parent="." unique_id=193989358]
+[node name="kill_zone" type="Area3D" parent="." unique_id=193989358]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="killzone" unique_id=1391549134]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="kill_zone" unique_id=1391549134]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_7k104")
+
+[connection signal="area_entered" from="proximity_area" to="." method="_on_proximity_area_entered"]
+[connection signal="body_entered" from="proximity_area" to="." method="_on_proximity_area_body_entered"]
+[connection signal="body_exited" from="proximity_area" to="." method="_on_proximity_area_body_exited"]
+[connection signal="body_entered" from="kill_zone" to="." method="_on_kill_zone_body_entered"]
