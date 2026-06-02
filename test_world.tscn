@@ -16,10 +16,7 @@ sky_material = SubResource("ProceduralSkyMaterial_lf0gk")
 
 [sub_resource type="Environment" id="Environment_kt6p6"]
 background_mode = 1
-<<<<<<< HEAD
 background_color = Color(0.54497427, 0.5449743, 0.5449741, 1)
-=======
->>>>>>> parent of c50dea3 (save 9)
 sky = SubResource("Sky_cnaw2")
 tonemap_mode = 2
 glow_enabled = true
@@ -46,7 +43,7 @@ light_volumetric_fog_energy = 4.985
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33.091217, 1.4906298, 5.8818083)
 disable_mode = 1
 
-[node name="player" parent="." unique_id=791080869 instance=ExtResource("1_gy3sr")]
+[node name="player" parent="." unique_id=791080869 groups=["player"] instance=ExtResource("1_gy3sr")]
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1

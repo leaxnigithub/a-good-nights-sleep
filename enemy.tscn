@@ -10,6 +10,16 @@
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7k104"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k104"]
+transparency = 4
+albedo_color = Color(1, 1, 1, 0.11764706)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_7k104"]
+material = SubResource("StandardMaterial3D_7k104")
+top_radius = 0.0
+bottom_radius = 2.0
+height = 5.0
+
 [node name="enemy" type="CharacterBody3D" unique_id=793851277]
 script = ExtResource("1_7k104")
 
@@ -21,19 +31,30 @@ mesh = SubResource("CapsuleMesh_7k104")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=474878382]
 
-[node name="proximity_area" type="Area3D" parent="." unique_id=1293199133]
+[node name="proximityarea" type="Area3D" parent="." unique_id=1293199133]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="proximity_area" unique_id=1785149137]
-transform = Transform3D(9.51, 0, 0, 0, 9.51, 0, 0, 0, 9.51, 0, 0, 0)
+[node name="CollisionShape3D" type="CollisionShape3D" parent="proximityarea" unique_id=1785149137]
+transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("SphereShape3D_7k104")
 
-[node name="kill_zone" type="Area3D" parent="." unique_id=193989358]
+[node name="killzone" type="Area3D" parent="." unique_id=193989358]
 
-[node name="CollisionShape3D" type="CollisionShape3D" parent="kill_zone" unique_id=1391549134]
+[node name="CollisionShape3D" type="CollisionShape3D" parent="killzone" unique_id=1391549134]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
 shape = SubResource("CapsuleShape3D_7k104")
 
-[connection signal="area_entered" from="proximity_area" to="." method="_on_proximity_area_entered"]
-[connection signal="body_entered" from="proximity_area" to="." method="_on_proximity_area_body_entered"]
-[connection signal="body_exited" from="proximity_area" to="." method="_on_proximity_area_body_exited"]
-[connection signal="body_entered" from="kill_zone" to="." method="_on_kill_zone_body_entered"]
+[node name="FaceLight" type="SpotLight3D" parent="." unique_id=311839305]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6976547, 0)
+light_energy = 10.0
+spot_attenuation = 1.5
+spot_angle = 35.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="FaceLight" unique_id=658148308]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, -2)
+visible = false
+transparency = 0.87
+mesh = SubResource("CylinderMesh_7k104")
+
+[connection signal="body_entered" from="proximityarea" to="." method="_on_proximityarea_body_entered"]
+[connection signal="body_exited" from="proximityarea" to="." method="_on_proximityarea_body_exited"]
+[connection signal="body_entered" from="killzone" to="." method="_on_killzone_body_entered"]
