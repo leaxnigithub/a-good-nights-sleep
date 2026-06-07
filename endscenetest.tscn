@@ -1,8 +1,18 @@
 [gd_scene format=3 uid="uid://bl5s068w1lrf0"]
 
+[ext_resource type="Texture2D" uid="uid://b7xcgfvmbxjqj" path="res://coffin.jpg" id="1_ll2mv"]
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2ceh"]
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k5bt"]
+albedo_texture = ExtResource("1_ll2mv")
+
 [sub_resource type="BoxMesh" id="BoxMesh_ll2mv"]
+
+[sub_resource type="ImageTexture" id="ImageTexture_t2ceh"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ll2mv"]
+albedo_texture = SubResource("ImageTexture_t2ceh")
 
 [node name="exit" type="Area3D" unique_id=1743400417]
 
@@ -10,4 +20,6 @@
 shape = SubResource("BoxShape3D_t2ceh")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="CollisionShape3D" unique_id=1031781751]
+material_override = SubResource("StandardMaterial3D_7k5bt")
 mesh = SubResource("BoxMesh_ll2mv")
+surface_material_override/0 = SubResource("StandardMaterial3D_ll2mv")

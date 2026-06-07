@@ -1,0 +1,58 @@
+[gd_scene format=3 uid="uid://dh8yxo5nv3xrb"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_5s686"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_r6e0c"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_5s686")
+roughness = 0.0
+texture_filter = 4
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_5s686"]
+size = Vector2(3, 2)
+orientation = 0
+
+[node name="InstructionSign" type="MeshInstance3D" unique_id=1497706832]
+material_override = SubResource("StandardMaterial3D_r6e0c")
+mesh = SubResource("PlaneMesh_5s686")
+
+[node name="SubViewport" type="SubViewport" parent="." unique_id=480721973]
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="CanvasLayout" type="Control" parent="SubViewport" unique_id=1720998835]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="BackgroundColor" type="ColorRect" parent="SubViewport/CanvasLayout" unique_id=1635060095]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.6872149, 0.68721503, 0.6872149, 1)
+
+[node name="SignText" type="RichTextLabel" parent="SubViewport/CanvasLayout" unique_id=530804650]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/normal_font_size = 64
+text = "INSTRUCTIONS:
+WHAT TO DO: NAVIGATE THE MAZE AND FIND THE EXIT. CLICK ON THE BOX TO CLEAR THE LEVEL.
+
+WHAT NOT TO DO: DO NOT TOUCH THE ENEMY. AVOID GETTING SPOTTED!
+
+(press escape to view options)"
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=450982667]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.8198147, 0, 0)
+light_color = Color(1, 0.61960787, 0.1764706, 1)
