@@ -8,6 +8,8 @@
 albedo_texture = ExtResource("1_ll2mv")
 
 [sub_resource type="BoxMesh" id="BoxMesh_ll2mv"]
+lightmap_size_hint = Vector2i(14, 21)
+add_uv2 = true
 
 [sub_resource type="ImageTexture" id="ImageTexture_t2ceh"]
 
@@ -15,6 +17,8 @@ albedo_texture = ExtResource("1_ll2mv")
 albedo_texture = SubResource("ImageTexture_t2ceh")
 
 [node name="exit" type="Area3D" unique_id=1743400417]
+collision_layer = 2
+collision_mask = 2
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1944824347]
 shape = SubResource("BoxShape3D_t2ceh")

@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbgo3v52gdvxt"]
 
 [ext_resource type="Script" uid="uid://g8ogslyj2qeh" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="AudioStream" uid="uid://beow57b5lgiyi" path="res://soundeffects/player/mixkit-footsteps-through-the-wastelands-540.wav" id="2_onrkg"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -20,6 +21,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 0)
 [node name="interact" type="RayCast3D" parent="Camera3D" unique_id=1821496174]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100000024, 0)
 target_position = Vector3(0, 0, -1.5)
+collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(0.36205631, 0.5571382, 1, 1)
@@ -50,3 +52,20 @@ grow_horizontal = 2
 grow_vertical = 2
 text = "press LMB to interact"
 label_settings = SubResource("LabelSettings_4flbx")
+
+[node name="cursor" type="CanvasLayer" parent="." unique_id=401454172]
+
+[node name="ColorRect" type="ColorRect" parent="cursor" unique_id=325597436]
+custom_minimum_size = Vector2(6, 6)
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=511441782]
+stream = ExtResource("2_onrkg")
+volume_db = -12.0
+autoplay = true

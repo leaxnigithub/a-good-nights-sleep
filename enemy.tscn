@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://bb88fts25bwqx"]
 
 [ext_resource type="Script" uid="uid://chrx0fdu1kh2a" path="res://enemy.gd" id="1_7k104"]
+[ext_resource type="AudioStream" uid="uid://u8bevgl682b7" path="res://soundeffects/enemy/mixkit-confirmation-tone-2867.wav" id="2_qi2p4"]
+[ext_resource type="AudioStream" uid="uid://cefuhg4vko3og" path="res://soundeffects/enemy/mixkit-wrong-answer-fail-notification-946.wav" id="3_iifgy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xaro"]
 
@@ -32,12 +34,14 @@ mesh = SubResource("CapsuleMesh_7k104")
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=474878382]
 
 [node name="proximityarea" type="Area3D" parent="." unique_id=1293199133]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="proximityarea" unique_id=1785149137]
 transform = Transform3D(10, 0, 0, 0, 10, 0, 0, 0, 10, 0, 0, 0)
 shape = SubResource("SphereShape3D_7k104")
 
 [node name="killzone" type="Area3D" parent="." unique_id=193989358]
+input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="killzone" unique_id=1391549134]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
@@ -54,6 +58,16 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0
 visible = false
 transparency = 0.87
 mesh = SubResource("CylinderMesh_7k104")
+
+[node name="SpottedSound" type="AudioStreamPlayer3D" parent="." unique_id=1308984951]
+stream = ExtResource("2_qi2p4")
+volume_db = -12.0
+pitch_scale = 0.7
+
+[node name="KillSound" type="AudioStreamPlayer3D" parent="." unique_id=2127755161]
+process_mode = 3
+stream = ExtResource("3_iifgy")
+volume_db = -12.0
 
 [connection signal="body_entered" from="proximityarea" to="." method="_on_proximityarea_body_entered"]
 [connection signal="body_exited" from="proximityarea" to="." method="_on_proximityarea_body_exited"]

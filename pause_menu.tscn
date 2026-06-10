@@ -76,7 +76,11 @@ text = "fullscreen"
 
 [node name="VolumeSlider" type="HSlider" parent="pause_layer/options_menu/VBoxContainer" unique_id=356631940]
 layout_mode = 2
+max_value = 1.0
+step = 100.0
+value = 1.0
 ticks_on_borders = true
+ticks_position = 1
 
 [connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/resume" to="." method="_on_resume_pressed"]
 [connection signal="pressed" from="pause_layer/pause_main/VBoxContainer/options" to="." method="_on_options_pressed"]

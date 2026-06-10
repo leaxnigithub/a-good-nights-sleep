@@ -3,6 +3,10 @@ extends CharacterBody3D
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @onready var face_light: SpotLight3D = $FaceLight
 
+# Audio node connections
+@onready var spotted_sound: AudioStreamPlayer3D = $SpottedSound
+@onready var kill_sound: AudioStreamPlayer3D = $KillSound
+
 @export var player: Node3D 
 
 # --- Speed Settings Per State ---
@@ -213,6 +217,10 @@ func _on_proximityarea_body_entered(body: Node3D) -> void:
 			is_chase_starting = true
 			chase_delay_timer = chase_delay_duration
 			
+			# Trigger the spotted sound cue
+			if spotted_sound:
+				spotted_sound.play()
+			
 			# Flash light to blood red on detection
 			if face_light:
 				face_light.light_color = Color.RED
@@ -238,8 +246,14 @@ func _on_proximityarea_body_exited(body: Node3D) -> void:
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		print("Player caught by enemy!")
+		
+		# Trigger the jumpscare/kill sound
+		if kill_sound:
+			kill_sound.play()
+			
 		var death_screen = get_node_or_null("/root/TestWorld/DeathScreen")
 		if death_screen:
 			death_screen.player_died()
 		else:
+			# If no death screen exists, reload scene (consider adding a short await if scene switches instantly)
 			get_tree().reload_current_scene()

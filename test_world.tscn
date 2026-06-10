@@ -35,7 +35,7 @@ texture_filter = 4
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36.697342, 3.2313542, -15.869453)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36.697342, 1.7745728, -15.869453)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1529041955]
 navigation_mesh = SubResource("NavigationMesh_cnaw2")
@@ -67,6 +67,7 @@ disable_mode = 1
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.467495, 3.7474518, -13.342333)
 
 [node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("6_kt6p6")]
+unique_name_in_owner = true
 process_priority = -10
 
 [node name="DeathScreen" parent="." unique_id=552518761 instance=ExtResource("6_cnaw2")]
@@ -89,3 +90,15 @@ shadow_enabled = true
 [node name="InstructionSign" parent="." unique_id=1497706832 instance=ExtResource("7_kt6p6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -34.013737, 2.2783577, -15.893196)
 material_override = SubResource("StandardMaterial3D_uu1iw")
+
+[node name="enemy2" parent="." unique_id=1950866274 instance=ExtResource("5_lf0gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8393364, 4.136511, -16.173952)
+
+[node name="enemy3" parent="." unique_id=2125089231 instance=ExtResource("5_lf0gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8357315, 2.1833239, 4.8247566)
+
+[node name="enemy4" parent="." unique_id=1680740367 instance=ExtResource("5_lf0gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.914433, 3.2200937, -10.873425)
+
+[node name="enemy5" parent="." unique_id=1683592671 instance=ExtResource("5_lf0gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.255672, 2.8409061, 0.3394451)

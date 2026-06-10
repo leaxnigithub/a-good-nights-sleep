@@ -1,10 +1,13 @@
 extends CharacterBody3D
 
-@onready var options = $options
 @onready var body = $CollisionShape3D
 @onready var notifier = $interacter/notifier
 @onready var interact = $Camera3D/interact
+@onready var cursor = $cursor
 @export var mouse_sens = 0.002
+
+# Grab a reference to your footstep audio player node
+@onready var footsteps = $Footsteps
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 3.2
@@ -16,11 +19,13 @@ func check_ray_hit() -> void:
 	if interact.is_colliding():
 		if interact.get_collider().is_in_group("exit"):
 			notifier.visible = true
+			cursor.visible = false
 		if Input.is_action_just_pressed("interact"):
 			interact.get_collider().queue_free()
 			get_tree().reload_current_scene()
 	else:
 		notifier.visible = false
+		cursor.visible = true
 
 func _input(event: InputEvent) -> void:
 	# 1. If the game engine is paused, stop camera look calculations completely
@@ -60,3 +65,10 @@ func _physics_process(delta: float) -> void:
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
 	move_and_slide()
+
+	# Audio Logic: Play sound if moving on the floor, kill it if still or mid-air
+	if direction != Vector3.ZERO and is_on_floor():
+		if not footsteps.playing:
+			footsteps.play()
+	else:
+		footsteps.stop()
