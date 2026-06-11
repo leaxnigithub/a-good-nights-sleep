@@ -51,7 +51,7 @@ text = "RETRY"
 
 [node name="QuitButton" type="Button" parent="death_layer/VBoxContainer/BoxContainer" unique_id=459655457]
 layout_mode = 2
-text = "QUIT"
+text = "BACK TO TITLESCREEN"
 
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

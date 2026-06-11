@@ -63,8 +63,14 @@ func _on_fullscreen_check_toggled(toggled_on: bool) -> void:
 
 func _on_volume_slider_value_changed(value: float) -> void:
 	var master_bus_index = AudioServer.get_bus_index("Master")
-	if value == 0:
+	
+	# 1. If your slider goes from 0 to 100, divide it by 100 to get a clean 0.0 to 1.0 percentage
+	# If your slider max is different (like 50), divide it by that number instead!
+	var volume_percentage = value / 100.0
+	
+	if volume_percentage <= 0.001: # Safe threshold for absolute bottom of the slider
 		AudioServer.set_bus_mute(master_bus_index, true)
 	else:
 		AudioServer.set_bus_mute(master_bus_index, false)
-		AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(value))
+		# 2. Feed the corrected 0.0 - 1.0 percentage into the db converter
+		AudioServer.set_bus_volume_db(master_bus_index, linear_to_db(volume_percentage))
