@@ -3,14 +3,13 @@
 [ext_resource type="Script" uid="uid://chrx0fdu1kh2a" path="res://enemy.gd" id="1_7k104"]
 [ext_resource type="AudioStream" uid="uid://u8bevgl682b7" path="res://soundeffects/enemy/mixkit-confirmation-tone-2867.wav" id="2_qi2p4"]
 [ext_resource type="AudioStream" uid="uid://cefuhg4vko3og" path="res://soundeffects/enemy/mixkit-wrong-answer-fail-notification-946.wav" id="3_iifgy"]
+[ext_resource type="PackedScene" uid="uid://c0oqk6qwx6og6" path="res://pumpkin_low_poly/scene.gltf" id="4_iifgy"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7xaro"]
-
-[sub_resource type="CapsuleMesh" id="CapsuleMesh_7k104"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_iifgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_7k104"]
 
-[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7k104"]
+[sub_resource type="SphereShape3D" id="SphereShape3D_epg4t"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7k104"]
 transparency = 4
@@ -26,10 +25,8 @@ height = 5.0
 script = ExtResource("1_7k104")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1236414246]
-shape = SubResource("CapsuleShape3D_7xaro")
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=958305133]
-mesh = SubResource("CapsuleMesh_7k104")
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+shape = SubResource("SphereShape3D_iifgy")
 
 [node name="NavigationAgent3D" type="NavigationAgent3D" parent="." unique_id=474878382]
 
@@ -44,11 +41,11 @@ shape = SubResource("SphereShape3D_7k104")
 input_ray_pickable = false
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="killzone" unique_id=1391549134]
-transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, 0, 0, 0)
-shape = SubResource("CapsuleShape3D_7k104")
+transform = Transform3D(1.8, 0, 0, 0, 1.8, 0, 0, 0, 1.8, 0, 0, 0)
+shape = SubResource("SphereShape3D_epg4t")
 
 [node name="FaceLight" type="SpotLight3D" parent="." unique_id=311839305]
-transform = Transform3D(1, 0, 0, 0, 0.88928866, 0.4573463, 0, -0.4573463, 0.88928866, 0, 0.6976547, 0)
+transform = Transform3D(1, 0, 0, 0, 0.8892887, 0.45734632, 0, -0.45734632, 0.8892887, 0, 0.53564274, -0.67012143)
 light_energy = 10.0
 spot_attenuation = 1.5
 spot_angle = 35.0
@@ -68,6 +65,9 @@ pitch_scale = 0.7
 process_mode = 3
 stream = ExtResource("3_iifgy")
 volume_db = -12.0
+
+[node name="Sketchfab_Scene" parent="." unique_id=859007035 instance=ExtResource("4_iifgy")]
+transform = Transform3D(-0.7, 0, -6.119594e-08, 0, 0.7, 0, 6.119594e-08, 0, -0.7, 0, 0, 0)
 
 [connection signal="body_entered" from="proximityarea" to="." method="_on_proximityarea_body_entered"]
 [connection signal="body_exited" from="proximityarea" to="." method="_on_proximityarea_body_exited"]

@@ -4,10 +4,12 @@ extends CharacterBody3D
 @onready var notifier = $interacter/notifier
 @onready var interact = $Camera3D/interact
 @onready var cursor = $cursor
-@export var mouse_sens = 0.002
 
 # --- Audio Node References ---
 @onready var footsteps = $Footsteps
+@onready var jump_grunt = $jumpgrunt  # Updated reference
+@onready var jump_woosh = $jumpwoosh  # New reference
+var mouse_sens: float = 0.002
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 3.2
@@ -20,12 +22,12 @@ var bob_time: float = 0.0
 var current_bob_intensity: float = 0.0
 
 # Subtle breathing settings for when standing still
-const IDLE_BOB_SPEED: float = 4.0
-const IDLE_BOB_AMOUNT: float = 0.03
+const IDLE_BOB_SPEED: float = 2.0
+const IDLE_BOB_AMOUNT: float = 0.015
 
 # Step cadence settings for when walking/running
-const WALK_BOB_SPEED: float = 15.0
-const WALK_BOB_AMOUNT: float = 0.08
+const WALK_BOB_SPEED: float = 12.0
+const WALK_BOB_AMOUNT: float = 0.06
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
@@ -57,6 +59,15 @@ func _input(event: InputEvent) -> void:
 		camera.rotation.x = clamp(camera.rotation.x, -1.2, 1.2)
 
 func _physics_process(delta: float) -> void:
+# Handle jump
+	if Input.is_action_just_pressed("ui_accept") and is_on_floor():
+		velocity.y = JUMP_VELOCITY
+		
+		if jump_grunt:
+			# Skip the first 0.1 seconds of silence in the file
+			jump_grunt.play(0.35) 
+		if jump_woosh:
+			jump_woosh.play()
 	# 3. Freeze character physics when the game is paused
 	if get_tree().paused:
 		return

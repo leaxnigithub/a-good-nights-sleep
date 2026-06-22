@@ -1,0 +1,11 @@
+Model Information:
+* title:	Pumpkin low poly
+* source:	https://sketchfab.com/3d-models/pumpkin-low-poly-f4f2787d2f8947f6b93c5e90c10db87e
+* author:	gamer0k (https://sketchfab.com/gamer0k)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Pumpkin low poly" (https://sketchfab.com/3d-models/pumpkin-low-poly-f4f2787d2f8947f6b93c5e90c10db87e) by gamer0k (https://sketchfab.com/gamer0k) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

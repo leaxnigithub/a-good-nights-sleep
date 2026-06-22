@@ -2,6 +2,8 @@
 
 [ext_resource type="Script" uid="uid://g8ogslyj2qeh" path="res://player.gd" id="1_4flbx"]
 [ext_resource type="AudioStream" uid="uid://beow57b5lgiyi" path="res://soundeffects/player/mixkit-footsteps-through-the-wastelands-540.wav" id="2_onrkg"]
+[ext_resource type="AudioStream" uid="uid://dodr2ouuub887" path="res://soundeffects/player/dragon-studio-simple-whoosh-382724.mp3" id="3_hqtel"]
+[ext_resource type="AudioStream" uid="uid://b1ojssjfd4vxu" path="res://soundeffects/player/freesound_community-grunt-106134.mp3" id="4_sweqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -67,5 +69,15 @@ grow_vertical = 2
 
 [node name="Footsteps" type="AudioStreamPlayer3D" parent="." unique_id=511441782]
 stream = ExtResource("2_onrkg")
-volume_db = -12.0
-autoplay = true
+volume_db = -22.0
+
+[node name="jumpwoosh" type="AudioStreamPlayer3D" parent="." unique_id=1654472455]
+stream = ExtResource("3_hqtel")
+volume_db = -30.0
+max_db = -9.693
+pitch_scale = 1.45
+
+[node name="jumpgrunt" type="AudioStreamPlayer3D" parent="." unique_id=1784409733]
+stream = ExtResource("4_sweqy")
+volume_db = 13.695
+pitch_scale = 0.91

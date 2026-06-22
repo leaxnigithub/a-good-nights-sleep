@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://ddbvj7may20k6"]
 
 [ext_resource type="Script" uid="uid://cm8nnvpwhiyiy" path="res://pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_nwcfo"]
 
 [node name="PauseMenu" type="Control" unique_id=1142006162]
 process_mode = 3
@@ -40,14 +41,17 @@ layout_mode = 2
 
 [node name="resume" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=739327094]
 layout_mode = 2
+theme = ExtResource("2_nwcfo")
 text = "resume"
 
 [node name="options" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=1840059170]
 layout_mode = 2
+theme = ExtResource("2_nwcfo")
 text = "options"
 
 [node name="quit" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=762764024]
 layout_mode = 2
+theme = ExtResource("2_nwcfo")
 text = "quit"
 
 [node name="options_menu" type="PanelContainer" parent="pause_layer" unique_id=2059116861]
@@ -68,14 +72,17 @@ layout_mode = 2
 
 [node name="back" type="Button" parent="pause_layer/options_menu/VBoxContainer" unique_id=1357630187]
 layout_mode = 2
+theme = ExtResource("2_nwcfo")
 text = "back"
 
 [node name="FullscreenCheck" type="CheckBox" parent="pause_layer/options_menu/VBoxContainer" unique_id=2082390060]
 layout_mode = 2
+theme = ExtResource("2_nwcfo")
 text = "fullscreen"
 
 [node name="VolumeSlider" type="HSlider" parent="pause_layer/options_menu/VBoxContainer" unique_id=356631940]
 layout_mode = 2
+theme = ExtResource("2_nwcfo")
 value = 100.0
 ticks_on_borders = true
 ticks_position = 1

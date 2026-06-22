@@ -45,11 +45,11 @@ func _ready() -> void:
 
 	# Connect the proximityarea body signals (using your modified single-underscore names)
 	var proximity_area = $proximityarea
-	if proximity_area:
-		proximity_area.body_entered.connect(_on_proximityarea_body_entered)
-		proximity_area.body_exited.connect(_on_proximityarea_body_exited)
-	else:
-		push_error("Enemy Error: Missing 'proximityarea' child node!")
+	#if proximity_area:
+		#proximity_area.body_entered.connect(_on_proximityarea_body_entered)
+		#proximity_area.body_exited.connect(_on_proximityarea_body_exited)
+	#else:
+		#push_error("Enemy Error: Missing 'proximityarea' child node!")
 	
 	# Connect the killzone body signal (using your modified single-underscore name)
 	var kill_zone = $killzone

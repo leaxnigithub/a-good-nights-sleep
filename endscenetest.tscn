@@ -1,6 +1,6 @@
 [gd_scene format=3 uid="uid://bl5s068w1lrf0"]
 
-[ext_resource type="Texture2D" uid="uid://b7xcgfvmbxjqj" path="res://coffin.jpg" id="1_ll2mv"]
+[ext_resource type="Texture2D" uid="uid://b7xcgfvmbxjqj" path="res://spikes and traps/coffin.jpg" id="1_ll2mv"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_t2ceh"]
 

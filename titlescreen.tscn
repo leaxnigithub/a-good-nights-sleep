@@ -1,6 +1,14 @@
 [gd_scene format=3 uid="uid://dvnem4b4cbfgo"]
 
 [ext_resource type="Script" uid="uid://1ufc73fiawsa" path="res://titlescreen.gd" id="1_cjnew"]
+[ext_resource type="FontFile" uid="uid://bfqpon1gcnuw3" path="res://spikes and traps/Bad Coma.ttf" id="2_2bjoa"]
+[ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://soundeffects/music/deuslower-medieval-ambient-236809.mp3" id="3_8pdex"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="3_hxypl"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_cjnew"]
+font = ExtResource("2_2bjoa")
+font_size = 38
+font_color = Color(0.43529412, 0, 0.20392157, 1)
 
 [node name="Titlescreen" type="Control" unique_id=2058847252]
 layout_mode = 3
@@ -34,24 +42,26 @@ offset_bottom = 20.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="Label" type="Label" parent="VBoxContainer" unique_id=1123392833]
+layout_mode = 2
+text = "A GOOD NIGHT SLEEP"
+label_settings = SubResource("LabelSettings_cjnew")
+
 [node name="start" type="Button" parent="VBoxContainer" unique_id=1007916155]
 layout_mode = 2
+theme = ExtResource("3_hxypl")
 text = "START"
 
 [node name="quit" type="Button" parent="VBoxContainer" unique_id=1592497065]
 layout_mode = 2
+theme = ExtResource("3_hxypl")
 text = "QUIT"
 
-[node name="Label" type="Label" parent="." unique_id=1123392833]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -20.0
-offset_right = 20.0
-offset_bottom = 23.0
-grow_horizontal = 2
-text = "A GOOD NIGHT SLEEP"
+[node name="titlescreenmusic" type="AudioStreamPlayer2D" parent="." unique_id=758249372]
+stream = ExtResource("3_8pdex")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
