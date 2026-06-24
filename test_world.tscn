@@ -37,7 +37,7 @@ texture_filter = 4
 process_mode = 3
 process_priority = 1
 process_physics_priority = 1
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36.697342, 1.7745728, -15.869453)
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -36.16474, 1.7745728, -15.530527)
 
 [node name="NavigationRegion3D" type="NavigationRegion3D" parent="." unique_id=1529041955]
 navigation_mesh = SubResource("NavigationMesh_cnaw2")
@@ -65,8 +65,8 @@ metadata/_editor_floor_ = Vector3(0, 3, 0)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.12454, 1.4933802, -4.7568693)
 disable_mode = 1
 
-[node name="enemy" parent="." unique_id=793851277 instance=ExtResource("5_lf0gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.467495, 3.7474518, -13.342333)
+[node name="enemy" parent="." unique_id=793851277 groups=["enemy"] instance=ExtResource("5_lf0gk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -24.06, 3.7474518, -11.045808)
 
 [node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("6_kt6p6")]
 unique_name_in_owner = true
@@ -100,7 +100,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8393364, 4.136511, -16.1739
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8357315, 2.1833239, 4.8247566)
 
 [node name="enemy4" parent="." unique_id=1680740367 instance=ExtResource("5_lf0gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.01892, 3.2200937, -16.427532)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.413475, 3.2200937, -9.213257)
 
 [node name="enemy5" parent="." unique_id=1683592671 instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.255672, 2.8409061, 0.3394451)

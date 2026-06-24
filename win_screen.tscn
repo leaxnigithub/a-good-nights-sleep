@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://csrt6uxj00muj" path="res://win_screen.gd" id="1_l2arl"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_l5t5q"]
 [ext_resource type="AudioStream" uid="uid://bxe4ubtj3xlf6" path="res://soundeffects/enemy/mixkit-correct-answer-reward-952.wav" id="2_wmwda"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_1txte"]
 
 [node name="WinScreen" type="Control" unique_id=1449801549]
 process_mode = 3
@@ -48,11 +49,13 @@ size_flags_vertical = 4
 layout_mode = 2
 theme = ExtResource("2_l5t5q")
 text = "PLAY AGAIN"
+script = ExtResource("3_1txte")
 
 [node name="quit_button" type="Button" parent="win_layer/VBoxContainer/BoxContainer" unique_id=1417054036]
 layout_mode = 2
 theme = ExtResource("2_l5t5q")
 text = "BACK TO TITLE SCREEN"
+script = ExtResource("3_1txte")
 
 [node name="WinSound" type="AudioStreamPlayer2D" parent="." unique_id=1733183870]
 process_mode = 3

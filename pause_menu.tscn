@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://cm8nnvpwhiyiy" path="res://pause_menu.gd" id="1_hdmo1"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_nwcfo"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_05uyy"]
 
 [node name="PauseMenu" type="Control" unique_id=1142006162]
 process_mode = 3
@@ -43,16 +44,19 @@ layout_mode = 2
 layout_mode = 2
 theme = ExtResource("2_nwcfo")
 text = "resume"
+script = ExtResource("3_05uyy")
 
 [node name="options" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=1840059170]
 layout_mode = 2
 theme = ExtResource("2_nwcfo")
 text = "options"
+script = ExtResource("3_05uyy")
 
 [node name="quit" type="Button" parent="pause_layer/pause_main/VBoxContainer" unique_id=762764024]
 layout_mode = 2
 theme = ExtResource("2_nwcfo")
 text = "quit"
+script = ExtResource("3_05uyy")
 
 [node name="options_menu" type="PanelContainer" parent="pause_layer" unique_id=2059116861]
 anchors_preset = 8

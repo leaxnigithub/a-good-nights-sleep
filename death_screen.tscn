@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bgd0y5tyatrvq" path="res://death_screen.gd" id="1_if853"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_ex68u"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_6bi5g"]
 
 [node name="DeathScreen" type="Control" unique_id=552518761]
 process_mode = 3
@@ -50,11 +51,13 @@ size_flags_horizontal = 4
 layout_mode = 2
 theme = ExtResource("2_ex68u")
 text = "RETRY"
+script = ExtResource("3_6bi5g")
 
 [node name="QuitButton" type="Button" parent="death_layer/VBoxContainer/BoxContainer" unique_id=459655457]
 layout_mode = 2
 theme = ExtResource("2_ex68u")
 text = "BACK TO TITLESCREEN"
+script = ExtResource("3_6bi5g")
 
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

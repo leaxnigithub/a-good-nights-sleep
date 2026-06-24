@@ -103,35 +103,30 @@ func _physics_process(delta: float) -> void:
 
 
 # --- LINE OF SIGHT METHOD ---
+# --- UPDATED LINE OF SIGHT METHOD (IGNORES OTHER ENEMIES) ---
 func _check_line_of_sight_logic() -> void:
 	if not player or not los_ray:
 		return
 
-	# If player is in our volume zone, cast structural rays to check walls
 	if player_in_range:
-		
-		# 1. Find the exact point in the world we want to look at (Player's chest/head)
-		var target_world_position = player.global_position + Vector3(0, 0.8, 0)
-		
-		# 2. Convert that world position into local coordinates for the raycast
+		var target_world_position = player.global_position + Vector3(0, 1.5, 0)
 		los_ray.target_position = los_ray.to_local(target_world_position)
-		
-		# 3. Force the ray to check for collisions right now
 		los_ray.force_raycast_update()
 		
 		if los_ray.is_colliding():
 			var collider = los_ray.get_collider()
 			
-			# --- DEBUG LOGGING ---
+			# --- FIXED: If the ray hits another enemy, ignore it and don't break the chase! ---
+			if collider.is_in_group("enemy") or collider == self:
+				return # Skip this frame's check so it doesn't accidentally de-aggro
+				
 			print("Raycast is currently hitting: ", collider.name)
 			
-			# If the ray hit the player directly, no obstacles are in the way!
 			if collider == player:
 				if current_state != State.CHASING:
 					print("Player visual path confirmed clear! Initiating aggro.")
 					_trigger_chase_state()
 			else:
-				# --- FIXED: Only break the chase if the player isn't right next to us! ---
 				var distance_to_player = global_position.distance_to(player.global_position)
 				if current_state == State.CHASING and distance_to_player > 1.5:
 					print("Player broke visual tracking line via geometry wall! Going to alert state.")

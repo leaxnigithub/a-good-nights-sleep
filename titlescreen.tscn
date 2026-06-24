@@ -4,6 +4,8 @@
 [ext_resource type="FontFile" uid="uid://bfqpon1gcnuw3" path="res://spikes and traps/Bad Coma.ttf" id="2_2bjoa"]
 [ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://soundeffects/music/deuslower-medieval-ambient-236809.mp3" id="3_8pdex"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="3_hxypl"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="4_hxypl"]
+[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://soundeffects/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="6_o0614"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_cjnew"]
 font = ExtResource("2_2bjoa")
@@ -51,17 +53,22 @@ label_settings = SubResource("LabelSettings_cjnew")
 layout_mode = 2
 theme = ExtResource("3_hxypl")
 text = "START"
+script = ExtResource("4_hxypl")
 
 [node name="quit" type="Button" parent="VBoxContainer" unique_id=1592497065]
 layout_mode = 2
 theme = ExtResource("3_hxypl")
 text = "QUIT"
+script = ExtResource("4_hxypl")
 
 [node name="titlescreenmusic" type="AudioStreamPlayer2D" parent="." unique_id=758249372]
 stream = ExtResource("3_8pdex")
 volume_db = 2.0
 autoplay = true
 parameters/looping = true
+
+[node name="buttonclick" type="AudioStreamPlayer2D" parent="." unique_id=216942066]
+stream = ExtResource("6_o0614")
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
