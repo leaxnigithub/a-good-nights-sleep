@@ -1,0 +1,14 @@
+[gd_resource type="LabelSettings" format=3 uid="uid://b1gsfjcpmv0yd"]
+
+[ext_resource type="FontFile" uid="uid://cjsret222yfos" path="res://ui elements/Vengeance at Sea.otf" id="1_o2qon"]
+
+[resource]
+font = ExtResource("1_o2qon")
+font_size = 60
+font_color = Color(1, 0, 0.20392157, 1)
+stacked_outline_count = 1
+stacked_shadow_count = 1
+stacked_outline_0/size = 7
+stacked_outline_0/color = Color(0.52156866, 0.16862746, 0, 1)
+stacked_shadow_0/color = Color(0.7204674, 0.7204675, 0.7204674, 1)
+stacked_shadow_0/outline_size = 8

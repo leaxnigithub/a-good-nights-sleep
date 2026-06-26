@@ -2,7 +2,9 @@
 
 [ext_resource type="Script" uid="uid://bgd0y5tyatrvq" path="res://death_screen.gd" id="1_if853"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_ex68u"]
+[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://ui elements/labelmain.tres" id="2_hhlqb"]
 [ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_6bi5g"]
+[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://soundeffects/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="4_y0ggs"]
 
 [node name="DeathScreen" type="Control" unique_id=552518761]
 process_mode = 3
@@ -41,9 +43,10 @@ grow_vertical = 2
 [node name="TitleLabel" type="Label" parent="death_layer/VBoxContainer" unique_id=318357518]
 layout_mode = 2
 text = "YOU DIED!"
+label_settings = ExtResource("2_hhlqb")
 horizontal_alignment = 1
 
-[node name="BoxContainer" type="BoxContainer" parent="death_layer/VBoxContainer" unique_id=915473783]
+[node name="BoxContainer" type="VBoxContainer" parent="death_layer/VBoxContainer" unique_id=288832428]
 layout_mode = 2
 size_flags_horizontal = 4
 
@@ -58,6 +61,10 @@ layout_mode = 2
 theme = ExtResource("2_ex68u")
 text = "BACK TO TITLESCREEN"
 script = ExtResource("3_6bi5g")
+
+[node name="buttonclick" type="AudioStreamPlayer2D" parent="death_layer/VBoxContainer" unique_id=1087418478]
+position = Vector2(-485, -281.5)
+stream = ExtResource("4_y0ggs")
 
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

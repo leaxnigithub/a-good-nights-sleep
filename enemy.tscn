@@ -3,7 +3,7 @@
 [ext_resource type="Script" uid="uid://chrx0fdu1kh2a" path="res://enemy.gd" id="1_7k104"]
 [ext_resource type="AudioStream" uid="uid://u8bevgl682b7" path="res://soundeffects/enemy/mixkit-confirmation-tone-2867.wav" id="2_qi2p4"]
 [ext_resource type="AudioStream" uid="uid://cefuhg4vko3og" path="res://soundeffects/enemy/mixkit-wrong-answer-fail-notification-946.wav" id="3_iifgy"]
-[ext_resource type="PackedScene" uid="uid://c0oqk6qwx6og6" path="res://pumpkin_low_poly/scene.gltf" id="4_iifgy"]
+[ext_resource type="ArrayMesh" uid="uid://c37iaavro1rqi" path="res://enemy/garlic_-_low_poly/pumpkin_low_poly.obj" id="4_iifgy"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_iifgy"]
 
@@ -67,8 +67,9 @@ process_mode = 3
 stream = ExtResource("3_iifgy")
 volume_db = -12.0
 
-[node name="Sketchfab_Scene" parent="." unique_id=859007035 instance=ExtResource("4_iifgy")]
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2134810580]
 transform = Transform3D(-0.7, 0, -6.119594e-08, 0, 0.7, 0, 6.119594e-08, 0, -0.7, 0, 0, 0)
+mesh = ExtResource("4_iifgy")
 
 [node name="RayCast3D" type="RayCast3D" parent="." unique_id=457971092]
 transform = Transform3D(3, 0, 0, 0, 3.0000002, 0, 0, 0, 3.0000002, 0, -0.0056976676, 0)
