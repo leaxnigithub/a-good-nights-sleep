@@ -93,16 +93,16 @@ shadow_enabled = true
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -34.013737, 2.2783577, -15.893196)
 material_override = SubResource("StandardMaterial3D_ud3vi")
 
-[node name="enemy2" parent="." unique_id=1950866274 instance=ExtResource("5_lf0gk")]
+[node name="enemy2" parent="." unique_id=1950866274 groups=["enemy"] instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8393364, 4.136511, -16.173952)
 
-[node name="enemy3" parent="." unique_id=2125089231 instance=ExtResource("5_lf0gk")]
+[node name="enemy3" parent="." unique_id=2125089231 groups=["enemy"] instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.8357315, 2.1833239, 4.8247566)
 
-[node name="enemy4" parent="." unique_id=1680740367 instance=ExtResource("5_lf0gk")]
+[node name="enemy4" parent="." unique_id=1680740367 groups=["enemy"] instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -16.413475, 3.2200937, -9.213257)
 
-[node name="enemy5" parent="." unique_id=1683592671 instance=ExtResource("5_lf0gk")]
+[node name="enemy5" parent="." unique_id=1683592671 groups=["enemy"] instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 13.255672, 2.8409061, 0.3394451)
 
 [node name="background_music" type="AudioStreamPlayer2D" parent="." unique_id=1599922397]

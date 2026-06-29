@@ -4,6 +4,7 @@
 [ext_resource type="AudioStream" uid="uid://beow57b5lgiyi" path="res://soundeffects/player/mixkit-footsteps-through-the-wastelands-540.wav" id="2_onrkg"]
 [ext_resource type="AudioStream" uid="uid://dodr2ouuub887" path="res://soundeffects/player/dragon-studio-simple-whoosh-382724.mp3" id="3_hqtel"]
 [ext_resource type="AudioStream" uid="uid://b1ojssjfd4vxu" path="res://soundeffects/player/freesound_community-grunt-106134.mp3" id="4_sweqy"]
+[ext_resource type="AudioStream" uid="uid://m5nuuu6bi0ng" path="res://soundeffects/player/Fahhh - QuickSounds.com.mp3" id="5_sweqy"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
@@ -81,3 +82,22 @@ pitch_scale = 1.45
 stream = ExtResource("4_sweqy")
 volume_db = 13.695
 pitch_scale = 0.91
+
+[node name="ScreechSound" type="AudioStreamPlayer3D" parent="." unique_id=1947717701]
+stream = ExtResource("5_sweqy")
+volume_db = 16.684
+max_db = 4.184
+pitch_scale = 0.74
+
+[node name="UI" type="CanvasLayer" parent="." unique_id=2029209376]
+
+[node name="CooldownBar" type="TextureProgressBar" parent="UI" unique_id=784114517]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 35.0
+grow_horizontal = 2
+size_flags_horizontal = 4
+max_value = 3.0
+tint_under = Color(0.38113716, 0.43714735, 0.7043561, 1)
+tint_over = Color(0.79271746, 0.6383176, 0.5174467, 1)
+tint_progress = Color(0.43614277, 0.43529633, 2.8878452e-07, 1)
