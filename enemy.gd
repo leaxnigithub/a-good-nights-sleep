@@ -1,5 +1,11 @@
 extends CharacterBody3D
 
+# --- Shaders ---
+const STUN_OUTLINE = preload("res://stun_wave_mat.tres") # Make sure this matches your file name!
+
+# --- Status Effect Tracking ---
+var speed_multiplier: float = 1.0
+
 @onready var nav: NavigationAgent3D = $NavigationAgent3D
 @onready var face_light: SpotLight3D = $FaceLight
 # --- Reference to the eye raycast ---
@@ -103,7 +109,6 @@ func _physics_process(delta: float) -> void:
 
 
 # --- LINE OF SIGHT METHOD ---
-# --- UPDATED LINE OF SIGHT METHOD (IGNORES OTHER ENEMIES) ---
 func _check_line_of_sight_logic() -> void:
 	if not player or not los_ray:
 		return
@@ -116,12 +121,9 @@ func _check_line_of_sight_logic() -> void:
 		if los_ray.is_colliding():
 			var collider = los_ray.get_collider()
 			
-			# --- FIXED: If the ray hits another enemy, ignore it and don't break the chase! ---
 			if collider.is_in_group("enemy") or collider == self:
-				return # Skip this frame's check so it doesn't accidentally de-aggro
+				return 
 				
-			print("Raycast is currently hitting: ", collider.name)
-			
 			if collider == player:
 				if current_state != State.CHASING:
 					print("Player visual path confirmed clear! Initiating aggro.")
@@ -134,7 +136,6 @@ func _check_line_of_sight_logic() -> void:
 
 
 # --- HELPER FUNCTIONS FOR CLEAN SEAMLESS TRANSITIONS ---
-
 func _trigger_chase_state() -> void:
 	if current_state != State.CHASING:
 		is_chase_starting = true
@@ -160,7 +161,6 @@ func _trigger_de_aggro_state() -> void:
 
 
 # --- STATE PROCESSING MANAGEMENT ---
-
 func _process_wandering_state(delta: float) -> void:
 	if is_waiting:
 		wait_timer -= delta
@@ -179,7 +179,6 @@ func _process_wandering_state(delta: float) -> void:
 		if randf() < 0.6: 
 			is_waiting = true
 			wait_timer = randf_range(1.5, 3.5) 
-			print("Enemy stopped to scan area...")
 		else:
 			_set_new_random_wander_target()
 		
@@ -207,7 +206,6 @@ func _process_chasing_state(delta: float) -> void:
 		
 		if chase_delay_timer <= 0:
 			is_chase_starting = false
-			print("Stare delay complete. Initiating acceleration pursuit!")
 		return
 
 	_move_towards_nav_target(CHASE_SPEED)
@@ -217,7 +215,6 @@ func _process_de_aggro_state(delta: float) -> void:
 	de_aggro_timer -= delta
 	
 	if nav.is_navigation_finished() or de_aggro_timer <= 0:
-		print("Lost player track completely. Returning to patrol.")
 		current_state = State.WANDERING
 		is_waiting = true
 		wait_timer = randf_range(2.0, 4.0) 
@@ -229,7 +226,6 @@ func _process_de_aggro_state(delta: float) -> void:
 
 
 # --- PHYSICAL NAVIGATION MOTOR ---
-
 func _move_towards_nav_target(speed: float) -> void:
 	var delta = get_physics_process_delta_time()
 
@@ -245,7 +241,7 @@ func _move_towards_nav_target(speed: float) -> void:
 		var target_basis = transform.looking_at(target_pos, Vector3.UP).basis
 		transform.basis = transform.basis.slerp(target_basis, turn_speed * delta)
 	
-	var target_velocity = (next_location - global_position).normalized() * speed
+	var target_velocity = (next_location - global_position).normalized() * (speed * speed_multiplier)
 	
 	velocity.x = lerp(velocity.x, target_velocity.x, acceleration * delta)
 	velocity.z = lerp(velocity.z, target_velocity.z, acceleration * delta)
@@ -260,7 +256,6 @@ func _set_new_random_wander_target() -> void:
 
 
 # --- PHYSICAL BODY HITBOX DETECTORS ---
-
 func _on_proximityarea_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
 		player_in_range = true 
@@ -275,7 +270,6 @@ func _on_proximityarea_body_exited(body: Node3D) -> void:
 
 func _on_killzone_body_entered(body: Node3D) -> void:
 	if body.is_in_group("player"):
-		print("Player caught by enemy!")
 		if kill_sound:
 			kill_sound.play()
 			
@@ -284,3 +278,28 @@ func _on_killzone_body_entered(body: Node3D) -> void:
 			death_screen.player_died()
 		else:
 			get_tree().reload_current_scene()
+			
+# --- STATUS EFFECTS (FIXED VISUALS) ---
+func apply_echo_slow(duration: float) -> void:
+	if speed_multiplier < 1.0:
+		return 
+		
+	print("Enemy deafened by mega pulse! Slowing down...")
+	speed_multiplier = 0.4 
+	
+	var original_energy = 0.0
+	var original_color = Color("#ffdf6d")
+	
+	if face_light:
+		original_energy = face_light.light_energy
+		original_color = face_light.light_color 
+		face_light.light_energy = original_energy * 0.2
+		face_light.light_color = Color.RED 
+		
+	await get_tree().create_timer(duration).timeout
+	
+	speed_multiplier = 1.0
+	
+	if face_light:
+		face_light.light_energy = original_energy
+		face_light.light_color = original_color

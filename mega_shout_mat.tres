@@ -1,0 +1,10 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b4i0whoa1t77m"]
+
+[ext_resource type="Shader" uid="uid://cavfkp6qnd2tu" path="res://mega_shout_mat.gdshader" id="1_g3ma3"]
+[ext_resource type="Texture2D" uid="uid://dtcmoc236gsnf" path="res://icon.svg" id="2_otmkl"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_g3ma3")
+shader_parameter/shout_texture = ExtResource("2_otmkl")
+shader_parameter/glow_color = Color(1, 0, 0, 1)
