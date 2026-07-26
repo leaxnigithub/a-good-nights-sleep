@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://bl5s068w1lrf0" path="res://endscenetest.tscn" id="3_1lwx6"]
 [ext_resource type="PackedScene" uid="uid://bb88fts25bwqx" path="res://enemy.tscn" id="5_lf0gk"]
 [ext_resource type="PackedScene" uid="uid://085evxrh3giq" path="res://death_screen.tscn" id="6_cnaw2"]
-[ext_resource type="PackedScene" uid="uid://ddbvj7may20k6" path="res://pause_menu.tscn" id="6_kt6p6"]
 [ext_resource type="PackedScene" uid="uid://dh8yxo5nv3xrb" path="res://instruction_sign.tscn" id="7_kt6p6"]
 [ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://soundeffects/music/deuslower-medieval-ambient-236809.mp3" id="8_uu1iw"]
 [ext_resource type="PackedScene" uid="uid://dq4y11es1wti2" path="res://win_screen.tscn" id="9_4tg7h"]
@@ -21,13 +20,19 @@ ambient_light_source = 2
 ambient_light_color = Color(0.2901961, 0.13725491, 0.023529412, 1)
 ambient_light_energy = 0.5
 tonemap_mode = 2
+fog_light_color = Color(0.42044327, 0.1623083, 4.813075e-08, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.0588
+volumetric_fog_albedo = Color(1, 0.53333336, 0.29803923, 1)
+volumetric_fog_gi_inject = 1.45
+volumetric_fog_anisotropy = 0.15
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_4tg7h"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_uu1iw"]
 viewport_path = NodePath("SubViewport")
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ud3vi"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4tg7h"]
 resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_4tg7h")
+albedo_texture = SubResource("ViewportTexture_uu1iw")
 roughness = 0.0
 texture_filter = 4
 
@@ -68,10 +73,6 @@ disable_mode = 1
 [node name="enemy" parent="." unique_id=793851277 groups=["enemy"] instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.06, 3.7474518, -12.045808)
 
-[node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("6_kt6p6")]
-unique_name_in_owner = true
-process_priority = -10
-
 [node name="DeathScreen" parent="." unique_id=552518761 instance=ExtResource("6_cnaw2")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=300886235]
@@ -91,7 +92,7 @@ shadow_enabled = true
 
 [node name="InstructionSign" parent="." unique_id=1497706832 instance=ExtResource("7_kt6p6")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -34.013737, 2.2783577, -15.893196)
-material_override = SubResource("StandardMaterial3D_ud3vi")
+material_override = SubResource("StandardMaterial3D_4tg7h")
 
 [node name="enemy2" parent="." unique_id=1950866274 groups=["enemy"] instance=ExtResource("5_lf0gk")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7.8393364, 4.136511, -16.173952)

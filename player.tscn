@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://bbgo3v52gdvxt"]
 
 [ext_resource type="Script" uid="uid://g8ogslyj2qeh" path="res://player.gd" id="1_4flbx"]
+[ext_resource type="Shader" uid="uid://cvlauh5d6si2e" path="res://retroPPS.gdshader" id="2_b26j0"]
 [ext_resource type="AudioStream" uid="uid://beow57b5lgiyi" path="res://soundeffects/player/mixkit-footsteps-through-the-wastelands-540.wav" id="2_onrkg"]
 [ext_resource type="AudioStream" uid="uid://dodr2ouuub887" path="res://soundeffects/player/dragon-studio-simple-whoosh-382724.mp3" id="3_hqtel"]
 [ext_resource type="AudioStream" uid="uid://b1ojssjfd4vxu" path="res://soundeffects/player/freesound_community-grunt-106134.mp3" id="4_sweqy"]
@@ -8,15 +9,23 @@
 [ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://ui elements/ui/32x32 circle bar under.png" id="6_dw050"]
 [ext_resource type="Texture2D" uid="uid://1x6vub3s4xfo" path="res://ui elements/ui/32x32 circle bar over.png" id="7_b26j0"]
 [ext_resource type="Texture2D" uid="uid://dbvabeskn77dc" path="res://ui elements/ui/32x32 circle bar progress dark purple.png" id="8_n7ghd"]
-[ext_resource type="Shader" uid="uid://b2ooau5u4rlo3" path="res://postprocessing.gdshader" id="9_b26j0"]
+[ext_resource type="PackedScene" uid="uid://ddbvj7may20k6" path="res://pause_menu.tscn" id="10_n7ghd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
-[sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+render_priority = -1
+shader = ExtResource("2_b26j0")
+shader_parameter/pixel_size = 1.0
+shader_parameter/levels = 17.0
+shader_parameter/gamma = Vector2(0.8, 1.1)
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_g4v7s"]
-shader = ExtResource("9_b26j0")
-shader_parameter/color_steps = 32.0
+[sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
+material = SubResource("ShaderMaterial_yf5fn")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
 
 [node name="player" type="CharacterBody3D" unique_id=791080869 groups=["exit"]]
 process_mode = 1
@@ -36,6 +45,10 @@ collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(0.36205631, 0.5571382, 1, 1)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=1264470573]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50071394)
+mesh = SubResource("QuadMesh_g4v7s")
 
 [node name="interacter" type="Control" parent="." unique_id=1559020112]
 layout_mode = 3
@@ -116,12 +129,4 @@ texture_under = ExtResource("6_dw050")
 texture_over = ExtResource("7_b26j0")
 texture_progress = ExtResource("8_n7ghd")
 
-[node name="PostProcessingLayer" type="CanvasLayer" parent="." unique_id=155167909]
-
-[node name="ColorRect" type="ColorRect" parent="PostProcessingLayer" unique_id=1055126161]
-material = SubResource("ShaderMaterial_g4v7s")
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("10_n7ghd")]

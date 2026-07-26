@@ -3,7 +3,7 @@
 [ext_resource type="Shader" uid="uid://vbe2eftxwmet" path="res://enemy_outline_mat.gdshader" id="1_2lloc"]
 
 [resource]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("1_2lloc")
 shader_parameter/glow_color = Color(1, 0, 0, 1)
 shader_parameter/edge_power = 2.0
