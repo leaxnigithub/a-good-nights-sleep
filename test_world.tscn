@@ -71,7 +71,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 36.12454, 1.4933802, -4.75686
 disable_mode = 1
 
 [node name="enemy" parent="." unique_id=793851277 groups=["enemy"] instance=ExtResource("5_lf0gk")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30.06, 3.7474518, -12.045808)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -29.727057, 3.7474518, -11.385225)
 
 [node name="DeathScreen" parent="." unique_id=552518761 instance=ExtResource("6_cnaw2")]
 

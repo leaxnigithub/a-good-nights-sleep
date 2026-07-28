@@ -8,7 +8,7 @@
 [ext_resource type="AudioStream" uid="uid://m5nuuu6bi0ng" path="res://soundeffects/player/Fahhh - QuickSounds.com.mp3" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://ui elements/ui/32x32 circle bar under.png" id="6_dw050"]
 [ext_resource type="Texture2D" uid="uid://1x6vub3s4xfo" path="res://ui elements/ui/32x32 circle bar over.png" id="7_b26j0"]
-[ext_resource type="Texture2D" uid="uid://dbvabeskn77dc" path="res://ui elements/ui/32x32 circle bar progress dark purple.png" id="8_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://dblsmuv4s3odh" path="res://ui elements/ui/32x32 circle bar progress red.png" id="9_n7ghd"]
 [ext_resource type="PackedScene" uid="uid://ddbvj7may20k6" path="res://pause_menu.tscn" id="10_n7ghd"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
@@ -127,6 +127,6 @@ fill_mode = 4
 nine_patch_stretch = true
 texture_under = ExtResource("6_dw050")
 texture_over = ExtResource("7_b26j0")
-texture_progress = ExtResource("8_n7ghd")
+texture_progress = ExtResource("9_n7ghd")
 
 [node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("10_n7ghd")]

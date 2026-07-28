@@ -32,13 +32,13 @@ var bob_time: float = 0.0
 var current_bob_intensity: float = 0.0
 
 const IDLE_BOB_SPEED: float = 2.0
-const IDLE_BOB_AMOUNT: float = 0.015
+const IDLE_BOB_AMOUNT: float = 0.025
 const WALK_BOB_SPEED: float = 12.0
 const WALK_BOB_AMOUNT: float = 0.06
 
 # --- Echolocation Ability Settings ---
 @export var max_echo_distance: float = 20.0
-@export var echo_speed: float = 15.0       
+@export var echo_speed: float = 10.0       
 @export var echo_cooldown: float = 10.0
 
 var is_echoing: bool = false

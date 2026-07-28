@@ -9,6 +9,7 @@
 [ext_resource type="PackedScene" uid="uid://cf13frjr2u0oe" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/entrance_room.tscn" id="6_r5hfd"]
 [ext_resource type="PackedScene" uid="uid://p0pnjftk0uda" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/bridge_room.tscn" id="8_rq6gx"]
 [ext_resource type="PackedScene" uid="uid://b1c7nsr0vdiq" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/treasure_room.tscn" id="9_sawdr"]
+[ext_resource type="AudioStream" uid="uid://cck6iy3lji0xx" path="res://soundeffects/music/lachm-sound-ambience-sonido-ambiente-3-14040.mp3" id="11_5qiem"]
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://player.tscn" id="13_5kao7"]
 
 [sub_resource type="Environment" id="Environment_r5hfd"]
@@ -592,3 +593,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.364082, 5.7314987)
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1968348972]
 environment = SubResource("Environment_r5hfd")
+
+[node name="background_music" type="AudioStreamPlayer2D" parent="." unique_id=902081586]
+stream = ExtResource("11_5qiem")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true
