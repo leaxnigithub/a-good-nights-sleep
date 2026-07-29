@@ -14,15 +14,16 @@
 
 [sub_resource type="Environment" id="Environment_r5hfd"]
 background_mode = 1
-background_color = Color(0.078431375, 0.043137256, 0.019607844, 1)
+background_energy_multiplier = 16.0
 ambient_light_source = 2
 ambient_light_color = Color(0.2901961, 0.13725491, 0.023529412, 1)
 ambient_light_energy = 0.5
 tonemap_mode = 2
 fog_light_color = Color(0.42044327, 0.1623083, 4.813075e-08, 1)
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.0588
+volumetric_fog_density = 0.0294
 volumetric_fog_albedo = Color(1, 0.53333336, 0.29803923, 1)
+volumetric_fog_emission_energy = 0.0
 
 [node name="dungeontutorial" type="Node3D" unique_id=438649726]
 
