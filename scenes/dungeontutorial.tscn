@@ -1,0 +1,604 @@
+[gd_scene format=3 uid="uid://c1fi4v82jixyd"]
+
+[ext_resource type="Script" uid="uid://c83psvnv4ho4c" path="res://addons/SimpleDungeons/DungeonGenerator3D.gd" id="1_8wtvo"]
+[ext_resource type="PackedScene" uid="uid://bicoj8112x1ra" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/trap_room.tscn" id="2_ehy07"]
+[ext_resource type="PackedScene" uid="uid://dvdly7xo8rxig" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/corridor.tscn" id="2_xggsk"]
+[ext_resource type="PackedScene" uid="uid://c5lo6wkhhg76p" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/stair.tscn" id="3_0joxd"]
+[ext_resource type="PackedScene" uid="uid://b0m7fmmvtfcnk" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/spike_hallway.tscn" id="4_5qiem"]
+[ext_resource type="PackedScene" uid="uid://b6t2tduxk8tfn" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/living_room.tscn" id="5_80gs8"]
+[ext_resource type="PackedScene" uid="uid://cf13frjr2u0oe" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/entrance_room.tscn" id="6_r5hfd"]
+[ext_resource type="PackedScene" uid="uid://p0pnjftk0uda" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/bridge_room.tscn" id="8_rq6gx"]
+[ext_resource type="PackedScene" uid="uid://b1c7nsr0vdiq" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/treasure_room.tscn" id="9_sawdr"]
+[ext_resource type="AudioStream" uid="uid://cck6iy3lji0xx" path="res://sound/music/lachm-sound-ambience-sonido-ambiente-3-14040.mp3" id="11_5qiem"]
+[ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://scenes/player.tscn" id="13_5kao7"]
+
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 1
+background_color = Color(0.06666667, 0.03137255, 0.019607844, 1)
+ambient_light_color = Color(0.16862746, 0.078431375, 0.03137255, 1)
+ambient_light_energy = 0.7
+tonemap_mode = 3
+tonemap_exposure = 0.9
+fog_enabled = true
+fog_light_color = Color(0.2901961, 0.11764706, 0.043137256, 1)
+fog_density = 0.001
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.34901962, 0.13725491, 0.039215688, 1)
+volumetric_fog_emission = Color(0.06666667, 0.019607844, 0.007843138, 1)
+
+[node name="dungeontutorial" type="Node3D" unique_id=438649726]
+
+[node name="DungeonGenerator3D" type="Node3D" parent="." unique_id=326948658]
+script = ExtResource("1_8wtvo")
+room_scenes = Array[PackedScene]([ExtResource("2_ehy07"), ExtResource("3_0joxd"), ExtResource("4_5qiem"), ExtResource("5_80gs8"), ExtResource("6_r5hfd"), ExtResource("2_xggsk"), ExtResource("8_rq6gx"), ExtResource("9_sawdr")])
+corridor_room_scene = ExtResource("2_xggsk")
+generate_seed = "1"
+generate_threaded = true
+metadata/_custom_type_script = "uid://c83psvnv4ho4c"
+
+[node name="RoomsContainer" type="Node3D" parent="DungeonGenerator3D" unique_id=1673898101]
+
+[node name="TreasureRoom_0" parent="DungeonGenerator3D/RoomsContainer" unique_id=980329247 instance=ExtResource("9_sawdr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -15, 0, 25)
+
+[node name="TrapRoom_1" parent="DungeonGenerator3D/RoomsContainer" unique_id=747051427 instance=ExtResource("2_ehy07")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, 5, 10, -35)
+
+[node name="TrapRoom_2" parent="DungeonGenerator3D/RoomsContainer" unique_id=696530266 instance=ExtResource("2_ehy07")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 35, -20, -35)
+
+[node name="TreasureRoom_3" parent="DungeonGenerator3D/RoomsContainer" unique_id=1841593300 instance=ExtResource("9_sawdr")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -25, -40, 25)
+
+[node name="EntranceRoom_4" parent="DungeonGenerator3D/RoomsContainer" unique_id=492391608 instance=ExtResource("6_r5hfd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 45, 5)
+
+[node name="TrapRoom_5" parent="DungeonGenerator3D/RoomsContainer" unique_id=1543950704 instance=ExtResource("2_ehy07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -20, 25)
+
+[node name="BridgeRoom_6" parent="DungeonGenerator3D/RoomsContainer" unique_id=834506861 instance=ExtResource("8_rq6gx")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -25, 20)
+
+[node name="LivingRoom_7" parent="DungeonGenerator3D/RoomsContainer" unique_id=1470418817 instance=ExtResource("5_80gs8")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -40, -5, -35)
+
+[node name="LivingRoom_8" parent="DungeonGenerator3D/RoomsContainer" unique_id=29859038 instance=ExtResource("5_80gs8")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, -35, -5)
+
+[node name="Corridor_9" parent="DungeonGenerator3D/RoomsContainer" unique_id=1839305040 instance=ExtResource("2_xggsk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 45, 35, 15)
+
+[node name="LivingRoom_10" parent="DungeonGenerator3D/RoomsContainer" unique_id=6002297 instance=ExtResource("5_80gs8")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -10, 35, 35)
+
+[node name="Corridor_11" parent="DungeonGenerator3D/RoomsContainer" unique_id=299540869 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 35, 5)
+
+[node name="LivingRoom_12" parent="DungeonGenerator3D/RoomsContainer" unique_id=910324656 instance=ExtResource("5_80gs8")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -30, 25, -35)
+
+[node name="Corridor_13" parent="DungeonGenerator3D/RoomsContainer" unique_id=1319767235 instance=ExtResource("2_xggsk")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 45, 15, 5)
+
+[node name="Corridor_14" parent="DungeonGenerator3D/RoomsContainer" unique_id=1317548613 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -5, -35, 45)
+
+[node name="Corridor_15" parent="DungeonGenerator3D/RoomsContainer" unique_id=778074584 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -35, -25)
+
+[node name="LivingRoom_16" parent="DungeonGenerator3D/RoomsContainer" unique_id=561747802 instance=ExtResource("5_80gs8")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -10, -5, -35)
+
+[node name="BridgeRoom_17" parent="DungeonGenerator3D/RoomsContainer" unique_id=1186198558 instance=ExtResource("8_rq6gx")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, -35, -15, -10)
+
+[node name="TrapRoom_18" parent="DungeonGenerator3D/RoomsContainer" unique_id=758250502 instance=ExtResource("2_ehy07")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 30, 15)
+
+[node name="SpikeHallway_19" parent="DungeonGenerator3D/RoomsContainer" unique_id=756159529 instance=ExtResource("4_5qiem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 25, 10, 25)
+
+[node name="BridgeRoom_20" parent="DungeonGenerator3D/RoomsContainer" unique_id=357335737 instance=ExtResource("8_rq6gx")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 10, -25, 25)
+
+[node name="SpikeHallway_21" parent="DungeonGenerator3D/RoomsContainer" unique_id=1604217476 instance=ExtResource("4_5qiem")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -45, 20, 5)
+
+[node name="Stair_22" parent="DungeonGenerator3D/RoomsContainer" unique_id=100921550 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 30, 5)
+
+[node name="Stair_23" parent="DungeonGenerator3D/RoomsContainer" unique_id=292719890 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20, 40, -45)
+
+[node name="Stair_24" parent="DungeonGenerator3D/RoomsContainer" unique_id=564381153 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -30, 0, -5)
+
+[node name="Stair_25" parent="DungeonGenerator3D/RoomsContainer" unique_id=1294638080 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, -20, 45)
+
+[node name="Stair_26" parent="DungeonGenerator3D/RoomsContainer" unique_id=992418341 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1.1924881e-08, 0, -1, 0, 1, 0, 1, 0, 1.1924881e-08, -45, -30, -10)
+
+[node name="Stair_27" parent="DungeonGenerator3D/RoomsContainer" unique_id=1135119398 instance=ExtResource("3_0joxd")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 10, -10, 45)
+
+[node name="Stair_28" parent="DungeonGenerator3D/RoomsContainer" unique_id=1011123814 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20, 20, 25)
+
+[node name="Stair_29" parent="DungeonGenerator3D/RoomsContainer" unique_id=509445540 instance=ExtResource("3_0joxd")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10, -5)
+
+[node name="Corridor_30" parent="DungeonGenerator3D/RoomsContainer" unique_id=367603096 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -35, 5)
+
+[node name="Corridor_31" parent="DungeonGenerator3D/RoomsContainer" unique_id=632533680 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -35, 5)
+
+[node name="Corridor_32" parent="DungeonGenerator3D/RoomsContainer" unique_id=746283067 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -35, -5)
+
+[node name="Corridor_33" parent="DungeonGenerator3D/RoomsContainer" unique_id=1198291925 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -35, -15)
+
+[node name="Corridor_34" parent="DungeonGenerator3D/RoomsContainer" unique_id=1233191793 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -35, -25)
+
+[node name="Corridor_35" parent="DungeonGenerator3D/RoomsContainer" unique_id=1199448209 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -35, -25)
+
+[node name="Corridor_36" parent="DungeonGenerator3D/RoomsContainer" unique_id=813277729 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -35, -5)
+
+[node name="Corridor_37" parent="DungeonGenerator3D/RoomsContainer" unique_id=1015829866 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -35, -5)
+
+[node name="Corridor_38" parent="DungeonGenerator3D/RoomsContainer" unique_id=1293608740 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -35, -5)
+
+[node name="Corridor_39" parent="DungeonGenerator3D/RoomsContainer" unique_id=1257019129 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -35, 15)
+
+[node name="Corridor_40" parent="DungeonGenerator3D/RoomsContainer" unique_id=212141762 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -35, 25)
+
+[node name="Corridor_41" parent="DungeonGenerator3D/RoomsContainer" unique_id=9713409 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -35, 35)
+
+[node name="Corridor_42" parent="DungeonGenerator3D/RoomsContainer" unique_id=813235089 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -35, 45)
+
+[node name="Corridor_43" parent="DungeonGenerator3D/RoomsContainer" unique_id=458524551 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -35, -25)
+
+[node name="Corridor_44" parent="DungeonGenerator3D/RoomsContainer" unique_id=453377956 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -25, 5)
+
+[node name="Corridor_45" parent="DungeonGenerator3D/RoomsContainer" unique_id=1706938670 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -25, 5)
+
+[node name="Corridor_46" parent="DungeonGenerator3D/RoomsContainer" unique_id=903772818 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -25, 35)
+
+[node name="Corridor_47" parent="DungeonGenerator3D/RoomsContainer" unique_id=776840469 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -25, 45)
+
+[node name="Corridor_48" parent="DungeonGenerator3D/RoomsContainer" unique_id=1099250465 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -25, 35)
+
+[node name="Corridor_49" parent="DungeonGenerator3D/RoomsContainer" unique_id=1042317801 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -25, 35)
+
+[node name="Corridor_50" parent="DungeonGenerator3D/RoomsContainer" unique_id=1483473630 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -25, 35)
+
+[node name="Corridor_51" parent="DungeonGenerator3D/RoomsContainer" unique_id=706020298 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -25, 25)
+
+[node name="Corridor_52" parent="DungeonGenerator3D/RoomsContainer" unique_id=1849074939 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -15, 45)
+
+[node name="Corridor_53" parent="DungeonGenerator3D/RoomsContainer" unique_id=1492823266 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -15, 35)
+
+[node name="Corridor_54" parent="DungeonGenerator3D/RoomsContainer" unique_id=663910063 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -15, 35)
+
+[node name="Corridor_55" parent="DungeonGenerator3D/RoomsContainer" unique_id=1925861095 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -15, 35)
+
+[node name="Corridor_56" parent="DungeonGenerator3D/RoomsContainer" unique_id=1892987177 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, 35)
+
+[node name="Corridor_57" parent="DungeonGenerator3D/RoomsContainer" unique_id=1363738555 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, 45)
+
+[node name="Corridor_58" parent="DungeonGenerator3D/RoomsContainer" unique_id=80238581 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, 25)
+
+[node name="Corridor_59" parent="DungeonGenerator3D/RoomsContainer" unique_id=92150494 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, 15)
+
+[node name="Corridor_60" parent="DungeonGenerator3D/RoomsContainer" unique_id=1969390188 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, 5)
+
+[node name="Corridor_61" parent="DungeonGenerator3D/RoomsContainer" unique_id=217999770 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, -5)
+
+[node name="Corridor_62" parent="DungeonGenerator3D/RoomsContainer" unique_id=850442809 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, -15)
+
+[node name="Corridor_63" parent="DungeonGenerator3D/RoomsContainer" unique_id=346681635 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -15, -25)
+
+[node name="Corridor_64" parent="DungeonGenerator3D/RoomsContainer" unique_id=1580428319 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, -15, -25)
+
+[node name="Corridor_65" parent="DungeonGenerator3D/RoomsContainer" unique_id=1237385446 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -15, 35)
+
+[node name="Corridor_66" parent="DungeonGenerator3D/RoomsContainer" unique_id=273130351 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, 35)
+
+[node name="Corridor_67" parent="DungeonGenerator3D/RoomsContainer" unique_id=43151479 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, 25)
+
+[node name="Corridor_68" parent="DungeonGenerator3D/RoomsContainer" unique_id=950120951 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, 15)
+
+[node name="Corridor_69" parent="DungeonGenerator3D/RoomsContainer" unique_id=1919411960 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, 5)
+
+[node name="Corridor_70" parent="DungeonGenerator3D/RoomsContainer" unique_id=77129594 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -15, 5)
+
+[node name="Corridor_71" parent="DungeonGenerator3D/RoomsContainer" unique_id=2095377862 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -5, 45)
+
+[node name="Corridor_72" parent="DungeonGenerator3D/RoomsContainer" unique_id=1363523962 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -5, 45)
+
+[node name="Corridor_73" parent="DungeonGenerator3D/RoomsContainer" unique_id=682086661 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -5, 45)
+
+[node name="Corridor_74" parent="DungeonGenerator3D/RoomsContainer" unique_id=641978779 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -5, 45)
+
+[node name="Corridor_75" parent="DungeonGenerator3D/RoomsContainer" unique_id=142123952 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -5, 35)
+
+[node name="Corridor_76" parent="DungeonGenerator3D/RoomsContainer" unique_id=1974306690 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -5, 25)
+
+[node name="Corridor_77" parent="DungeonGenerator3D/RoomsContainer" unique_id=1629177553 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -5, 15)
+
+[node name="Corridor_78" parent="DungeonGenerator3D/RoomsContainer" unique_id=399912498 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -5, 5)
+
+[node name="Corridor_79" parent="DungeonGenerator3D/RoomsContainer" unique_id=1419630885 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -5, 5)
+
+[node name="Corridor_80" parent="DungeonGenerator3D/RoomsContainer" unique_id=1122582899 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -5, -5)
+
+[node name="Corridor_81" parent="DungeonGenerator3D/RoomsContainer" unique_id=1789919455 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -5, -15)
+
+[node name="Corridor_82" parent="DungeonGenerator3D/RoomsContainer" unique_id=1705324188 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -5, -15)
+
+[node name="Corridor_83" parent="DungeonGenerator3D/RoomsContainer" unique_id=671359083 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -5, -15)
+
+[node name="Corridor_84" parent="DungeonGenerator3D/RoomsContainer" unique_id=343275649 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -5, -25)
+
+[node name="Corridor_85" parent="DungeonGenerator3D/RoomsContainer" unique_id=495449180 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -5, -35)
+
+[node name="Corridor_86" parent="DungeonGenerator3D/RoomsContainer" unique_id=50865608 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -5, -15)
+
+[node name="Corridor_87" parent="DungeonGenerator3D/RoomsContainer" unique_id=1194317337 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, -5)
+
+[node name="Corridor_88" parent="DungeonGenerator3D/RoomsContainer" unique_id=1319700901 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 5)
+
+[node name="Corridor_89" parent="DungeonGenerator3D/RoomsContainer" unique_id=432685313 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, -5)
+
+[node name="Corridor_90" parent="DungeonGenerator3D/RoomsContainer" unique_id=560932687 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 15, -5)
+
+[node name="Corridor_91" parent="DungeonGenerator3D/RoomsContainer" unique_id=1797328035 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 15, -5)
+
+[node name="Corridor_92" parent="DungeonGenerator3D/RoomsContainer" unique_id=331160414 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 15, -5)
+
+[node name="Corridor_93" parent="DungeonGenerator3D/RoomsContainer" unique_id=459965449 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 15, 5)
+
+[node name="Corridor_94" parent="DungeonGenerator3D/RoomsContainer" unique_id=1635067264 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, -15)
+
+[node name="Corridor_95" parent="DungeonGenerator3D/RoomsContainer" unique_id=1768226262 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, -25)
+
+[node name="Corridor_96" parent="DungeonGenerator3D/RoomsContainer" unique_id=1423572018 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, -35)
+
+[node name="Corridor_97" parent="DungeonGenerator3D/RoomsContainer" unique_id=1622184376 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, -45)
+
+[node name="Corridor_98" parent="DungeonGenerator3D/RoomsContainer" unique_id=1281156135 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 15, -45)
+
+[node name="Corridor_99" parent="DungeonGenerator3D/RoomsContainer" unique_id=655736227 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 15, 5)
+
+[node name="Corridor_100" parent="DungeonGenerator3D/RoomsContainer" unique_id=1279427765 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 15, 5)
+
+[node name="Corridor_101" parent="DungeonGenerator3D/RoomsContainer" unique_id=1949466180 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 15, 5)
+
+[node name="Corridor_102" parent="DungeonGenerator3D/RoomsContainer" unique_id=10927918 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 15, 5)
+
+[node name="Corridor_103" parent="DungeonGenerator3D/RoomsContainer" unique_id=1198170328 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 15, 15)
+
+[node name="Corridor_104" parent="DungeonGenerator3D/RoomsContainer" unique_id=1188822703 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 15, 15)
+
+[node name="Corridor_105" parent="DungeonGenerator3D/RoomsContainer" unique_id=2112025295 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 15, 15)
+
+[node name="Corridor_106" parent="DungeonGenerator3D/RoomsContainer" unique_id=791458495 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 15, 25)
+
+[node name="Corridor_107" parent="DungeonGenerator3D/RoomsContainer" unique_id=1553597274 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 25, 25)
+
+[node name="Corridor_108" parent="DungeonGenerator3D/RoomsContainer" unique_id=80820822 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 25, 15)
+
+[node name="Corridor_109" parent="DungeonGenerator3D/RoomsContainer" unique_id=486154219 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, 15)
+
+[node name="Corridor_110" parent="DungeonGenerator3D/RoomsContainer" unique_id=388472892 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, 5)
+
+[node name="Corridor_111" parent="DungeonGenerator3D/RoomsContainer" unique_id=1441719676 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, -5)
+
+[node name="Corridor_112" parent="DungeonGenerator3D/RoomsContainer" unique_id=1782182152 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 25, -15)
+
+[node name="Corridor_113" parent="DungeonGenerator3D/RoomsContainer" unique_id=1044355382 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 25, -15)
+
+[node name="Corridor_114" parent="DungeonGenerator3D/RoomsContainer" unique_id=797973719 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 25, -15)
+
+[node name="Corridor_115" parent="DungeonGenerator3D/RoomsContainer" unique_id=1757432471 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 25, -15)
+
+[node name="Corridor_116" parent="DungeonGenerator3D/RoomsContainer" unique_id=1781753279 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 35, 5)
+
+[node name="Corridor_117" parent="DungeonGenerator3D/RoomsContainer" unique_id=823481992 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 35, 15)
+
+[node name="Corridor_118" parent="DungeonGenerator3D/RoomsContainer" unique_id=1074970006 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 35, 15)
+
+[node name="Corridor_119" parent="DungeonGenerator3D/RoomsContainer" unique_id=1138166670 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 35, 15)
+
+[node name="Corridor_120" parent="DungeonGenerator3D/RoomsContainer" unique_id=235511902 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 35, 15)
+
+[node name="Corridor_121" parent="DungeonGenerator3D/RoomsContainer" unique_id=321434050 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 35, 15)
+
+[node name="Corridor_122" parent="DungeonGenerator3D/RoomsContainer" unique_id=788712926 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 35, 5)
+
+[node name="Corridor_123" parent="DungeonGenerator3D/RoomsContainer" unique_id=2038169220 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 35, -5)
+
+[node name="Corridor_124" parent="DungeonGenerator3D/RoomsContainer" unique_id=2017018296 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 35, -15)
+
+[node name="Corridor_125" parent="DungeonGenerator3D/RoomsContainer" unique_id=1941753553 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 35, -25)
+
+[node name="Corridor_126" parent="DungeonGenerator3D/RoomsContainer" unique_id=1023348822 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 35, -35)
+
+[node name="Corridor_127" parent="DungeonGenerator3D/RoomsContainer" unique_id=1225203125 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 35, -35)
+
+[node name="Corridor_128" parent="DungeonGenerator3D/RoomsContainer" unique_id=268000774 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 35, -45)
+
+[node name="Corridor_129" parent="DungeonGenerator3D/RoomsContainer" unique_id=321321821 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 35, 5)
+
+[node name="Corridor_130" parent="DungeonGenerator3D/RoomsContainer" unique_id=1854222814 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 35, 5)
+
+[node name="Corridor_131" parent="DungeonGenerator3D/RoomsContainer" unique_id=1460829987 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 35, 5)
+
+[node name="Corridor_132" parent="DungeonGenerator3D/RoomsContainer" unique_id=2004714101 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 45, -45)
+
+[node name="Corridor_133" parent="DungeonGenerator3D/RoomsContainer" unique_id=78705993 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 45, -35)
+
+[node name="Corridor_134" parent="DungeonGenerator3D/RoomsContainer" unique_id=55653573 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 45, -35)
+
+[node name="Corridor_135" parent="DungeonGenerator3D/RoomsContainer" unique_id=431910868 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, 45, -35)
+
+[node name="Corridor_136" parent="DungeonGenerator3D/RoomsContainer" unique_id=1153599410 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 45, -35)
+
+[node name="Corridor_137" parent="DungeonGenerator3D/RoomsContainer" unique_id=1989833387 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 45, -25)
+
+[node name="Corridor_138" parent="DungeonGenerator3D/RoomsContainer" unique_id=643205975 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 45, -25)
+
+[node name="Corridor_139" parent="DungeonGenerator3D/RoomsContainer" unique_id=963221632 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 45, -25)
+
+[node name="Corridor_140" parent="DungeonGenerator3D/RoomsContainer" unique_id=1650520504 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 45, -15)
+
+[node name="Corridor_141" parent="DungeonGenerator3D/RoomsContainer" unique_id=221672252 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 45, -15)
+
+[node name="Corridor_142" parent="DungeonGenerator3D/RoomsContainer" unique_id=338199471 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 45, -5)
+
+[node name="Corridor_143" parent="DungeonGenerator3D/RoomsContainer" unique_id=614372303 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 45, 5)
+
+[node name="Corridor_144" parent="DungeonGenerator3D/RoomsContainer" unique_id=873568498 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, 5, 45)
+
+[node name="Corridor_145" parent="DungeonGenerator3D/RoomsContainer" unique_id=1155990974 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 25)
+
+[node name="Corridor_146" parent="DungeonGenerator3D/RoomsContainer" unique_id=1722568082 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 15)
+
+[node name="Corridor_147" parent="DungeonGenerator3D/RoomsContainer" unique_id=1564661449 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, 5, 5)
+
+[node name="Corridor_148" parent="DungeonGenerator3D/RoomsContainer" unique_id=2118286302 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 5, 5)
+
+[node name="Corridor_149" parent="DungeonGenerator3D/RoomsContainer" unique_id=1333691093 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 5, 25)
+
+[node name="Corridor_150" parent="DungeonGenerator3D/RoomsContainer" unique_id=584412732 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 5, 15)
+
+[node name="Corridor_151" parent="DungeonGenerator3D/RoomsContainer" unique_id=1063829353 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 5, 5)
+
+[node name="Corridor_152" parent="DungeonGenerator3D/RoomsContainer" unique_id=1683265096 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 5, 5)
+
+[node name="Corridor_153" parent="DungeonGenerator3D/RoomsContainer" unique_id=1790438339 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -35, 45)
+
+[node name="Corridor_154" parent="DungeonGenerator3D/RoomsContainer" unique_id=915948854 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -15, -35, 45)
+
+[node name="Corridor_155" parent="DungeonGenerator3D/RoomsContainer" unique_id=1805945819 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -35, 25)
+
+[node name="Corridor_156" parent="DungeonGenerator3D/RoomsContainer" unique_id=1451752818 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, -35, 35)
+
+[node name="Corridor_157" parent="DungeonGenerator3D/RoomsContainer" unique_id=2032277580 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -35, 25)
+
+[node name="Corridor_158" parent="DungeonGenerator3D/RoomsContainer" unique_id=424559780 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -35, 35)
+
+[node name="Corridor_159" parent="DungeonGenerator3D/RoomsContainer" unique_id=432463054 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, -35, 45)
+
+[node name="Corridor_160" parent="DungeonGenerator3D/RoomsContainer" unique_id=2083409426 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -35, 45)
+
+[node name="Corridor_161" parent="DungeonGenerator3D/RoomsContainer" unique_id=2143855072 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 45, 15)
+
+[node name="Corridor_162" parent="DungeonGenerator3D/RoomsContainer" unique_id=1774981453 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 45, 15)
+
+[node name="Corridor_163" parent="DungeonGenerator3D/RoomsContainer" unique_id=1896161378 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 45, 5)
+
+[node name="Corridor_164" parent="DungeonGenerator3D/RoomsContainer" unique_id=1956837915 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 45, -5)
+
+[node name="Corridor_165" parent="DungeonGenerator3D/RoomsContainer" unique_id=11049961 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 45, -5)
+
+[node name="Corridor_166" parent="DungeonGenerator3D/RoomsContainer" unique_id=1047026231 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, -15, -25)
+
+[node name="Corridor_167" parent="DungeonGenerator3D/RoomsContainer" unique_id=1734657648 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, -25)
+
+[node name="Corridor_168" parent="DungeonGenerator3D/RoomsContainer" unique_id=1957966421 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, -15)
+
+[node name="Corridor_169" parent="DungeonGenerator3D/RoomsContainer" unique_id=1369756866 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, -15, -5)
+
+[node name="Corridor_170" parent="DungeonGenerator3D/RoomsContainer" unique_id=430511472 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 15, 45)
+
+[node name="Corridor_171" parent="DungeonGenerator3D/RoomsContainer" unique_id=1052959240 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 15, 45)
+
+[node name="Corridor_172" parent="DungeonGenerator3D/RoomsContainer" unique_id=2083541028 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 15, 35)
+
+[node name="Corridor_173" parent="DungeonGenerator3D/RoomsContainer" unique_id=475810438 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 35, 15, 25)
+
+[node name="Corridor_174" parent="DungeonGenerator3D/RoomsContainer" unique_id=590819433 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 15, 25)
+
+[node name="Corridor_175" parent="DungeonGenerator3D/RoomsContainer" unique_id=1141795436 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 45, 15, 15)
+
+[node name="Corridor_176" parent="DungeonGenerator3D/RoomsContainer" unique_id=1914795775 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -25, 25)
+
+[node name="Corridor_177" parent="DungeonGenerator3D/RoomsContainer" unique_id=675831077 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -25, 35)
+
+[node name="Corridor_178" parent="DungeonGenerator3D/RoomsContainer" unique_id=55904785 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15, -25, 35)
+
+[node name="Corridor_179" parent="DungeonGenerator3D/RoomsContainer" unique_id=979133114 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5, -25, 35)
+
+[node name="Corridor_180" parent="DungeonGenerator3D/RoomsContainer" unique_id=1879521732 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -45, 25, 25)
+
+[node name="Corridor_181" parent="DungeonGenerator3D/RoomsContainer" unique_id=1818375838 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 25, 25)
+
+[node name="Corridor_182" parent="DungeonGenerator3D/RoomsContainer" unique_id=603765139 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 25, 15)
+
+[node name="Corridor_183" parent="DungeonGenerator3D/RoomsContainer" unique_id=518455023 instance=ExtResource("2_xggsk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 25, 15)
+
+[node name="player" parent="." unique_id=791080869 instance=ExtResource("13_5kao7")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 29.364082, 5.7314987)
+
+[node name="background_music" type="AudioStreamPlayer2D" parent="." unique_id=902081586]
+stream = ExtResource("11_5qiem")
+volume_db = 2.0
+autoplay = true
+parameters/looping = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1294130326]
+environment = SubResource("Environment_g4v7s")

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://m5nuuu6bi0ng"
+path="res://.godot/imported/Fahhh - QuickSounds.com.mp3-78e6aa0b39ee859b6ce8b84177d73ab9.mp3str"
+
+[deps]
+
+source_file="res://sound/player/Fahhh - QuickSounds.com.mp3"
+dest_files=["res://.godot/imported/Fahhh - QuickSounds.com.mp3-78e6aa0b39ee859b6ce8b84177d73ab9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

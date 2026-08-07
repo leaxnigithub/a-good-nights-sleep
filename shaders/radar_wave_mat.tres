@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://m75te3j4f0wo"]
+
+[ext_resource type="Shader" uid="uid://cyse834ce2jlq" path="res://shaders/radar_wave_mat.gdshader" id="1_grkf2"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_grkf2")
+shader_parameter/wave_color = Color(1, 1, 1, 1)
+shader_parameter/line_thickness = 0.15

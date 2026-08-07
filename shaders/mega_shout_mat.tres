@@ -1,0 +1,12 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://b4i0whoa1t77m"]
+
+[ext_resource type="Shader" uid="uid://plmsvoqestdg" path="res://shaders/mega_shout_mat.gdshader" id="1_w61fj"]
+
+[resource]
+render_priority = 0
+shader = ExtResource("1_w61fj")
+shader_parameter/glow_color = Color(1, 0.9, 0.1, 1)
+shader_parameter/vibration_speed = 30.0
+shader_parameter/vibration_strength = 0.015
+shader_parameter/flicker_speed = 25.0
+shader_parameter/rim_power = 2.0
