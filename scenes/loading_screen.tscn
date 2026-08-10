@@ -1,0 +1,60 @@
+[gd_scene format=3 uid="uid://c3ynssoyf8ba5"]
+
+[ext_resource type="Script" uid="uid://bu1b4h3bgu77v" path="res://loading_screen.gd" id="1_5phy8"]
+[ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://UI/ui/32x32 circle bar under.png" id="2_djmwj"]
+[ext_resource type="Texture2D" uid="uid://1x6vub3s4xfo" path="res://UI/ui/32x32 circle bar over.png" id="3_qygbf"]
+[ext_resource type="Texture2D" uid="uid://dbvabeskn77dc" path="res://UI/ui/32x32 circle bar progress dark purple.png" id="4_pu4a1"]
+[ext_resource type="Texture2D" uid="uid://dg8jeuia6t0yw" path="res://UI/ui/circle bar under.png" id="5_djmwj"]
+
+[node name="LoadingScreen" type="Control" unique_id=1598087532]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_5phy8")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=446594340]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.06666667, 0.03137255, 0.019607844, 1)
+
+[node name="VBoxContainer" type="VBoxContainer" parent="ColorRect" unique_id=315108176]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -31.0
+offset_top = -20.0
+offset_right = 31.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="ColorRect/VBoxContainer" unique_id=141658514]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Loading"
+
+[node name="TextureProgressBar" type="TextureProgressBar" parent="ColorRect/VBoxContainer" unique_id=1210826954]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+fill_mode = 4
+texture_under = ExtResource("2_djmwj")
+texture_over = ExtResource("3_qygbf")
+texture_progress = ExtResource("4_pu4a1")
+
+[node name="RadarIcon" type="TextureRect" parent="ColorRect/VBoxContainer" unique_id=833624898]
+texture_filter = 1
+layout_mode = 2
+offset_transform_enabled = true
+offset_transform_pivot = Vector2(8, 8)
+texture = ExtResource("5_djmwj")

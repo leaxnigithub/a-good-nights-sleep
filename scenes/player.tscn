@@ -9,6 +9,7 @@
 [ext_resource type="AudioStream" uid="uid://m5nuuu6bi0ng" path="res://sound/player/Fahhh - QuickSounds.com.mp3" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://UI/ui/32x32 circle bar under.png" id="6_dw050"]
 [ext_resource type="Texture2D" uid="uid://1x6vub3s4xfo" path="res://UI/ui/32x32 circle bar over.png" id="7_b26j0"]
+[ext_resource type="Texture2D" uid="uid://clcs3m1068gdk" path="res://UI/ui/red-E.png" id="8_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://dblsmuv4s3odh" path="res://UI/ui/32x32 circle bar progress red.png" id="9_n7ghd"]
 [ext_resource type="PackedScene" uid="uid://ddbvj7may20k6" path="res://scenes/pause_menu.tscn" id="10_n7ghd"]
 
@@ -115,8 +116,17 @@ volume_db = 16.684
 max_db = 4.184
 pitch_scale = 0.74
 
+[node name="TextureRect" type="TextureRect" parent="." unique_id=1501957778]
+z_index = 1
+anchors_preset = -1
+offset_left = 973.0
+offset_top = 552.0
+offset_right = 1013.0
+offset_bottom = 592.0
+texture = ExtResource("8_3v2ag")
+
 [node name="CooldownBar" type="TextureProgressBar" parent="." unique_id=38921315]
-texture_filter = 1
+texture_filter = 3
 anchors_preset = -1
 anchor_right = 0.035
 anchor_bottom = 0.062000003

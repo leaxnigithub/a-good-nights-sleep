@@ -1,11 +1,11 @@
 [gd_scene format=3 uid="uid://dvnem4b4cbfgo"]
 
-[ext_resource type="Script" uid="uid://1ufc73fiawsa" path="res://titlescreen.gd" id="1_cjnew"]
-[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://ui elements/labelmain.tres" id="2_o0614"]
-[ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://soundeffects/music/deuslower-medieval-ambient-236809.mp3" id="3_8pdex"]
-[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="3_hxypl"]
-[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="4_hxypl"]
-[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://soundeffects/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="6_o0614"]
+[ext_resource type="Script" uid="uid://1ufc73fiawsa" path="res://script/titlescreen.gd" id="1_cjnew"]
+[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://UI/labelmain.tres" id="2_o0614"]
+[ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://sound/music/deuslower-medieval-ambient-236809.mp3" id="3_8pdex"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://sound/black_and_white_theme/black_and_white.tres" id="3_hxypl"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://script/buttongrow.gd" id="4_hxypl"]
+[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://sound/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="6_o0614"]
 
 [node name="Titlescreen" type="Control" unique_id=2058847252]
 layout_mode = 3

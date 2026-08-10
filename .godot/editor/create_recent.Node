@@ -1,1 +1,6 @@
+TextureRect
+VBoxContainer
+TextureProgressBar
+Label
+ColorRect
 WorldEnvironment
