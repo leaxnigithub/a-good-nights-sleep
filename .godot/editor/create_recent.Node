@@ -1,6 +1,7 @@
 TextureRect
-VBoxContainer
 TextureProgressBar
+CanvasLayer
+VBoxContainer
 Label
 ColorRect
 WorldEnvironment

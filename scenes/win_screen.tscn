@@ -1,10 +1,11 @@
 [gd_scene format=3 uid="uid://dq4y11es1wti2"]
 
-[ext_resource type="Script" uid="uid://csrt6uxj00muj" path="res://win_screen.gd" id="1_l2arl"]
-[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://ui elements/labelmain.tres" id="2_26557"]
-[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_l5t5q"]
-[ext_resource type="AudioStream" uid="uid://bxe4ubtj3xlf6" path="res://soundeffects/enemy/mixkit-correct-answer-reward-952.wav" id="2_wmwda"]
-[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_1txte"]
+[ext_resource type="Script" uid="uid://csrt6uxj00muj" path="res://script/win_screen.gd" id="1_l2arl"]
+[ext_resource type="AudioStream" uid="uid://bjy1cocek8bfg" path="res://sound/UI Soundpack/MP3/Coffee2.mp3" id="2_6s1kg"]
+[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://UI/labelmain.tres" id="2_26557"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://sound/black_and_white_theme/black_and_white.tres" id="2_l5t5q"]
+[ext_resource type="AudioStream" uid="uid://bxe4ubtj3xlf6" path="res://sound/enemy/mixkit-correct-answer-reward-952.wav" id="2_wmwda"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://script/buttongrow.gd" id="3_1txte"]
 
 [node name="WinScreen" type="Control" unique_id=1449801549]
 process_mode = 3
@@ -25,6 +26,7 @@ color = Color(0.101960786, 0.043137256, 0, 1)
 
 [node name="buttonclick" type="AudioStreamPlayer2D" parent="win_layer/ColorRect" unique_id=2171020]
 position = Vector2(-27.5, -36)
+stream = ExtResource("2_6s1kg")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="win_layer" unique_id=1070665228]
 anchors_preset = 8

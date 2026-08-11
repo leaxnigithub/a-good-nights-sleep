@@ -1,6 +1,9 @@
 extends CharacterBody3D
 
-@onready var cooldown_bar = $CooldownBar 
+# --- UI References ---
+@onready var blood_meter = $PlayerUI/BloodMeter
+@onready var cooldown_meter = $PlayerUI/CooldownMeter # <--- ADDED COOLDOWN METER
+
 @onready var screech_sound = $ScreechSound
 @onready var body = $CollisionShape3D
 @onready var notifier = $interacter/notifier
@@ -13,6 +16,14 @@ var charge_timer: float = 0.0
 var is_mega_pulse: bool = false
 var slowed_enemies: Array = []
 
+# --- Blood (Health + Stamina) Stats ---
+var max_blood: float = 100.0
+var current_blood: float = 100.0
+var blood_regen_rate: float = 5.0 
+
+var normal_pulse_cost: float = 25.0
+var mega_pulse_cost: float = 55.0
+
 # --- Audio Node References ---
 @onready var footsteps = $Footsteps
 @onready var jump_grunt = $jumpgrunt  
@@ -20,12 +31,9 @@ var slowed_enemies: Array = []
 @onready var echoping: AudioStreamPlayer3D = $echoping
 
 var mouse_sens: float = 0.002
-var is_ability_ready: bool = true
 
 const SPEED = 5.0
 const JUMP_VELOCITY = 3.2
-
-# --- NEW: We track the current speed globally so we can smoothly transition it! ---
 var current_speed: float = SPEED
 
 # --- Head Bobbing Settings ---
@@ -43,11 +51,11 @@ const WALK_BOB_AMOUNT: float = 0.08
 # --- Echolocation Ability Settings ---
 @export var max_echo_distance: float = 20.0
 @export var echo_speed: float = 10.0       
-@export var echo_cooldown: float = 10.0
+@export var echo_cooldown: float = 10.0 
 
+var cooldown_timer: float = 0.0
 var is_echoing: bool = false
 var current_echo_radius: float = 0.0
-var cooldown_timer: float = 0.0
 var pulse_sphere: MeshInstance3D
 
 # Preload your outline materials
@@ -55,17 +63,20 @@ var enemy_mat = preload("res://shaders/enemy_outline_mat.tres")
 var wave_mat = preload("res://shaders/radar_wave_mat.tres") 
 var mega_shout_mat = preload("res://shaders/mega_shout_mat.tres")
 
-# Track objects highlighted during the current active pulse
 var highlighted_objects: Array = []
 
 
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
 	
-	if cooldown_bar:
-		cooldown_bar.max_value = echo_cooldown
-		cooldown_bar.step = 0.15 
-		cooldown_bar.value = 0.0
+	if blood_meter:
+		blood_meter.max_value = max_blood
+		blood_meter.value = current_blood
+		
+	# <--- SETUP COOLDOWN METER --->
+	if cooldown_meter:
+		cooldown_meter.max_value = echo_cooldown
+		cooldown_meter.value = echo_cooldown # Starts fully charged
 
 func check_ray_hit() -> void:
 	if interact.is_colliding():
@@ -82,7 +93,6 @@ func check_ray_hit() -> void:
 		notifier.visible = false
 		cursor.visible = true
 
-
 func _input(event: InputEvent) -> void:
 	if get_tree().paused:
 		return
@@ -97,28 +107,34 @@ func _physics_process(delta: float) -> void:
 	if get_tree().paused:
 		return
 
-	# --- Echolocation Ability Management ---
+	# --- Blood Regeneration ---
+	if current_blood < max_blood:
+		current_blood = move_toward(current_blood, max_blood, blood_regen_rate * delta)
+		
+	if blood_meter:
+		blood_meter.value = current_blood
+
+# --- Cooldown Timer & UI Update ---
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
-		is_ability_ready = false 
-		
-		if cooldown_bar:
-			cooldown_bar.value = echo_cooldown - cooldown_timer
+		if cooldown_meter:
+			# Fills the bar in incremental steps (e.g., jumps by 1.0 every second)
+			var step_amount = 0.2 # Increase this number for chunkier steps, decrease for smaller steps
+			cooldown_meter.value = snapped(echo_cooldown - cooldown_timer, step_amount)
 	else:
-		if cooldown_bar:
-			cooldown_bar.value = echo_cooldown
-			
-		if not is_ability_ready:
-			_play_recharge_effect()
-			is_ability_ready = true 
+		if cooldown_meter:
+			cooldown_meter.value = echo_cooldown # Keep it full when ready
 
 	# --- HOLD-TO-CHARGE LOGIC ---
-	if Input.is_key_pressed(KEY_E) and cooldown_timer <= 0 and not is_echoing:
+	if Input.is_key_pressed(KEY_E) and not is_echoing and cooldown_timer <= 0 and current_blood > normal_pulse_cost:
 		is_charging = true
 		charge_timer += delta
 		
 		if charge_timer >= 3.0:
-			_trigger_pulse(true) 
+			if current_blood > mega_pulse_cost:
+				_trigger_pulse(true) 
+			else:
+				_trigger_pulse(false)
 	else:
 		if is_charging:
 			_trigger_pulse(false)
@@ -142,9 +158,7 @@ func _physics_process(delta: float) -> void:
 	var input_dir := Input.get_vector("left", "right", "forward", "backward")
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
-	# --- PLAYER SLOWDOWN PENALTY ---
 	var target_speed = SPEED
-	
 	if is_charging and charge_timer > 0.2:
 		target_speed = SPEED * 0.3
 		
@@ -169,22 +183,16 @@ func _physics_process(delta: float) -> void:
 
 
 func _handle_head_bob(delta: float, direction: Vector3) -> void:
-	# --- THE FIX: Continuous bobbing math ---
 	if is_on_floor():
 		if direction != Vector3.ZERO:
 			bob_time += delta * WALK_BOB_SPEED
-			# Lerp the intensity up to walking amount
 			current_bob_intensity = lerp(current_bob_intensity, WALK_BOB_AMOUNT, delta * 8.0)
 		else:
 			bob_time += delta * IDLE_BOB_SPEED
-			# Lerp the intensity down to idle amount
 			current_bob_intensity = lerp(current_bob_intensity, IDLE_BOB_AMOUNT, delta * 8.0)
 	else:
-		# Mid-air: Smoothly fade the intensity to zero
 		current_bob_intensity = lerp(current_bob_intensity, 0.0, delta * 10.0)
 
-	# Apply the position constantly. Because the intensity drops to 0 in the air, 
-	# it naturally settles at the default height without ever snapping!
 	camera.position.y = default_cam_height + sin(bob_time) * current_bob_intensity
 
 
@@ -199,12 +207,26 @@ func _trigger_pulse(mega: bool) -> void:
 	start_echolocation_pulse()
 	
 func start_echolocation_pulse() -> void:
+	# Start the 10-second cooldown timer
+	cooldown_timer = echo_cooldown
+	
+	# Empty the visual bar instantly
+	if cooldown_meter:
+		cooldown_meter.value = 0.0 
+
+	# Sacrifice blood
+	if is_mega_pulse:
+		current_blood -= mega_pulse_cost
+	else:
+		current_blood -= normal_pulse_cost
+		
 	is_echoing = true
 	current_echo_radius = 0.0
 	highlighted_objects.clear()
-	cooldown_timer = echo_cooldown
 	
-	_play_use_effect()
+	# PLAY UI EFFECTS HERE
+	_play_use_effect()        # Shakes the blood meter
+	_play_cooldown_effect()   # Flashes and shudders the cooldown meter
 	
 	if screech_sound:
 		if is_mega_pulse:
@@ -217,13 +239,11 @@ func start_echolocation_pulse() -> void:
 		
 	pulse_sphere = MeshInstance3D.new()
 	var sphere_mesh = SphereMesh.new()
-	
 	sphere_mesh.radius = 1.0
 	sphere_mesh.height = 2.0
 	pulse_sphere.mesh = sphere_mesh
 	
 	var active_wave_mat = wave_mat.duplicate() as ShaderMaterial
-	
 	if active_wave_mat:
 		if is_mega_pulse:
 			active_wave_mat.set_shader_parameter("wave_color", Color(1.0, 0.0, 0.0, 1.0)) 
@@ -231,9 +251,9 @@ func start_echolocation_pulse() -> void:
 			active_wave_mat.set_shader_parameter("wave_color", Color(1.0, 1.0, 1.0, 1.0))
 		
 	pulse_sphere.material_override = active_wave_mat
-	
 	get_tree().root.add_child(pulse_sphere)
 	pulse_sphere.global_position = global_position + Vector3(0, 1.0, 0)
+
 
 func _process_echo_pulse(delta: float) -> void:
 	current_echo_radius += echo_speed * delta
@@ -290,7 +310,6 @@ func _check_and_highlight_enemy(mesh_node: MeshInstance3D, is_mega: bool = false
 		highlighted_objects.append(mesh_node)
 		
 		var unique_mat: ShaderMaterial
-		
 		if is_mega:
 			if mega_shout_mat:
 				unique_mat = mega_shout_mat.duplicate() as ShaderMaterial
@@ -306,47 +325,73 @@ func _check_and_highlight_enemy(mesh_node: MeshInstance3D, is_mega: bool = false
 			tween.tween_property(unique_mat, "shader_parameter/glow_color:a", 0.0, 1.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			tween.tween_callback(_clear_enemy_highlight.bind(mesh_node))
 
+
 func _clear_enemy_highlight(mesh_node: MeshInstance3D) -> void:
 	if is_instance_valid(mesh_node):
 		mesh_node.material_overlay = null
+
+
+# =================================================================
+#                 DAMAGE & HEALTH SYSTEM
+# =================================================================
+func take_damage(amount: float) -> void:
+	current_blood -= amount
+	
+	if blood_meter:
+		blood_meter.value = current_blood
+	
+	_play_use_effect()
 		
-func _play_recharge_effect() -> void:
-	if not cooldown_bar:
-		return
-		
-	cooldown_bar.pivot_offset = cooldown_bar.size / 2.0 
-	var original_pos = cooldown_bar.position 
-	var tween = create_tween()
-	var shake_power = 8.0 
-	
-	tween.tween_property(cooldown_bar, "modulate", Color(2.0, 2.0, 2.0, 1.0), 0.1)
-	tween.parallel().tween_property(cooldown_bar, "scale", Vector2(1.2, 1.2), 0.1)
-	
-	tween.tween_property(cooldown_bar, "position", original_pos + Vector2(shake_power, 0), 0.03)
-	tween.tween_property(cooldown_bar, "position", original_pos + Vector2(-shake_power, 0), 0.03)
-	tween.tween_property(cooldown_bar, "position", original_pos + Vector2(shake_power / 2.0, 0), 0.03)
-	tween.tween_property(cooldown_bar, "position", original_pos + Vector2(-shake_power / 2.0, 0), 0.03)
-	
-	tween.tween_property(cooldown_bar, "position", original_pos, 0.05)
-	tween.parallel().tween_property(cooldown_bar, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
-	tween.parallel().tween_property(cooldown_bar, "scale", Vector2(1.0, 1.0), 0.2)
-	
+	if current_blood <= 0:
+		die()
+
+func die() -> void:
+	print("Player bled out!")
+
+
+# =================================================================
+#                 UI ANIMATIONS
+# =================================================================
 func _play_use_effect() -> void:
-	if not cooldown_bar:
+	if not blood_meter:
 		return
 		
-	cooldown_bar.pivot_offset = cooldown_bar.size / 2.0 
-	var original_pos = cooldown_bar.position 
+	blood_meter.pivot_offset = blood_meter.size / 2.0 
+	var original_pos = blood_meter.position 
 	var tween = create_tween()
 	var shake_power = 7.0
 	
-	tween.tween_property(cooldown_bar, "scale", Vector2(0.8, 0.8), 0.05)
-	tween.parallel().tween_property(cooldown_bar, "modulate", Color(0.5, 0.5, 0.5, 1.0), 0.05)
+	tween.tween_property(blood_meter, "scale", Vector2(0.8, 0.8), 0.05)
+	tween.parallel().tween_property(blood_meter, "modulate", Color(0.5, 0.5, 0.5, 1.0), 0.05)
 	
-	tween.parallel().tween_property(cooldown_bar, "position", original_pos + Vector2(-shake_power, shake_power), 0.02)
-	tween.tween_property(cooldown_bar, "position", original_pos + Vector2(shake_power, -shake_power), 0.02)
-	tween.tween_property(cooldown_bar, "position", original_pos + Vector2(-shake_power / 2.0, 0), 0.02)
+	tween.parallel().tween_property(blood_meter, "position", original_pos + Vector2(-shake_power, shake_power), 0.02)
+	tween.tween_property(blood_meter, "position", original_pos + Vector2(shake_power, -shake_power), 0.02)
+	tween.tween_property(blood_meter, "position", original_pos + Vector2(-shake_power / 2.0, 0), 0.02)
 	
-	tween.tween_property(cooldown_bar, "position", original_pos, 0.05)
-	tween.parallel().tween_property(cooldown_bar, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_BOUNCE)
-	tween.parallel().tween_property(cooldown_bar, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.15)
+	tween.tween_property(blood_meter, "position", original_pos, 0.05)
+	tween.parallel().tween_property(blood_meter, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_BOUNCE)
+	tween.parallel().tween_property(blood_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.15)
+
+func _play_cooldown_effect() -> void:
+	if not cooldown_meter:
+		return
+		
+	cooldown_meter.pivot_offset = cooldown_meter.size / 2.0 
+	var original_pos = cooldown_meter.position 
+	var tween = create_tween()
+	var shake_power = 8.0 
+	
+	# Flash bright white and scale up slightly
+	tween.tween_property(cooldown_meter, "modulate", Color(2.5, 2.5, 2.5, 1.0), 0.1)
+	tween.parallel().tween_property(cooldown_meter, "scale", Vector2(1.1, 1.1), 0.1)
+	
+	# Shudder violently side-to-side
+	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(shake_power, 0), 0.03)
+	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(-shake_power, 0), 0.03)
+	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(shake_power / 2.0, 0), 0.03)
+	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(-shake_power / 2.0, 0), 0.03)
+	
+	# Smoothly return to normal
+	tween.tween_property(cooldown_meter, "position", original_pos, 0.05)
+	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
+	tween.parallel().tween_property(cooldown_meter, "scale", Vector2(1.0, 1.0), 0.2)

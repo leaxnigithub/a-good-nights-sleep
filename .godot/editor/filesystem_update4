@@ -1,4 +1,4 @@
-res://scenes/dungeontutorial.tscn
+res://scenes/player.tscn
 res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres
 res://sound/black_and_white_theme/black_and_white.tres
 res://shaders/stun_outline.gdshader
@@ -7,12 +7,9 @@ res://shaders/radar_wave_mat.gdshader
 res://shaders/mega_shout_mat.gdshader
 res://shaders/retroPPS.gdshader
 res://shaders/postprocessing.gdshader
-res://scenes/player.tscn
-res://script/death_screen.gd
-res://script/pause_menu.gd
-res://script/win_screen.gd
-res://script/titlescreen.gd
-res://loading_screen.gd
+res://scenes/dungeontutorial.tscn
 res://scenes/titlescreen.tscn
-res://script/global.gd
-res://scenes/loading_screen.tscn
+res://scenes/win_screen.tscn
+res://scenes/death_screen.tscn
+res://scenes/pause_menu.tscn
+res://script/player.gd

@@ -2,10 +2,11 @@
 
 [ext_resource type="Script" uid="uid://1ufc73fiawsa" path="res://script/titlescreen.gd" id="1_cjnew"]
 [ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://UI/labelmain.tres" id="2_o0614"]
+[ext_resource type="Texture2D" uid="uid://brydkpiphnlgd" path="res://UI/fullres_1440p/Skin01-Cropped_Text-Block.png" id="2_rpvs4"]
 [ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://sound/music/deuslower-medieval-ambient-236809.mp3" id="3_8pdex"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://sound/black_and_white_theme/black_and_white.tres" id="3_hxypl"]
 [ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://script/buttongrow.gd" id="4_hxypl"]
-[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://sound/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="6_o0614"]
+[ext_resource type="AudioStream" uid="uid://bjy1cocek8bfg" path="res://sound/UI Soundpack/MP3/Coffee2.mp3" id="6_v6ms7"]
 
 [node name="Titlescreen" type="Control" unique_id=2058847252]
 layout_mode = 3
@@ -16,14 +17,14 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_cjnew")
 
-[node name="ColorRect" type="ColorRect" parent="." unique_id=1083694310]
+[node name="ColorRect" type="TextureRect" parent="." unique_id=1790106074]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-color = Color(0.101960786, 0.043137256, 0, 1)
+texture = ExtResource("2_rpvs4")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1887912793]
 layout_mode = 1
@@ -63,7 +64,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="buttonclick" type="AudioStreamPlayer2D" parent="." unique_id=216942066]
-stream = ExtResource("6_o0614")
+stream = ExtResource("6_v6ms7")
 
 [connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
 [connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]

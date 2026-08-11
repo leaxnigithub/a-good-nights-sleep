@@ -1,10 +1,10 @@
 [gd_scene format=3 uid="uid://085evxrh3giq"]
 
-[ext_resource type="Script" uid="uid://bgd0y5tyatrvq" path="res://death_screen.gd" id="1_if853"]
-[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_ex68u"]
-[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://ui elements/labelmain.tres" id="2_hhlqb"]
-[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_6bi5g"]
-[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://soundeffects/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="4_y0ggs"]
+[ext_resource type="Script" uid="uid://bgd0y5tyatrvq" path="res://script/death_screen.gd" id="1_if853"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://sound/black_and_white_theme/black_and_white.tres" id="2_ex68u"]
+[ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://UI/labelmain.tres" id="2_hhlqb"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://script/buttongrow.gd" id="3_6bi5g"]
+[ext_resource type="AudioStream" uid="uid://bjy1cocek8bfg" path="res://sound/UI Soundpack/MP3/Coffee2.mp3" id="5_gwety"]
 
 [node name="DeathScreen" type="Control" unique_id=552518761]
 process_mode = 3
@@ -64,7 +64,7 @@ script = ExtResource("3_6bi5g")
 
 [node name="buttonclick" type="AudioStreamPlayer2D" parent="death_layer/VBoxContainer" unique_id=1087418478]
 position = Vector2(-485, -281.5)
-stream = ExtResource("4_y0ggs")
+stream = ExtResource("5_gwety")
 
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/RetryButton" to="." method="_on_retry_button_pressed"]
 [connection signal="pressed" from="death_layer/VBoxContainer/BoxContainer/QuitButton" to="." method="_on_quit_button_pressed"]

@@ -1,9 +1,9 @@
 [gd_scene format=3 uid="uid://ddbvj7may20k6"]
 
-[ext_resource type="Script" uid="uid://cm8nnvpwhiyiy" path="res://pause_menu.gd" id="1_hdmo1"]
-[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://soundeffects/black_and_white_theme/black_and_white.tres" id="2_nwcfo"]
-[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://buttongrow.gd" id="3_05uyy"]
-[ext_resource type="AudioStream" uid="uid://dhcdfwb3pyyqb" path="res://soundeffects/music/denielcz-immersivecontrol-button-click-sound-463065.mp3" id="4_p81d2"]
+[ext_resource type="Script" uid="uid://cm8nnvpwhiyiy" path="res://script/pause_menu.gd" id="1_hdmo1"]
+[ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://sound/black_and_white_theme/black_and_white.tres" id="2_nwcfo"]
+[ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://script/buttongrow.gd" id="3_05uyy"]
+[ext_resource type="AudioStream" uid="uid://ucglp3wqb66a" path="res://sound/UI Soundpack/MP3/Coffee1.mp3" id="4_5d2l8"]
 
 [node name="PauseMenu" type="Control" unique_id=1142006162]
 process_mode = 3
@@ -61,7 +61,8 @@ script = ExtResource("3_05uyy")
 
 [node name="buttonclick" type="AudioStreamPlayer2D" parent="pause_layer/pause_main" unique_id=1783103731]
 position = Vector2(-541.5, -279.5)
-stream = ExtResource("4_p81d2")
+stream = ExtResource("4_5d2l8")
+autoplay = true
 
 [node name="options_menu" type="PanelContainer" parent="pause_layer" unique_id=2059116861]
 anchors_preset = 8
