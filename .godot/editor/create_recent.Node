@@ -1,7 +1,11 @@
 TextureRect
-TextureProgressBar
+AreaLight3D
+SpotLight3D
+WorldEnvironment
+Camera3D
 CanvasLayer
+Node3D
+TextureProgressBar
 VBoxContainer
 Label
 ColorRect
-WorldEnvironment

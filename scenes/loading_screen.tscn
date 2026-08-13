@@ -4,7 +4,6 @@
 [ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://UI/ui/32x32 circle bar under.png" id="2_djmwj"]
 [ext_resource type="Texture2D" uid="uid://1x6vub3s4xfo" path="res://UI/ui/32x32 circle bar over.png" id="3_qygbf"]
 [ext_resource type="Texture2D" uid="uid://dbvabeskn77dc" path="res://UI/ui/32x32 circle bar progress dark purple.png" id="4_pu4a1"]
-[ext_resource type="Texture2D" uid="uid://dg8jeuia6t0yw" path="res://UI/ui/circle bar under.png" id="5_djmwj"]
 
 [node name="LoadingScreen" type="Control" unique_id=1598087532]
 layout_mode = 3
@@ -51,10 +50,3 @@ fill_mode = 4
 texture_under = ExtResource("2_djmwj")
 texture_over = ExtResource("3_qygbf")
 texture_progress = ExtResource("4_pu4a1")
-
-[node name="RadarIcon" type="TextureRect" parent="ColorRect/VBoxContainer" unique_id=833624898]
-texture_filter = 1
-layout_mode = 2
-offset_transform_enabled = true
-offset_transform_pivot = Vector2(8, 8)
-texture = ExtResource("5_djmwj")

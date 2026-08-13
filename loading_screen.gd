@@ -8,9 +8,9 @@ var is_switching: bool = false
 func _ready() -> void:
 	# 1. FADE IN ANIMATION
 	# Start completely transparent (alpha = 0)
-	modulate = Color(1.0, 1.0, 1.0, 0.0) 
+	modulate = Color(0.352, 0.352, 0.352, 0.0) 
 	var tween = create_tween()
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.5)
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 1.0), 1.5)
 	
 	# 2. START LOADING
 	if Global.target_scene_path != "":
@@ -59,7 +59,7 @@ func _transition_to_scene() -> void:
 	# 4. Fade OUT the loading screen to reveal the dungeon underneath!
 	var tween = create_tween()
 	# Fades out over 1.0 seconds (adjust this number to make it faster or slower)
-	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1.0)
+	tween.tween_property(self, "modulate", Color(1.0, 1.0, 1.0, 0.0), 1.5)
 	
 	# 5. Wait for the fade to completely finish
 	await tween.finished 

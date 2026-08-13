@@ -8,16 +8,17 @@
 [ext_resource type="AudioStream" uid="uid://b1ojssjfd4vxu" path="res://sound/player/freesound_community-grunt-106134.mp3" id="4_sweqy"]
 [ext_resource type="AudioStream" uid="uid://m5nuuu6bi0ng" path="res://sound/player/Fahhh - QuickSounds.com.mp3" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://UI/ui/32x32 circle bar under.png" id="6_dw050"]
-[ext_resource type="Texture2D" uid="uid://clcs3m1068gdk" path="res://UI/ui/red-E.png" id="8_3v2ag"]
 [ext_resource type="Texture2D" uid="uid://dblsmuv4s3odh" path="res://UI/ui/32x32 circle bar progress red.png" id="9_n7ghd"]
 [ext_resource type="PackedScene" uid="uid://ddbvj7may20k6" path="res://scenes/pause_menu.tscn" id="10_n7ghd"]
+[ext_resource type="Texture2D" uid="uid://dgeuaol4b85my" path="res://UI/New Piskel-1.png.png" id="11_oprun"]
 [ext_resource type="Texture2D" uid="uid://s8ew5r8tui4p" path="res://UI/ui/Wenrexa Interface UI KIT #4/PNG/ProgressBar_05/BarV5_Bar.png" id="12_f1ej7"]
 [ext_resource type="Texture2D" uid="uid://b6oy8h7ltvto4" path="res://UI/ui/Wenrexa Interface UI KIT #4/PNG/ProgressBar_05/BarV5_ProgressBarBorder.png" id="13_oprun"]
 [ext_resource type="Texture2D" uid="uid://bw2i15cxp33m5" path="res://UI/ui/Wenrexa Interface UI KIT #4/PNG/ProgressBar_05/BarV5_ProgressBar.png" id="14_a8ls1"]
+[ext_resource type="Texture2D" uid="uid://c08wrcrnmmagn" path="res://UI/ui/red-E-pushed.png" id="15_oprun"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sh265"]
 
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_a8ls1"]
 render_priority = -1
 shader = ExtResource("2_d2wvv")
 shader_parameter/pixel_size = 2.0
@@ -25,7 +26,7 @@ shader_parameter/levels = 10.0
 shader_parameter/gamma = Vector2(0.8, 1.2)
 
 [sub_resource type="QuadMesh" id="QuadMesh_g4v7s"]
-material = SubResource("ShaderMaterial_yf5fn")
+material = SubResource("ShaderMaterial_a8ls1")
 flip_faces = true
 size = Vector2(2, 2)
 
@@ -118,28 +119,20 @@ volume_db = 16.684
 max_db = 4.184
 pitch_scale = 0.74
 
-[node name="TextureRect" type="TextureRect" parent="." unique_id=1501957778]
-z_index = 1
-anchors_preset = -1
-offset_left = 973.0
-offset_top = 552.0
-offset_right = 1013.0
-offset_bottom = 592.0
-texture = ExtResource("8_3v2ag")
-
 [node name="PauseMenu" parent="." unique_id=1142006162 instance=ExtResource("10_n7ghd")]
 
 [node name="PlayerUI" type="CanvasLayer" parent="." unique_id=1150796367]
+layer = 0
 
 [node name="CooldownMeter" type="TextureProgressBar" parent="PlayerUI" unique_id=38921315]
 texture_filter = 3
 anchors_preset = -1
 anchor_right = 0.035
 anchor_bottom = 0.062000003
-offset_left = 973.0
-offset_top = 477.0
-offset_right = 1045.68
-offset_bottom = 547.824
+offset_left = 952.0
+offset_top = 448.0
+offset_right = 1116.68
+offset_bottom = 612.824
 grow_horizontal = 2
 grow_vertical = 2
 max_value = 5.0
@@ -151,9 +144,27 @@ texture_progress = ExtResource("9_n7ghd")
 tint_under = Color(0.4745098, 0.03529412, 0, 1)
 tint_progress = Color(0.78431374, 0.47058824, 0.42352942, 1)
 
+[node name="TextureRect2" type="TextureRect" parent="PlayerUI/CooldownMeter" unique_id=971155675]
+layout_mode = 0
+offset_left = 56.0
+offset_top = 56.0
+offset_right = 156.0
+offset_bottom = 156.0
+texture = ExtResource("11_oprun")
+expand_mode = 1
+
 [node name="BloodMeter" type="TextureProgressBar" parent="PlayerUI" unique_id=635170157]
 offset_right = 40.0
 offset_bottom = 40.0
 texture_under = ExtResource("12_f1ej7")
 texture_over = ExtResource("13_oprun")
 texture_progress = ExtResource("14_a8ls1")
+
+[node name="TextureRect" type="TextureRect" parent="PlayerUI" unique_id=1501957778]
+z_index = 1
+anchors_preset = -1
+offset_left = 973.0
+offset_top = 552.0
+offset_right = 1013.0
+offset_bottom = 592.0
+texture = ExtResource("15_oprun")

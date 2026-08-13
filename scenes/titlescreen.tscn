@@ -2,60 +2,40 @@
 
 [ext_resource type="Script" uid="uid://1ufc73fiawsa" path="res://script/titlescreen.gd" id="1_cjnew"]
 [ext_resource type="LabelSettings" uid="uid://b1gsfjcpmv0yd" path="res://UI/labelmain.tres" id="2_o0614"]
-[ext_resource type="Texture2D" uid="uid://brydkpiphnlgd" path="res://UI/fullres_1440p/Skin01-Cropped_Text-Block.png" id="2_rpvs4"]
 [ext_resource type="AudioStream" uid="uid://xn52tgp7kaqo" path="res://sound/music/deuslower-medieval-ambient-236809.mp3" id="3_8pdex"]
 [ext_resource type="Theme" uid="uid://3b6jfloh1m1l" path="res://sound/black_and_white_theme/black_and_white.tres" id="3_hxypl"]
 [ext_resource type="Script" uid="uid://bo2mog4i0cwm5" path="res://script/buttongrow.gd" id="4_hxypl"]
 [ext_resource type="AudioStream" uid="uid://bjy1cocek8bfg" path="res://sound/UI Soundpack/MP3/Coffee2.mp3" id="6_v6ms7"]
+[ext_resource type="Shader" uid="uid://cw104hksd4u5p" path="res://shaders/retroPPS.gdshader" id="8_6ejck"]
+[ext_resource type="PackedScene" uid="uid://b1c7nsr0vdiq" path="res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/treasure_room.tscn" id="9_w77yj"]
 
-[node name="Titlescreen" type="Control" unique_id=2058847252]
-layout_mode = 3
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yf5fn"]
+render_priority = -1
+shader = ExtResource("8_6ejck")
+shader_parameter/pixel_size = 1.0
+shader_parameter/levels = 10.0
+shader_parameter/gamma = Vector2(0.8, 1.2)
+
+[sub_resource type="QuadMesh" id="QuadMesh_v7hj3"]
+material = SubResource("ShaderMaterial_yf5fn")
+flip_faces = true
+size = Vector2(2, 2)
+
+[sub_resource type="Environment" id="Environment_6ejck"]
+background_mode = 1
+background_color = Color(0.08750991, 0.04442952, 0.02766114, 1)
+ambient_light_color = Color(0.20228499, 0.09856964, 0.0438777, 1)
+ambient_light_energy = 1.2
+tonemap_mode = 3
+tonemap_exposure = 3.0
+fog_light_color = Color(0.2901961, 0.11764706, 0.043137256, 1)
+fog_density = 0.001
+volumetric_fog_density = 0.02
+volumetric_fog_albedo = Color(0.34901962, 0.13725491, 0.039215688, 1)
+volumetric_fog_emission = Color(0.06666667, 0.019607844, 0.007843138, 1)
+
+[node name="Titlescreen" type="Node3D" unique_id=1100206861]
 script = ExtResource("1_cjnew")
-
-[node name="ColorRect" type="TextureRect" parent="." unique_id=1790106074]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-texture = ExtResource("2_rpvs4")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="." unique_id=1887912793]
-layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -20.0
-offset_top = -20.0
-offset_right = 20.0
-offset_bottom = 20.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Label" type="Label" parent="VBoxContainer" unique_id=1123392833]
-layout_mode = 2
-text = "A GOOD NIGHT SLEEP"
-label_settings = ExtResource("2_o0614")
-
-[node name="start" type="Button" parent="VBoxContainer" unique_id=1007916155]
-layout_mode = 2
-theme = ExtResource("3_hxypl")
-text = "START"
-script = ExtResource("4_hxypl")
-
-[node name="quit" type="Button" parent="VBoxContainer" unique_id=1592497065]
-layout_mode = 2
-theme = ExtResource("3_hxypl")
-text = "QUIT"
-script = ExtResource("4_hxypl")
 
 [node name="titlescreenmusic" type="AudioStreamPlayer2D" parent="." unique_id=758249372]
 stream = ExtResource("3_8pdex")
@@ -66,5 +46,55 @@ parameters/looping = true
 [node name="buttonclick" type="AudioStreamPlayer2D" parent="." unique_id=216942066]
 stream = ExtResource("6_v6ms7")
 
-[connection signal="pressed" from="VBoxContainer/start" to="." method="_on_start_pressed"]
-[connection signal="pressed" from="VBoxContainer/quit" to="." method="_on_quit_pressed"]
+[node name="UI_Layer" type="CanvasLayer" parent="." unique_id=446686538]
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI_Layer" unique_id=1887912793]
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -266.0
+offset_top = -63.0
+offset_right = 266.0
+offset_bottom = 63.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="UI_Layer/VBoxContainer" unique_id=1123392833]
+layout_mode = 2
+text = "A GOOD NIGHT SLEEP"
+label_settings = ExtResource("2_o0614")
+
+[node name="start" type="Button" parent="UI_Layer/VBoxContainer" unique_id=1007916155]
+layout_mode = 2
+theme = ExtResource("3_hxypl")
+text = "START"
+script = ExtResource("4_hxypl")
+
+[node name="quit" type="Button" parent="UI_Layer/VBoxContainer" unique_id=1592497065]
+layout_mode = 2
+theme = ExtResource("3_hxypl")
+text = "QUIT"
+script = ExtResource("4_hxypl")
+
+[node name="Camera3D" type="Camera3D" parent="." unique_id=770805187]
+transform = Transform3D(1, 0, 0, 0, 0.9407375, 0.3391357, 0, -0.3391357, 0.9407375, -0.43168545, 2.3005505, 8.089055)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=1791312829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50071394)
+mesh = SubResource("QuadMesh_v7hj3")
+
+[node name="TreasureRoom" parent="." unique_id=816733371 instance=ExtResource("9_w77yj")]
+
+[node name="AreaLight3D" type="AreaLight3D" parent="." unique_id=1749455202]
+transform = Transform3D(1, 0, 0, 0, 0.730323, 0.68310195, 0, -0.68310195, 0.730323, 0, 2.0946412, 4.1896825)
+light_color = Color(1, 0.627451, 0.3254902, 1)
+light_energy = 4.485
+area_range = 4096.0
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=897660299]
+environment = SubResource("Environment_6ejck")
+
+[connection signal="pressed" from="UI_Layer/VBoxContainer/start" to="." method="_on_start_pressed"]
+[connection signal="pressed" from="UI_Layer/VBoxContainer/quit" to="." method="_on_quit_pressed"]

@@ -1,8 +1,10 @@
 extends CharacterBody3D
 
 # --- UI References ---
+var is_on_cooldown: bool = false 
 @onready var blood_meter = $PlayerUI/BloodMeter
-@onready var cooldown_meter = $PlayerUI/CooldownMeter # <--- ADDED COOLDOWN METER
+@onready var cooldown_meter = $PlayerUI/CooldownMeter
+var cooldown_base_pos: Vector2 = Vector2.ZERO 
 
 @onready var screech_sound = $ScreechSound
 @onready var body = $CollisionShape3D
@@ -73,10 +75,10 @@ func _ready() -> void:
 		blood_meter.max_value = max_blood
 		blood_meter.value = current_blood
 		
-	# <--- SETUP COOLDOWN METER --->
 	if cooldown_meter:
 		cooldown_meter.max_value = echo_cooldown
-		cooldown_meter.value = echo_cooldown # Starts fully charged
+		cooldown_meter.value = echo_cooldown
+		cooldown_base_pos = cooldown_meter.position # <--- ADD THIS
 
 func check_ray_hit() -> void:
 	if interact.is_colliding():
@@ -118,12 +120,16 @@ func _physics_process(delta: float) -> void:
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
 		if cooldown_meter:
-			# Fills the bar in incremental steps (e.g., jumps by 1.0 every second)
-			var step_amount = 0.2 # Increase this number for chunkier steps, decrease for smaller steps
+			var step_amount = 1.0 
 			cooldown_meter.value = snapped(echo_cooldown - cooldown_timer, step_amount)
 	else:
 		if cooldown_meter:
-			cooldown_meter.value = echo_cooldown # Keep it full when ready
+			cooldown_meter.value = echo_cooldown 
+			
+		# Trigger the pop effect right when the timer finishes
+		if is_on_cooldown:
+			_play_recharge_effect()
+			is_on_cooldown = false # Reset it so it only plays once
 
 	# --- HOLD-TO-CHARGE LOGIC ---
 	if Input.is_key_pressed(KEY_E) and not is_echoing and cooldown_timer <= 0 and current_blood > normal_pulse_cost:
@@ -209,6 +215,7 @@ func _trigger_pulse(mega: bool) -> void:
 func start_echolocation_pulse() -> void:
 	# Start the 10-second cooldown timer
 	cooldown_timer = echo_cooldown
+	is_on_cooldown = true 
 	
 	# Empty the visual bar instantly
 	if cooldown_meter:
@@ -395,3 +402,18 @@ func _play_cooldown_effect() -> void:
 	tween.tween_property(cooldown_meter, "position", original_pos, 0.05)
 	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
 	tween.parallel().tween_property(cooldown_meter, "scale", Vector2(1.0, 1.0), 0.2)
+	
+func _play_recharge_effect() -> void:
+	if not cooldown_meter:
+		return
+		
+	cooldown_meter.pivot_offset = cooldown_meter.size / 2.0 
+	var tween = create_tween()
+	
+	# Pop out and flash bright (adjust the Color values to change the flash color)
+	tween.tween_property(cooldown_meter, "scale", Vector2(1.2, 1.2), 0.1)
+	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.5, 2.5, 1.5, 1.0), 0.1) 
+	
+	# Bounce back to normal size and color
+	tween.tween_property(cooldown_meter, "scale", Vector2(1.0, 1.0), 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)

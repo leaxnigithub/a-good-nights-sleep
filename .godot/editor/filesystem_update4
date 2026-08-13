@@ -7,9 +7,10 @@ res://shaders/radar_wave_mat.gdshader
 res://shaders/mega_shout_mat.gdshader
 res://shaders/retroPPS.gdshader
 res://shaders/postprocessing.gdshader
-res://scenes/dungeontutorial.tscn
+res://scenes/loading_screen.tscn
 res://scenes/titlescreen.tscn
-res://scenes/win_screen.tscn
-res://scenes/death_screen.tscn
-res://scenes/pause_menu.tscn
+res://scenes/main_menu_3d.tscn
+res://script/titlescreen.gd
+res://loading_screen.gd
 res://script/player.gd
+res://scenes/test_world.tscn
