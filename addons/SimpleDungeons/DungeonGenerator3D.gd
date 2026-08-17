@@ -151,7 +151,7 @@ var room_instances : Array[DungeonRoom3D]
 var corridor_room_instance : DungeonRoom3D
 var iterations := 0
 var retry_attempts := 0
-var rooms_container : Node3D
+var rooms_container : NavigationRegion3D
 var rng := RandomNumberGenerator.new()
 
 var running_thread : Thread
@@ -343,6 +343,9 @@ func _emit_done_signals():
 	for room in room_instances:
 		room.queue_free()
 	done_generating.emit()
+	#await get_tree().create_timer(1).timeout
+	rooms_container.navigation_mesh = load("res://scenes/navmesh/navmesh.tres")
+	rooms_container.bake_navigation_mesh()
 
 func _emit_failed_signal(): # So I can call_deferred
 	if running_thread:
@@ -764,7 +767,7 @@ func create_or_recreate_rooms_container() -> void:
 		var rc = get_node_or_null("RoomsContainer")
 		remove_child(rc)
 		rc.queue_free()
-	rooms_container = Node3D.new()
+	rooms_container = NavigationRegion3D.new()
 	rooms_container.name = "RoomsContainer"
 	if visualize_generation_progress:
 		add_child(rooms_container)

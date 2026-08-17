@@ -1,5 +1,7 @@
-res://UI/
+res://scenes/navmesh/
 res://scenes/
+res://assets/enemy/
+res://UI/
 res://UI/ui/
 res://script/
 res://shaders/

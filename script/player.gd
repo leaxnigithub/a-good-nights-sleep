@@ -64,6 +64,7 @@ var pulse_sphere: MeshInstance3D
 var enemy_mat = preload("res://shaders/enemy_outline_mat.tres")
 var wave_mat = preload("res://shaders/radar_wave_mat.tres") 
 var mega_shout_mat = preload("res://shaders/mega_shout_mat.tres")
+var vial_mat = preload("res://shaders/vial_outline_mat.tres") 
 
 var highlighted_objects: Array = []
 
@@ -109,12 +110,10 @@ func _physics_process(delta: float) -> void:
 	if get_tree().paused:
 		return
 
-	# --- Blood Regeneration ---
-	if current_blood < max_blood:
-		current_blood = move_toward(current_blood, max_blood, blood_regen_rate * delta)
-		
+# --- Blood Meter Update (Passive Healing Removed) ---
 	if blood_meter:
 		blood_meter.value = current_blood
+
 
 # --- Cooldown Timer & UI Update ---
 	if cooldown_timer > 0:
@@ -309,6 +308,17 @@ func _process_echo_pulse(delta: float) -> void:
 				
 			if not mesh_node in highlighted_objects:
 				_check_and_highlight_enemy(mesh_node, is_mega_pulse)
+				
+	# --- HIGHLIGHT BLOOD VIALS ---
+	var vials = get_tree().get_nodes_in_group("blood_vial")
+	for vial in vials:
+		var dist = global_position.distance_to(vial.global_position)
+		if dist <= current_echo_radius and dist >= (current_echo_radius - 3.0):
+			
+			# Find the mesh inside the vial scene
+			var vial_mesh = vial.get_node_or_null("MeshInstance3D")
+			if vial_mesh and not vial_mesh in highlighted_objects:
+				_highlight_pickup(vial_mesh)
 
 func _check_and_highlight_enemy(mesh_node: MeshInstance3D, is_mega: bool = false) -> void:
 	var distance = global_position.distance_to(mesh_node.global_position)
@@ -331,7 +341,18 @@ func _check_and_highlight_enemy(mesh_node: MeshInstance3D, is_mega: bool = false
 			tween.tween_interval(4.0) 
 			tween.tween_property(unique_mat, "shader_parameter/glow_color:a", 0.0, 1.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
 			tween.tween_callback(_clear_enemy_highlight.bind(mesh_node))
-
+			
+func _highlight_pickup(mesh_node: MeshInstance3D) -> void:
+	highlighted_objects.append(mesh_node)
+	
+	if vial_mat:
+		var unique_mat = vial_mat.duplicate() as ShaderMaterial
+		mesh_node.material_overlay = unique_mat
+		
+		var tween = create_tween()
+		tween.tween_interval(3.0) # Vials stay lit for 3 seconds
+		tween.tween_property(unique_mat, "shader_parameter/glow_color:a", 0.0, 1.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
+		tween.tween_callback(_clear_enemy_highlight.bind(mesh_node)) # Reusing the clear function since it does the exact same thing
 
 func _clear_enemy_highlight(mesh_node: MeshInstance3D) -> void:
 	if is_instance_valid(mesh_node):
@@ -354,6 +375,20 @@ func take_damage(amount: float) -> void:
 
 func die() -> void:
 	print("Player bled out!")
+	
+func add_blood(amount: float) -> void:
+	current_blood += amount
+	
+	# Prevent the blood from going over the maximum limit
+	if current_blood > max_blood:
+		current_blood = max_blood
+		
+	if blood_meter:
+		blood_meter.value = current_blood
+		
+	# Optional: You can create a new UI effect here for healing, 
+	# or just reuse the recharge effect to show a positive flash!
+	_play_recharge_effect()
 
 
 # =================================================================

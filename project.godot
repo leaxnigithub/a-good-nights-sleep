@@ -30,6 +30,9 @@ enabled=PackedStringArray("res://addons/SimpleDungeons/plugin.cfg")
 [global_group]
 
 exit=""
+enemy=""
+player=""
+gridmaps=""
 
 [input]
 

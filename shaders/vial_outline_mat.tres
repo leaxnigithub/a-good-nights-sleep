@@ -1,0 +1,9 @@
+[gd_resource type="ShaderMaterial" format=3 uid="uid://bsjulvptfdnwh"]
+
+[ext_resource type="Shader" uid="uid://bt7idmtilnhc7" path="res://shaders/enemy_outline_mat.gdshader" id="1_p35hm"]
+
+[resource]
+render_priority = 1
+shader = ExtResource("1_p35hm")
+shader_parameter/glow_color = Color(0.6380991, 0.100505255, 0.5751424, 1)
+shader_parameter/edge_power = 2.0
