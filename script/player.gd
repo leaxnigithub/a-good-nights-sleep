@@ -12,6 +12,13 @@ var cooldown_base_pos: Vector2 = Vector2.ZERO
 @onready var interact = $Camera3D/interact
 @onready var cursor = $cursor
 
+# --- Screen VFX References ---
+@onready var speed_vfx = $Camera3D/SpeedVFX
+@onready var health_vfx = $Camera3D/HealthVFX
+
+var target_speed_intensity: float = 0.0
+var target_health_intensity: float = 0.0
+
 # --- Charge-Up Variables ---
 var is_charging: bool = false
 var charge_timer: float = 0.0
@@ -37,6 +44,11 @@ var mouse_sens: float = 0.002
 const SPEED = 5.0
 const JUMP_VELOCITY = 3.2
 var current_speed: float = SPEED
+
+# --- Speed Boost Settings ---
+var sprint_boost_timer: float = 0.0
+@export var boost_duration: float = 2.0 # How many seconds the sprint lasts
+@export var boost_multiplier: float = 1.8 # How much faster you run (1.8 = 80% faster)
 
 # --- Head Bobbing Settings ---
 @onready var camera = $Camera3D
@@ -105,6 +117,34 @@ func _input(event: InputEvent) -> void:
 		camera.rotate_x(-event.relative.y * mouse_sens)
 		camera.rotation.x = clamp(camera.rotation.x, -1.2, 1.2)
 
+func _process(delta: float) -> void:
+	if get_tree().paused:
+		return
+		
+	# --- SPEED BOOST VFX ---
+	if sprint_boost_timer > 0:
+		target_speed_intensity = 1.0
+	else:
+		target_speed_intensity = 0.0
+		
+	if speed_vfx and speed_vfx.get_surface_override_material(0):
+		var current_speed_mat = speed_vfx.get_surface_override_material(0)
+		var current_val = current_speed_mat.get_shader_parameter("effect_intensity")
+		var new_val = lerp(current_val, target_speed_intensity, delta * 5.0)
+		current_speed_mat.set_shader_parameter("effect_intensity", new_val)
+	
+	# --- LOW BLOOD/HEALTH VFX ---
+	# Triggers when blood drops below 30
+	if current_blood <= 30.0:
+		target_health_intensity = 1.0
+	else:
+		target_health_intensity = 0.0
+		
+	if health_vfx and health_vfx.get_surface_override_material(0):
+		var current_health_mat = health_vfx.get_surface_override_material(0)
+		var current_health_val = current_health_mat.get_shader_parameter("effect_intensity")
+		var new_health_val = lerp(current_health_val, target_health_intensity, delta * 3.0)
+		current_health_mat.set_shader_parameter("effect_intensity", new_health_val)
 
 func _physics_process(delta: float) -> void:
 	if get_tree().paused:
@@ -164,6 +204,13 @@ func _physics_process(delta: float) -> void:
 	var direction := (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized()
 	
 	var target_speed = SPEED
+	
+	# --- SPRINT BOOST LOGIC ---
+	if sprint_boost_timer > 0:
+		sprint_boost_timer -= delta
+		target_speed = SPEED * boost_multiplier
+	
+	# Charging slows you down (this is at the bottom so it overrides the sprint if you start charging again)
 	if is_charging and charge_timer > 0.2:
 		target_speed = SPEED * 0.3
 		
@@ -176,7 +223,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	move_and_slide()
+	move_and_slide() # FIXED: Only called once now!
 
 	if direction != Vector3.ZERO and is_on_floor():
 		if not footsteps.playing:
@@ -223,6 +270,7 @@ func start_echolocation_pulse() -> void:
 	# Sacrifice blood
 	if is_mega_pulse:
 		current_blood -= mega_pulse_cost
+		sprint_boost_timer = boost_duration 
 	else:
 		current_blood -= normal_pulse_cost
 		

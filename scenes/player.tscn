@@ -5,6 +5,8 @@
 [ext_resource type="AudioStream" uid="uid://beow57b5lgiyi" path="res://sound/player/mixkit-footsteps-through-the-wastelands-540.wav" id="2_onrkg"]
 [ext_resource type="AudioStream" uid="uid://dodr2ouuub887" path="res://sound/player/dragon-studio-simple-whoosh-382724.mp3" id="3_hqtel"]
 [ext_resource type="AudioStream" uid="uid://bi4opqkio4nlx" path="res://sound/player/dragon-studio-wrapper-crinkling-356122.mp3" id="3_nvl01"]
+[ext_resource type="Shader" uid="uid://cj0apvshuose0" path="res://screen_vfx.gdshader" id="3_qfm1y"]
+[ext_resource type="Texture2D" uid="uid://fnkj5qv7hfld" path="res://UI/LeLu's Noise Pack/T_texr41.png" id="4_fulsm"]
 [ext_resource type="AudioStream" uid="uid://b1ojssjfd4vxu" path="res://sound/player/freesound_community-grunt-106134.mp3" id="4_sweqy"]
 [ext_resource type="AudioStream" uid="uid://m5nuuu6bi0ng" path="res://sound/player/Fahhh - QuickSounds.com.mp3" id="5_sweqy"]
 [ext_resource type="Texture2D" uid="uid://b5ymatgpfqlsc" path="res://UI/ui/32x32 circle bar under.png" id="6_dw050"]
@@ -30,6 +32,21 @@ material = SubResource("ShaderMaterial_a8ls1")
 flip_faces = true
 size = Vector2(2, 2)
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_4r5pv"]
+render_priority = 0
+shader = ExtResource("3_qfm1y")
+shader_parameter/effect_texture = ExtResource("4_fulsm")
+shader_parameter/effect_color = Color(0.18342462, 0.9904781, 0.99999994, 1)
+shader_parameter/scroll_speed = Vector2(0, -1)
+shader_parameter/vignette_inner = 0.3
+shader_parameter/vignette_outer = 0.8
+shader_parameter/effect_intensity = 1.0
+
+[sub_resource type="QuadMesh" id="QuadMesh_doaec"]
+material = SubResource("ShaderMaterial_4r5pv")
+size = Vector2(2, 1.5)
+center_offset = Vector3(0, 0, -0.1)
+
 [sub_resource type="LabelSettings" id="LabelSettings_4flbx"]
 
 [node name="player" type="CharacterBody3D" unique_id=791080869 groups=["exit"]]
@@ -51,10 +68,17 @@ collide_with_areas = true
 collide_with_bodies = false
 debug_shape_custom_color = Color(0.36205631, 0.5571382, 1, 1)
 
-[node name="MeshInstance3D" type="MeshInstance3D" parent="Camera3D" unique_id=1264470573]
+[node name="retroshader" type="MeshInstance3D" parent="Camera3D" unique_id=1264470573]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.50071394)
-visible = false
 mesh = SubResource("QuadMesh_g4v7s")
+
+[node name="SpeedVFX" type="MeshInstance3D" parent="Camera3D" unique_id=2058508819]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_doaec")
+
+[node name="HealthVFX" type="MeshInstance3D" parent="Camera3D" unique_id=1929625859]
+cast_shadow = 0
+mesh = SubResource("QuadMesh_doaec")
 
 [node name="interacter" type="Control" parent="." unique_id=1559020112]
 layout_mode = 3

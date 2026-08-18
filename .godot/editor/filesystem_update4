@@ -1,3 +1,4 @@
+res://scenes/blood_vial.tscn
 res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres
 res://sound/black_and_white_theme/black_and_white.tres
 res://shaders/retroPPS.gdshader
@@ -6,13 +7,7 @@ res://shaders/enemy_outline_mat.gdshader
 res://shaders/radar_wave_mat.gdshader
 res://shaders/mega_shout_mat.gdshader
 res://shaders/postprocessing.gdshader
-res://scenes/blood_vial.gd
-res://scenes/test_world.tscn
-res://shaders/vial_outline_mat.tres
-res://script/player.gd
-res://scenes/blood_vial.tscn
 res://scenes/player.tscn
-res://scenes/dungeontutorial.tscn
-res://scenes/navmesh_regeneration.gd
-res://addons/SimpleDungeons/DungeonGenerator3D.gd
-res://scenes/rooms_container.gd
+res://scenes/test_world.tscn
+res://script/player.gd
+res://screen_vfx.gdshader

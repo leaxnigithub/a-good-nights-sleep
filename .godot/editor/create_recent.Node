@@ -1,8 +1,8 @@
+MeshInstance3D
 GPUParticles3D
 NavigationRegion3D
 Area3D
 CollisionShape3D
-MeshInstance3D
 TextureRect
 AreaLight3D
 SpotLight3D
@@ -12,4 +12,3 @@ CanvasLayer
 Node3D
 TextureProgressBar
 VBoxContainer
-Label
