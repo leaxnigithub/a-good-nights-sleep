@@ -47,8 +47,8 @@ var current_speed: float = SPEED
 
 # --- Speed Boost Settings ---
 var sprint_boost_timer: float = 0.0
-@export var boost_duration: float = 2.0 # How many seconds the sprint lasts
-@export var boost_multiplier: float = 1.8 # How much faster you run (1.8 = 80% faster)
+@export var boost_duration: float = 3.0 
+@export var boost_multiplier: float = 1.2
 
 # --- Head Bobbing Settings ---
 @onready var camera = $Camera3D
