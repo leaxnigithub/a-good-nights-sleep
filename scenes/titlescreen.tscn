@@ -67,14 +67,12 @@ text = "A GOOD NIGHT SLEEP"
 label_settings = ExtResource("2_o0614")
 
 [node name="start" type="Button" parent="UI_Layer/VBoxContainer" unique_id=1007916155]
-visible = false
 layout_mode = 2
 theme = ExtResource("3_hxypl")
 text = "START"
 script = ExtResource("4_hxypl")
 
 [node name="quit" type="Button" parent="UI_Layer/VBoxContainer" unique_id=1592497065]
-visible = false
 layout_mode = 2
 theme = ExtResource("3_hxypl")
 text = "QUIT"

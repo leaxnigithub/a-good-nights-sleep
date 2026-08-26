@@ -1,4 +1,4 @@
-res://scenes/player.tscn
+res://scenes/test_world.tscn
 res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres
 res://sound/black_and_white_theme/black_and_white.tres
 res://shaders/retroPPS.gdshader
@@ -7,6 +7,7 @@ res://shaders/enemy_outline_mat.gdshader
 res://shaders/radar_wave_mat.gdshader
 res://shaders/mega_shout_mat.gdshader
 res://shaders/postprocessing.gdshader
+res://scenes/instruction_sign.tscn
 res://scenes/titlescreen.tscn
-res://addons/SimpleDungeons/sample_dungeons/lowpoly_kit_1_rooms/living_room.tscn
+res://scenes/player.tscn
 res://script/player.gd

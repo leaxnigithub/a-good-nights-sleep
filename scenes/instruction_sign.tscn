@@ -10,7 +10,7 @@ roughness = 0.0
 texture_filter = 4
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_5s686"]
-size = Vector2(3, 2)
+size = Vector2(4, 3)
 orientation = 0
 
 [node name="InstructionSign" type="MeshInstance3D" unique_id=1497706832]
@@ -46,13 +46,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/normal_font_size = 64
-text = "INSTRUCTIONS:
-WHAT TO DO: NAVIGATE THE MAZE AND FIND THE EXIT. CLICK ON THE BOX TO CLEAR THE LEVEL.
-
+text = "WHAT TO DO: NAVIGATE THE MAZE AND FIND THE EXIT. CLICK ON THE BOX TO CLEAR THE LEVEL.
 WHAT NOT TO DO: DO NOT TOUCH THE ENEMY. AVOID GETTING SPOTTED!
 
+E=ECHOLOCATION
+E(HOLD)=SHOUT
 (press escape to view options)"
+fit_content = true
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=450982667]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 2.8198147, 0, 0)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 4.038655, 0, 0)
 light_color = Color(1, 0.61960787, 0.1764706, 1)
+light_energy = 6.582

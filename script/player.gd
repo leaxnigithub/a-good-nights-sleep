@@ -1,10 +1,16 @@
 extends CharacterBody3D
 
+var blood_tween: Tween # <--- ADD THIS
+
 # --- UI References ---
 var is_on_cooldown: bool = false 
-@onready var blood_meter = $PlayerUI/BloodMeter
+@onready var blood_meter = $PlayerUI/Control/BloodMeter
 @onready var cooldown_meter = $PlayerUI/CooldownMeter
+
+var blood_base_pos: Vector2 = Vector2.ZERO
 var cooldown_base_pos: Vector2 = Vector2.ZERO 
+var blood_base_scale: Vector2 = Vector2.ONE   
+var cooldown_base_scale: Vector2 = Vector2.ONE 
 
 @onready var screech_sound = $ScreechSound
 @onready var body = $CollisionShape3D
@@ -47,8 +53,8 @@ var current_speed: float = SPEED
 
 # --- Speed Boost Settings ---
 var sprint_boost_timer: float = 0.0
-@export var boost_duration: float = 3.0 
-@export var boost_multiplier: float = 1.2
+@export var boost_duration: float = 2.0 # How many seconds the sprint lasts
+@export var boost_multiplier: float = 1.8 # How much faster you run (1.8 = 80% faster)
 
 # --- Head Bobbing Settings ---
 @onready var camera = $Camera3D
@@ -87,11 +93,14 @@ func _ready() -> void:
 	if blood_meter:
 		blood_meter.max_value = max_blood
 		blood_meter.value = current_blood
+		blood_base_scale = blood_meter.scale # Memorize the custom scale!
+		blood_base_pos = blood_meter.position
 		
 	if cooldown_meter:
 		cooldown_meter.max_value = echo_cooldown
 		cooldown_meter.value = echo_cooldown
-		cooldown_base_pos = cooldown_meter.position # <--- ADD THIS
+		cooldown_base_pos = cooldown_meter.position 
+		cooldown_base_scale = cooldown_meter.scale # Memorize the custom scale!
 
 func check_ray_hit() -> void:
 	if interact.is_colliding():
@@ -134,7 +143,6 @@ func _process(delta: float) -> void:
 		current_speed_mat.set_shader_parameter("effect_intensity", new_val)
 	
 	# --- LOW BLOOD/HEALTH VFX ---
-	# Triggers when blood drops below 30
 	if current_blood <= 30.0:
 		target_health_intensity = 1.0
 	else:
@@ -150,17 +158,17 @@ func _physics_process(delta: float) -> void:
 	if get_tree().paused:
 		return
 
-# --- Blood Meter Update (Passive Healing Removed) ---
+	# --- Smoothly Animate the Blood Meter UI ---
 	if blood_meter:
-		blood_meter.value = current_blood
-
+		# delta * 10.0 controls the speed of the transition (higher is faster)
+		blood_meter.value = lerp(blood_meter.value, current_blood, delta * 10.0)
 
 # --- Cooldown Timer & UI Update ---
 	if cooldown_timer > 0:
 		cooldown_timer -= delta
 		if cooldown_meter:
-			var step_amount = 1.0 
-			cooldown_meter.value = snapped(echo_cooldown - cooldown_timer, step_amount)
+			# Removed the "snapped" step amount here!
+			cooldown_meter.value = echo_cooldown - cooldown_timer
 	else:
 		if cooldown_meter:
 			cooldown_meter.value = echo_cooldown 
@@ -210,7 +218,7 @@ func _physics_process(delta: float) -> void:
 		sprint_boost_timer -= delta
 		target_speed = SPEED * boost_multiplier
 	
-	# Charging slows you down (this is at the bottom so it overrides the sprint if you start charging again)
+	# Charging slows you down
 	if is_charging and charge_timer > 0.2:
 		target_speed = SPEED * 0.3
 		
@@ -223,7 +231,7 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, SPEED)
 		velocity.z = move_toward(velocity.z, 0, SPEED)
 		
-	move_and_slide() # FIXED: Only called once now!
+	move_and_slide()
 
 	if direction != Vector3.ZERO and is_on_floor():
 		if not footsteps.playing:
@@ -363,7 +371,6 @@ func _process_echo_pulse(delta: float) -> void:
 		var dist = global_position.distance_to(vial.global_position)
 		if dist <= current_echo_radius and dist >= (current_echo_radius - 3.0):
 			
-			# Find the mesh inside the vial scene
 			var vial_mesh = vial.get_node_or_null("MeshInstance3D")
 			if vial_mesh and not vial_mesh in highlighted_objects:
 				_highlight_pickup(vial_mesh)
@@ -398,9 +405,9 @@ func _highlight_pickup(mesh_node: MeshInstance3D) -> void:
 		mesh_node.material_overlay = unique_mat
 		
 		var tween = create_tween()
-		tween.tween_interval(3.0) # Vials stay lit for 3 seconds
+		tween.tween_interval(3.0) 
 		tween.tween_property(unique_mat, "shader_parameter/glow_color:a", 0.0, 1.5).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_OUT)
-		tween.tween_callback(_clear_enemy_highlight.bind(mesh_node)) # Reusing the clear function since it does the exact same thing
+		tween.tween_callback(_clear_enemy_highlight.bind(mesh_node)) 
 
 func _clear_enemy_highlight(mesh_node: MeshInstance3D) -> void:
 	if is_instance_valid(mesh_node):
@@ -412,10 +419,6 @@ func _clear_enemy_highlight(mesh_node: MeshInstance3D) -> void:
 # =================================================================
 func take_damage(amount: float) -> void:
 	current_blood -= amount
-	
-	if blood_meter:
-		blood_meter.value = current_blood
-	
 	_play_use_effect()
 		
 	if current_blood <= 0:
@@ -427,15 +430,9 @@ func die() -> void:
 func add_blood(amount: float) -> void:
 	current_blood += amount
 	
-	# Prevent the blood from going over the maximum limit
 	if current_blood > max_blood:
 		current_blood = max_blood
 		
-	if blood_meter:
-		blood_meter.value = current_blood
-		
-	# Optional: You can create a new UI effect here for healing, 
-	# or just reuse the recharge effect to show a positive flash!
 	_play_recharge_effect()
 
 
@@ -443,24 +440,7 @@ func add_blood(amount: float) -> void:
 #                 UI ANIMATIONS
 # =================================================================
 func _play_use_effect() -> void:
-	if not blood_meter:
-		return
-		
-	blood_meter.pivot_offset = blood_meter.size / 2.0 
-	var original_pos = blood_meter.position 
-	var tween = create_tween()
-	var shake_power = 7.0
-	
-	tween.tween_property(blood_meter, "scale", Vector2(0.8, 0.8), 0.05)
-	tween.parallel().tween_property(blood_meter, "modulate", Color(0.5, 0.5, 0.5, 1.0), 0.05)
-	
-	tween.parallel().tween_property(blood_meter, "position", original_pos + Vector2(-shake_power, shake_power), 0.02)
-	tween.tween_property(blood_meter, "position", original_pos + Vector2(shake_power, -shake_power), 0.02)
-	tween.tween_property(blood_meter, "position", original_pos + Vector2(-shake_power / 2.0, 0), 0.02)
-	
-	tween.tween_property(blood_meter, "position", original_pos, 0.05)
-	tween.parallel().tween_property(blood_meter, "scale", Vector2(1.0, 1.0), 0.15).set_trans(Tween.TRANS_BOUNCE)
-	tween.parallel().tween_property(blood_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.15)
+	pass
 
 func _play_cooldown_effect() -> void:
 	if not cooldown_meter:
@@ -471,9 +451,9 @@ func _play_cooldown_effect() -> void:
 	var tween = create_tween()
 	var shake_power = 8.0 
 	
-	# Flash bright white and scale up slightly
+	# Flash bright white and scale up based on base scale
 	tween.tween_property(cooldown_meter, "modulate", Color(2.5, 2.5, 2.5, 1.0), 0.1)
-	tween.parallel().tween_property(cooldown_meter, "scale", Vector2(1.1, 1.1), 0.1)
+	tween.parallel().tween_property(cooldown_meter, "scale", cooldown_base_scale * 1.1, 0.1)
 	
 	# Shudder violently side-to-side
 	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(shake_power, 0), 0.03)
@@ -481,10 +461,11 @@ func _play_cooldown_effect() -> void:
 	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(shake_power / 2.0, 0), 0.03)
 	tween.tween_property(cooldown_meter, "position", original_pos + Vector2(-shake_power / 2.0, 0), 0.03)
 	
-	# Smoothly return to normal
+	# Smoothly return to normal position and base scale
 	tween.tween_property(cooldown_meter, "position", original_pos, 0.05)
 	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.2)
-	tween.parallel().tween_property(cooldown_meter, "scale", Vector2(1.0, 1.0), 0.2)
+	tween.parallel().tween_property(cooldown_meter, "scale", cooldown_base_scale, 0.2)
+	
 	
 func _play_recharge_effect() -> void:
 	if not cooldown_meter:
@@ -493,10 +474,10 @@ func _play_recharge_effect() -> void:
 	cooldown_meter.pivot_offset = cooldown_meter.size / 2.0 
 	var tween = create_tween()
 	
-	# Pop out and flash bright (adjust the Color values to change the flash color)
-	tween.tween_property(cooldown_meter, "scale", Vector2(1.2, 1.2), 0.1)
+	# Pop out based on base scale
+	tween.tween_property(cooldown_meter, "scale", cooldown_base_scale * 1.2, 0.1)
 	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.5, 2.5, 1.5, 1.0), 0.1) 
 	
-	# Bounce back to normal size and color
-	tween.tween_property(cooldown_meter, "scale", Vector2(1.0, 1.0), 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
+	# Bounce back to normal base scale
+	tween.tween_property(cooldown_meter, "scale", cooldown_base_scale, 0.3).set_trans(Tween.TRANS_BOUNCE).set_ease(Tween.EASE_OUT)
 	tween.parallel().tween_property(cooldown_meter, "modulate", Color(1.0, 1.0, 1.0, 1.0), 0.3)
