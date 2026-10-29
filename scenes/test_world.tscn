@@ -81,7 +81,6 @@ environment = SubResource("Environment_cnaw2")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=336060178]
 transform = Transform3D(1, 0, 0, 0, 0.29227155, 0.95633537, 0, -0.95633537, 0.29227155, 0, 104.22064, 14.697347)
-visible = false
 light_color = Color(0.9999996, 0.61545277, 0.27028933, 1)
 light_energy = 0.3
 shadow_enabled = true

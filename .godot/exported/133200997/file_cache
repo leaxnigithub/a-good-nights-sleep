@@ -1,6 +1,6 @@
 res://addons/SimpleDungeons/debug_visuals/DebugAlert.tscn::6e312bb2591ae28dec5bc359a0be03e2::1786068224::res://.godot/exported/133200997/export-501d082e00a8e98488ad3904fb735514-DebugAlert.scn
 res://addons/SimpleDungeons/debug_visuals/DoorDebugVisual.tscn::1719178088d36946c37cc847c005da66::1786068224::res://.godot/exported/133200997/export-1b684ca539f6af7b2da3465d6b6ab2c7-DoorDebugVisual.scn
-res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres::85dd0be4cf54adb3595521a560eaede7::1787778865::res://.godot/exported/133200997/export-addc74838415d116ae51cfa3392156ba-WireframeColorMat.res
+res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres::85dd0be4cf54adb3595521a560eaede7::1787869465::res://.godot/exported/133200997/export-addc74838415d116ae51cfa3392156ba-WireframeColorMat.res
 res://addons/SimpleDungeons/debug_visuals/WireframeCube.tscn::aa453a2a19dea206087215c7f53879a0::1786068224::res://.godot/exported/133200997/export-f798d779547d5525279d0f67d227097e-WireframeCube.scn
 res://addons/SimpleDungeons/sample_dungeons/custom_random_room_function_example/blue_room.tscn::0261f338e31ac77b64ed4315edf6d68b::1786068224::res://.godot/exported/133200997/export-a559558cfbcf3a39cbe0494b1104e337-blue_room.scn
 res://addons/SimpleDungeons/sample_dungeons/custom_random_room_function_example/corridor.tscn::f1203adc2b7ad769d5a1852c09b4a485::1786068224::res://.godot/exported/133200997/export-47244ff239a0353b144d34e920836b17-corridor.scn
@@ -50,8 +50,8 @@ res://scenes/kill_block.tscn::80ed46338a0a375565e8c25e7c998dc3::1786068224::res:
 res://scenes/loading_screen.tscn::7be1f13bd3b4cd892c9f9f5125854d71::1786577457::res://.godot/exported/133200997/export-1e707b022a70ca8796c92eea804c0b29-loading_screen.scn
 res://scenes/main_menu_3d.tscn::2cfed8cd3f6cd3dd401e052407c3d6bf::1786578003::res://.godot/exported/133200997/export-b8a2cd228bf0799cf95b96dfcfb37915-main_menu_3d.scn
 res://scenes/pause_menu.tscn::76ac86efa66b8a3a15948e1cfe3d800b::1786487034::res://.godot/exported/133200997/export-ca2c2284eb591e72162d67219a0d2f87-pause_menu.scn
-res://scenes/player.tscn::62833f048dbbcd606d63bfa5b8a9eaff::1787781181::res://.godot/exported/133200997/export-234fb6894ec6226e856ab7f825500d3d-player.scn
-res://scenes/test_world.tscn::13131949b910280c056233c82a286875::1787779523::res://.godot/exported/133200997/export-7c5c51cb0259707df837c3df47cb8d6f-test_world.scn
+res://scenes/player.tscn::e1b061c4b26ae7d106073c7664e23a39::1787868664::res://.godot/exported/133200997/export-234fb6894ec6226e856ab7f825500d3d-player.scn
+res://scenes/test_world.tscn::c4779b64f819675615dacfdbf323529a::1787869465::res://.godot/exported/133200997/export-7c5c51cb0259707df837c3df47cb8d6f-test_world.scn
 res://scenes/titlescreen.tscn::f12bd7fe68b7273ccaea21086cea9310::1787779155::res://.godot/exported/133200997/export-b21e0ef71baf3708f6ac5c4c6934bf36-titlescreen.scn
 res://scenes/win_screen.tscn::7dcc8719cd11c02269a4f206f943a918::1786487001::res://.godot/exported/133200997/export-4446fc4d426ca974deeefccb08735c1c-win_screen.scn
 res://shaders/default_bus_layout.tres::7039233fc8eab675227e1087e2af7b4a::1786068224::res://.godot/exported/133200997/export-8046c7934f24d898219eed5f494e2951-default_bus_layout.res
@@ -61,5 +61,5 @@ res://shaders/radar_wave_mat.tres::3046dfb1c38d3ebde8e7389e76718f4f::1786069550:
 res://shaders/stun_wave_mat.tres::878e4bb13c7d9b562547dd428dee7f80::1786069550::res://.godot/exported/133200997/export-b6b7663f9872f4eb38db90e6d60ba447-stun_wave_mat.res
 res://shaders/vial_outline_mat.tres::f0c09143910d0e15b1cfbe6d80a11b0f::1786932967::res://.godot/exported/133200997/export-172999dc57d7f11687d722029136cce2-vial_outline_mat.res
 res://shaders/wall_outline_mat.tres::2c6891554a5bf4cb2921ce38fa32e31f::1786068225::res://.godot/exported/133200997/export-70aa6213ded1615d483a9e6080109243-wall_outline_mat.res
-res://sound/black_and_white_theme/black_and_white.tres::189f402b3b1a689be16728b4b8ab2232::1787778865::res://.godot/exported/133200997/export-5eb03de5feb64bb927b504108e9ad1ea-black_and_white.res
+res://sound/black_and_white_theme/black_and_white.tres::189f402b3b1a689be16728b4b8ab2232::1787869465::res://.godot/exported/133200997/export-5eb03de5feb64bb927b504108e9ad1ea-black_and_white.res
 res://UI/labelmain.tres::f2668ee163cf1b9da874845bd336dc66::1786068225::res://.godot/exported/133200997/export-a4266d8cd3d7737ef07c2e56e90399cb-labelmain.res

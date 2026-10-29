@@ -126,8 +126,15 @@ pitch_scale = 0.74
 [node name="PlayerUI" type="CanvasLayer" parent="." unique_id=1150796367]
 layer = 0
 
-[node name="CooldownMeter" type="TextureProgressBar" parent="PlayerUI" unique_id=38921315]
+[node name="Control2" type="Control" parent="PlayerUI" unique_id=1597850511]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="CooldownMeter" type="TextureProgressBar" parent="PlayerUI/Control2" unique_id=38921315]
 texture_filter = 3
+layout_mode = 1
 anchors_preset = -1
 anchor_right = 0.035
 anchor_bottom = 0.062000003
@@ -145,12 +152,12 @@ texture_progress = SubResource("CompressedTexture2D_qfm1y")
 tint_under = Color(0.4745098, 0.03529412, 0, 1)
 tint_progress = Color(0.78431374, 0.47058824, 0.42352942, 1)
 
-[node name="TextureRect2" type="TextureRect" parent="PlayerUI/CooldownMeter" unique_id=971155675]
+[node name="TextureRect2" type="TextureRect" parent="PlayerUI/Control2/CooldownMeter" unique_id=971155675]
 layout_mode = 0
-offset_left = 56.0
-offset_top = 56.0
-offset_right = 156.0
-offset_bottom = 156.0
+offset_left = 34.0
+offset_top = 35.0
+offset_right = 134.0
+offset_bottom = 135.0
 texture = ExtResource("11_oprun")
 expand_mode = 1
 

@@ -15,6 +15,13 @@
 [ext_resource type="PackedScene" uid="uid://bbgo3v52gdvxt" path="res://scenes/player.tscn" id="13_5kao7"]
 [ext_resource type="PackedScene" uid="uid://bb88fts25bwqx" path="res://scenes/enemy.tscn" id="14_caiqf"]
 
+[sub_resource type="Environment" id="Environment_g4v7s"]
+background_mode = 1
+background_color = Color(0.19076231, 0.19076234, 0.19076231, 1)
+ambient_light_source = 2
+ambient_light_color = Color(0.28166544, 2.8066245e-06, 1.540184e-06, 1)
+ambient_light_energy = 2.12
+
 [node name="dungeontutorial" type="Node3D" unique_id=438649726]
 
 [node name="DungeonGenerator3D" type="Node3D" parent="." unique_id=326948658]
@@ -582,7 +589,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -35, 25, 15)
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -25, 25, 15)
 
 [node name="player" parent="." unique_id=791080869 groups=["enemy", "gridmaps", "player"] instance=ExtResource("13_5kao7")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6943512, 29.364082, -3.7829018)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.6943512, 29.364082, 4.9044952)
 
 [node name="background_music" type="AudioStreamPlayer2D" parent="." unique_id=902081586]
 stream = ExtResource("11_5qiem")
@@ -591,4 +598,7 @@ autoplay = true
 parameters/looping = true
 
 [node name="enemy" parent="." unique_id=793851277 instance=ExtResource("14_caiqf")]
-transform = Transform3D(0.9999833, 0.005773134, 0, -0.005773134, 0.9999833, 0, 0, 0, 1, -6.7786255, 33.328224, 0)
+transform = Transform3D(0.9999833, 0.005773134, 0, -0.005773134, 0.9999833, 0, 0, 0, 1, -6.7786255, 33.328224, 8.495666)
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=31807370]
+environment = SubResource("Environment_g4v7s")

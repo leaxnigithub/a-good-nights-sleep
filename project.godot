@@ -23,6 +23,10 @@ buses/default_bus_layout="uid://c0c4o3owlblum"
 
 Global="*uid://dplpdp5ranbo2"
 
+[display]
+
+window/stretch/mode="canvas_items"
+
 [editor_plugins]
 
 enabled=PackedStringArray("res://addons/SimpleDungeons/plugin.cfg")

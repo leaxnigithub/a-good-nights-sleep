@@ -1,4 +1,4 @@
-res://scenes/test_world.tscn
+res://scenes/dungeontutorial.tscn
 res://addons/SimpleDungeons/debug_visuals/WireframeColorMat.tres
 res://sound/black_and_white_theme/black_and_white.tres
 res://shaders/retroPPS.gdshader
@@ -7,7 +7,3 @@ res://shaders/enemy_outline_mat.gdshader
 res://shaders/radar_wave_mat.gdshader
 res://shaders/mega_shout_mat.gdshader
 res://shaders/postprocessing.gdshader
-res://scenes/instruction_sign.tscn
-res://scenes/titlescreen.tscn
-res://scenes/player.tscn
-res://script/player.gd

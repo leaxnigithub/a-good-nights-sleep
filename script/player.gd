@@ -5,7 +5,7 @@ var blood_tween: Tween # <--- ADD THIS
 # --- UI References ---
 var is_on_cooldown: bool = false 
 @onready var blood_meter = $PlayerUI/Control/BloodMeter
-@onready var cooldown_meter = $PlayerUI/CooldownMeter
+@onready var cooldown_meter = $PlayerUI/Control2/CooldownMeter
 
 var blood_base_pos: Vector2 = Vector2.ZERO
 var cooldown_base_pos: Vector2 = Vector2.ZERO 
@@ -54,7 +54,7 @@ var current_speed: float = SPEED
 # --- Speed Boost Settings ---
 var sprint_boost_timer: float = 0.0
 @export var boost_duration: float = 2.0 # How many seconds the sprint lasts
-@export var boost_multiplier: float = 1.8 # How much faster you run (1.8 = 80% faster)
+@export var boost_multiplier: float = 1.2 # How much faster you run (1.8 = 80% faster)
 
 # --- Head Bobbing Settings ---
 @onready var camera = $Camera3D
